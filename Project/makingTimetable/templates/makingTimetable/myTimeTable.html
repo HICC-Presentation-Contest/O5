@@ -1,10 +1,200 @@
+<!--
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>"내 시간표 둘러보기"</title>
 </head>
+
 <body>
 
 </body>
+</html>
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
+
+<style>
+    @font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+* {
+    font-family: 'S-CoreDream-3Light';
+}
+
+	div{
+		color:black;
+		font-size: 50px;
+		text-align: center;
+		text-decoration: none;}
+	a{
+		color:#439771;
+		text-decoration: none;}
+	body {
+		background: white;
+		  font-size: 30px;
+	}
+
+	/*.btn {
+		background-color: #439771;
+		border: none;
+		width: 100px;
+		height: 75px;
+		border-radius: 4px;
+		position: relative;
+        right: 120px;
+	}
+		.btn i{
+		color: white;
+		font-size: 80px;
+	}*/
+	select {
+		font-size: 25px;
+		font-weight: bold;
+		color: #439771;
+		border-radius: 3px
+	}
+	input{
+		background-color: #439771;
+		border: none;
+		width: 80px;
+		height: 45px;
+		border-radius: 4px;
+		font-size: 23px;
+		font-weight: bold;
+		color: white;
+	}
+
+
+
+</style>
+
+</head>
+<body>
+<h1><strong><p>
+<div style="text-align:left;font-size:40px"><a href="/"">      [내 시간표 둘러보기]</a></p></strong></h1></div>
+
+<div style="text-align:right"><button class= btn onclick="window.location.href='/'"><i class="fa fa-home"></i></button></div>
+
+<div style="text-align:left;font-size:20px"><p><strong>시간표</strong></p></div>
+
+<!--<script language = "JavaScript">
+    for(i = 0 ; i < 5 ; i++)
+        for(j = 0 ; j < 5 ; j++)
+        {
+         <tr>
+        }
+
+        </script>
+    -->
+
+<!-- js 써서 table 자동추가기능으로 바꾸기-->
+<table>
+    <tr>
+      <th scope="col"; style="font-size:25px">월</td>
+      <th scope="col"; style="font-size:25px">화</td>
+      <th scope="col"; style="font-size:25px">수</td>
+      <th scope="col"; style="font-size:25px">목</td>
+      <th scope="col"; style="font-size:25px">금</td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+
+  </table>
+  <style>
+    table{ border-collapse : collapse; }  /*이중선 제거*/
+    th,td{
+         width: 70px;
+         height: 50px;
+         text-align: center;
+         border: 1px solid #439771;
+
+         vertical-align: top;	/* 위 */
+         vertical-align: bottom;   /* 아래 */
+         vertical-align: middle;   /* 가운데 */
+       }
+     </style>
+
+<br>
+
+<!--<div style="text-align:left; font-size:25px">
+	<form action="/Teacherpage/2/" method= "post">-->
+	<p>
+        <strong>dropdown리스트</strong>
+
+        <select name="subject" style="width:80px;height:30px;font-size:20px;color:#439771">
+				<option value="매스컴과 현대사회" selected>매스컴과 현대사회</option>
+				<option value="객체지향프로그래밍">객체지향프로그래밍</option>
+				<option value="현대생활과디자인">현대생활과디자인</option>
+				<option value="논리회로설계및실험">논리회로설계및실험</option>
+                <option value="등등 추가 가능">등등 추가 가능</option>
+		</select>
+        <div style="text-align:left">
+            <input type="submit" value="확인"></div>
+
+            <!--</div>-->
+
+	</p>
+
+</form>
+
+
+</body>
+
+
 </html>
