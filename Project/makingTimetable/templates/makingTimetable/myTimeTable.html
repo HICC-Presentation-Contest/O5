@@ -18,183 +18,173 @@
     <meta charset="utf-8">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     -->
-
-<style>
-    @font-face {
-     font-family: 'S-CoreDream-3Light';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
-}
-* {
-    font-family: 'S-CoreDream-3Light';
-}
-
-	div{
-		color:black;
-		font-size: 50px;
-		text-align: center;
-		text-decoration: none;}
-	a{
-		color:#439771;
-		text-decoration: none;}
-	body {
-		background: white;
-		  font-size: 30px;
-	}
-
-	/*.btn {
-		background-color: #439771;
-		border: none;
-		width: 100px;
-		height: 75px;
-		border-radius: 4px;
-		position: relative;
-        right: 120px;
-	}
-		.btn i{
-		color: white;
-		font-size: 80px;
-	}*/
-	select {
-		font-size: 25px;
-		font-weight: bold;
-		color: #439771;
-		border-radius: 3px
-	}
-	input{
-		background-color: #439771;
-		border: none;
-		width: 80px;
-		height: 45px;
-		border-radius: 4px;
-		font-size: 23px;
-		font-weight: bold;
-		color: white;
-	}
+    <!-- 부트스트랩용 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <!-- css파일 -->
+    <link rel="stylesheet" href="../../static/css/myTimeTable_demo.css" type="text/css">
+    <!-- 제이쿼리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-
-</style>
 
 </head>
+
 <body>
-<h1><strong><p>
-<div style="text-align:left;font-size:40px"><a href="/"">      [내 시간표 둘러보기]</a></p></strong></h1></div>
-
-<div style="text-align:right"><button class= btn onclick="window.location.href='/'"><i class="fa fa-home"></i></button></div>
-
-<div style="text-align:left;font-size:20px"><p><strong>시간표</strong></p></div>
-
-<!--<script language = "JavaScript">
-    for(i = 0 ; i < 5 ; i++)
-        for(j = 0 ; j < 5 ; j++)
-        {
-         <tr>
-        }
-
-        </script>
-    -->
-
-<!-- js 써서 table 자동추가기능으로 바꾸기-->
-<table>
-    <tr>
-      <th scope="col"; style="font-size:25px">월</td>
-      <th scope="col"; style="font-size:25px">화</td>
-      <th scope="col"; style="font-size:25px">수</td>
-      <th scope="col"; style="font-size:25px">목</td>
-      <th scope="col"; style="font-size:25px">금</td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-
-  </table>
-  <style>
-    table{ border-collapse : collapse; }  /*이중선 제거*/
-    th,td{
-         width: 70px;
-         height: 50px;
-         text-align: center;
-         border: 1px solid #439771;
-
-         vertical-align: top;	/* 위 */
-         vertical-align: bottom;   /* 아래 */
-         vertical-align: middle;   /* 가운데 */
-       }
-     </style>
-
-<br>
-
-<!--<div style="text-align:left; font-size:25px">
-	<form action="/Teacherpage/2/" method= "post">-->
-	<p>
-        <strong>dropdown리스트</strong>
-
-        <select name="subject" style="width:80px;height:30px;font-size:20px;color:#439771">
-				<option value="매스컴과 현대사회" selected>매스컴과 현대사회</option>
-				<option value="객체지향프로그래밍">객체지향프로그래밍</option>
-				<option value="현대생활과디자인">현대생활과디자인</option>
-				<option value="논리회로설계및실험">논리회로설계및실험</option>
-                <option value="등등 추가 가능">등등 추가 가능</option>
-		</select>
-        <div style="text-align:left">
-            <input type="submit" value="확인"></div>
-
-            <!--</div>-->
-
-	</p>
-
-</form>
+    <!-- 페이지 로고 -->
+    <h1><strong><p>
+        <div style="text-align:left;font-size:40px">
+            <a href="myTimeTable_demo">
+            [내 시간표 둘러보기]
+            </a>
+        </div>
+    </p></strong></h1>
+    <!-- ?????? 이거 뭐에요 ???????-->
+    <div style="text-align:right"><button class= btn onclick="window.location.href='/'"><i class="fa fa-home"></i></button></div>
 
 
+
+    <!-- 시간표 테이블-->
+    <div style="text-align:left;font-size:20px"><p><strong>시간표</strong></p></div>
+    <table id = "myTimeTable">
+        <!-- 각 요소의 id 이름형식은 timeTable_요일_교시 ex. timetable_mon_1-->
+        <tr>
+            <th scope="col"; ></td>
+            <th scope="col"; >월</td>
+            <th scope="col"; >화</td>
+            <th scope="col"; >수</td>
+            <th scope="col"; >목</td>
+            <th scope="col"; >금</td>
+            <th scope="col"; >토</td>
+            <th scope="col"; >일</td>
+        </tr>
+        <!-- 1교시 -->
+        <tr>
+            <td class="myTimeTable_time display-5">9:00 - 10:00 </td>
+            <td id = "timeTable_mon_1"> </td>
+            <td id = "timeTable_tue_1"> </td>
+            <td id = "timeTable_wed_1"> </td>
+            <td id = "timeTable_thu_1"> </td>
+            <td id = "timeTable_fri_1"> </td>
+            <td id = "timeTable_sat_1"> </td>
+            <td id = "timeTable_sun_1"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">10:00 - 11:00 </td>
+            <td id = "timeTable_mon_2"> </td>
+            <td id = "timeTable_tue_2"> </td>
+            <td id = "timeTable_wed_2"> </td>
+            <td id = "timeTable_thu_2"> </td>
+            <td id = "timeTable_fri_2"> </td>
+            <td id = "timeTable_sat_2"> </td>
+            <td id = "timeTable_sun_2"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">11:00 - 12:00 </td>
+            <td id = "timeTable_mon_3"> </td>
+            <td id = "timeTable_tue_3"> </td>
+            <td id = "timeTable_wed_3"> </td>
+            <td id = "timeTable_thu_3"> </td>
+            <td id = "timeTable_fri_3"> </td>
+            <td id = "timeTable_sat_3"> </td>
+            <td id = "timeTable_sun_3"> </td>
+        </tr>
+
+        <tr>
+            <td class="myTimeTable_time display-5">12:00 - 13:00 </td>
+            <td id = "timeTable_mon_4"> </td>
+            <td id = "timeTable_tue_4"> </td>
+            <td id = "timeTable_wed_4"> </td>
+            <td id = "timeTable_thu_4"> </td>
+            <td id = "timeTable_fri_4"> </td>
+            <td id = "timeTable_sat_4"> </td>
+            <td id = "timeTable_sun_4"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">13:00 - 14:00 </td>
+            <td id = "timeTable_mon_5"> </td>
+            <td id = "timeTable_tue_5"> </td>
+            <td id = "timeTable_wed_5"> </td>
+            <td id = "timeTable_thu_5"> </td>
+            <td id = "timeTable_fri_5"> </td>
+            <td id = "timeTable_sat_5"> </td>
+            <td id = "timeTable_sun_5"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">14:00 - 15:00 </td>
+            <td id = "timeTable_mon_6"> </td>
+            <td id = "timeTable_tue_6"> </td>
+            <td id = "timeTable_wed_6"> </td>
+            <td id = "timeTable_thu_6"> </td>
+            <td id = "timeTable_fri_6"> </td>
+            <td id = "timeTable_sat_6"> </td>
+            <td id = "timeTable_sun_6"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">15:00 - 16:00 </td>
+            <td id = "timeTable_mon_7"> </td>
+            <td id = "timeTable_tue_7"> </td>
+            <td id = "timeTable_wed_7"> </td>
+            <td id = "timeTable_thu_7"> </td>
+            <td id = "timeTable_fri_7"> </td>
+            <td id = "timeTable_sat_7"> </td>
+            <td id = "timeTable_sun_7"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">16:00 - 17:00 </td>
+            <td id = "timeTable_mon_8"> </td>
+            <td id = "timeTable_tue_8"> </td>
+            <td id = "timeTable_wed_8"> </td>
+            <td id = "timeTable_thu_8"> </td>
+            <td id = "timeTable_fri_8"> </td>
+            <td id = "timeTable_sat_8"> </td>
+            <td id = "timeTable_sun_8"> </td>
+        </tr>
+        <tr>
+            <td class="myTimeTable_time display-5">17:00 - 18:00 </td>
+            <td id = "timeTable_mon_9"> </td>
+            <td id = "timeTable_tue_9"> </td>
+            <td id = "timeTable_wed_9"> </td>
+            <td id = "timeTable_thu_9"> </td>
+            <td id = "timeTable_fri_9"> </td>
+            <td id = "timeTable_sat_9"> </td>
+            <td id = "timeTable_sun_9"> </td>
+        </tr>
+
+
+
+    </table>
+
+
+    <br>
+
+    <!--<div style="text-align:left; font-size:25px">
+    	<form action="/Teacherpage/2/" method= "post">-->
+            <p>
+                <strong>dropdown리스트</strong>
+
+                <select name="subject" style="width:80px;height:30px;font-size:20px;color:#439771">
+            			<option value="매스컴과 현대사회" selected>매스컴과 현대사회</option>
+            			<option value="객체지향프로그래밍">객체지향프로그래밍</option>
+            			<option value="현대생활과디자인">현대생활과디자인</option>
+            			<option value="논리회로설계및실험">논리회로설계및실험</option>
+                        <option value="등등 추가 가능">등등 추가 가능</option>
+            	</select>
+                <div style="text-align:left">
+                    <input type="submit" value="확인"></div>
+
+                    <!--</div>-->
+
+            </p>
+
+        <!-- </form> -->
+
+
+
+
+    <script src = "../../static/css/myTimeTable_demo.js"></script>
 </body>
 
 
 </html>
+

@@ -1,0 +1,76 @@
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+
+* {
+    font-family: 'S-CoreDream-3Light';
+    background: white;
+    font-size: 30px;
+}
+
+div{
+    color:black;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: none;}
+
+a{
+    color:#439771;
+    text-decoration: none;}
+
+
+/*.btn {
+    background-color: #439771;
+    border: none;
+    width: 100px;
+    height: 75px;
+    border-radius: 4px;
+    position: relative;
+    right: 120px;
+}
+    .btn i{
+    color: white;
+    font-size: 80px;
+}*/
+select {
+    font-size: 25px;
+    font-weight: bold;
+    color: #439771;
+    border-radius: 3px
+}
+input{
+    background-color: #439771;
+    border: none;
+    width: 80px;
+    height: 45px;
+    border-radius: 4px;
+    font-size: 23px;
+    font-weight: bold;s
+    color: white;
+}
+
+
+table{ border-collapse : collapse; }  /*이중선 제거*/
+th,td{
+     width: 70px;
+     height: 50px;
+     text-align: center;
+     border: 1px solid #439771;
+
+     vertical-align: top;   /* 위 */
+     vertical-align: bottom;   /* 아래 */
+     vertical-align: middle;   /* 가운데 */
+   }
+
+#myTimeTable > tr > th
+{
+    font-size:25px
+}
+.myTimeTable_time
+{
+    font-size: large;
+}
