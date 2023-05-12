@@ -19,5 +19,5 @@ from django.urls import path
 from django.urls import include
 
 urlpatterns = [
-    path('', include("MakingTimetable.urls")),
+    path('', include("my_time_table_page.urls")),
 ]
