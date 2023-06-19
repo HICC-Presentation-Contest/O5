@@ -24,7 +24,7 @@ class_elements = dr.find_element(By.ID, 'select_list')  # 동작 할 요소 선�
 class_element_body = class_elements.find_element(By.TAG_NAME, 'tbody')  # 동작 할 요소 선택
 elements_tr = class_element_body.find_elements(By.TAG_NAME, 'tr')  # 동작 할 요소 선택
 
-class_array = []
+class_array = [] # 저장할 배열
 index = 0
 for element_tr in elements_tr:
     temporary_array = []
@@ -32,7 +32,7 @@ for element_tr in elements_tr:
     for element_td in elements_td:
         print(element_td.text)
         temporary_array.append(element_td.text)
-
-    class_array.append(temporary_array)
+    if len(temporary_array) >= 3: # 데이터 무결성 체크
+        class_array.append(temporary_array)
 
 print(class_array)
