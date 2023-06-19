@@ -35,4 +35,8 @@ for element_tr in elements_tr:  # tr들을 for문으로 하나하나씩 가져�
     if len(temporary_array) >= 3:  # 데이터 무결성 체크, 임시 배열이 강의라면 class 배열에 넣어준다.
         class_array.append(temporary_array)
 
-print(class_array)
+# print(class_array)
+# print(len(class_array))
+# for i in class_array:
+#     print(i)
+# print(len(class_array[0]))
