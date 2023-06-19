@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
     *{
     padding: 0;
@@ -91,7 +92,7 @@ a{
     <div class="login-wrapper">
         <h2>내시간표 만들기</h2>
           <form action="login.html" class="form-signin" method="POST" id="login-form">
-        <input type="id" name="id" id="id" class="form-control" placeholder="Id" required autofocus><BR>
+        <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required><BR>
         <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required><br>
         	<p class="check" id="check">${check}</p><br/>
             <label for="remember-check">
@@ -100,14 +101,12 @@ a{
         </form>
         <br>
         <div class="links">
-            <a href="memberId">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> | <a href="memberRegist">회원가입</a>
+            <a href="memberId.html">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> | <a href="memberRegist">회원가입</a>
         </div>
     </div>
 </body>
 
   <script type="text/javascript">
-
-
 
   		$("#id").focusout(function(){
 
