@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import Select  # select태크 크롤링을 �
 from selenium.webdriver.common.by import By
 import time
 
+from selenium.webdriver.common.keys import Keys
 
 url = 'https://sugang.hongik.ac.kr/cn50000.jsp'
 
@@ -60,8 +61,8 @@ for table_tr in table_tr_list:
 
         if len(department_list[index].find_elements(By.TAG_NAME, 'a')) == 0: # 만약 a태그가 없으면 클릭하지 않도록
             continue
-
-        act.click(department_list[index]).perform()  # 전공을 선택(클릭)
+        department_list[index].find_element(By.TAG_NAME, 'a').send_keys(Keys.ENTER)
+        # act.click(department_list[index]).perform()  # 전공을 선택(클릭)
         time.sleep(1)
         dr.switch_to.window(dr.window_handles[1])  # 페이지 변경
         dr.get_window_position(dr.window_handles[1])  # 페이지 변경
