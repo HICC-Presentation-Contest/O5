@@ -8,3 +8,15 @@
   border: solid black 1px;
 
 }
+
+.classbox{
+  flex-direction: column;
+  border-radius : .25rem;
+  float: left;
+  width: 48%;
+  height: 30%;
+  margin: 2.7px;
+  background-color: #9FA8DA;
+  text-align: center;
+}
+
