@@ -8,41 +8,16 @@
 
 * {
     font-family: 'S-CoreDream-3Light';
-    background: white;
-    font-size: 30px;
 }
 
-div{
-    color:black;
-    font-size: 50px;
-    text-align: center;
-    text-decoration: none;}
 
 a{
     color:#439771;
     text-decoration: none;}
 
 
-/*.btn {
-    background-color: #439771;
-    border: none;
-    width: 100px;
-    height: 75px;
-    border-radius: 4px;
-    position: relative;
-    right: 120px;
-}
-    .btn i{
-    color: white;
-    font-size: 80px;
-}*/
-select {
-    font-size: 25px;
-    font-weight: bold;
-    color: #439771;
-    border-radius: 3px
-}
-input{
+
+/*input{
     background-color: #439771;
     border: none;
     width: 80px;
@@ -51,26 +26,29 @@ input{
     font-size: 23px;
     font-weight: bold;s
     color: white;
-}
+}*/
 
 
-table{ border-collapse : collapse; }  /*이중선 제거*/
-th,td{
+#myTimeTable{ border-collapse : collapse; }  /*이중선 제거*/
+
+/*테이블 안에 th td 기본 속성지정*/
+#myTimeTable > tr > th, td{
      width: 70px;
      height: 50px;
      text-align: center;
      border: 1px solid #439771;
-
-     vertical-align: top;   /* 위 */
-     vertical-align: bottom;   /* 아래 */
-     vertical-align: middle;   /* 가운데 */
    }
-
-#myTimeTable > tr > th
-{
-    font-size:25px
+#myTimeTable > th{
+    width: 70px;
+     height: 50px;
+     text-align: center;
+     border: 1px solid #439771;
 }
+
+
 .myTimeTable_time
 {
     font-size: large;
 }
+
+#basicTimeTable{ color:red }
