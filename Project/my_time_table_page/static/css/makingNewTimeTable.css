@@ -14,3 +14,7 @@ div {
 {
   padding:0px !important;
 }
+
+#makingTimeTableBox {
+  height: 75vh;
+}
