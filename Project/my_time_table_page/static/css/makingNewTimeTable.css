@@ -1,13 +1,4 @@
-#makingTimeTableBox {
-  border: solid black 1px;
 
-  height: 75vh;
-  margin: 50px;
-}
-#makingTimeTableBox > div {
-  border: solid black 1px;
-
-}
 
 .classbox{
   flex-direction: column;
@@ -20,3 +11,35 @@
   text-align: center;
 }
 
+#makingTimeTableBox {
+  border-radius: 10px;
+
+  height: 75vh;
+  margin: 5%;
+  background-color: rgb(243, 233, 170);
+}
+#makingTimeTableBox_InnerTimeTable{
+
+  margin: 1%;
+  overflow-y:scroll;
+}
+
+#makingTimeTableBox_SearchBox{
+  background-color: white;
+  margin: 1%;
+  margin-left: 0;
+  border-radius: 10px;
+  padding: 1%;
+}
+
+#textSearchBox > div {
+  display:inline-block;
+}
+
+#searchButton {
+  background-color: rgb(243, 156, 18);
+}
+
+#resultBox{
+  border: solid lightgray 1px;
+}
