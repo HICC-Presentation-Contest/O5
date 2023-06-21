@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+      #boxWrap {
+          width: auto;
+          height: auto;
+        }
+
+        #boxWrap:after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+
+        #boxWrap p+p {
+          margin-left: 5px;
+        }
+
+        .original {
+          float: left;
+          width: 100px;
+          height: 100px;
+          background-color: #cbcbcb;
+          text-align: center;
+          line-height: 100px;
+        }
+
+        .btnWrap {
+          width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 버튼 -->
+    <div class="btnWrap">
+        <button onclick="add_box()">+</button>
+    </div>
+
+    <!-- 박스 추가되는 영역 -->
+    <div id="boxWrap">
+        <div id="field"></div>
+    </div>
+
+    <script type="text/javascript">
+        var i = 1;
+
+        function add_box() {
+            var div = document.createElement('div');
+            div.innerHTML = `
+                <div class="original">등장${i}</div>
+                <div id="pre_set" style="display:none">
+                    <input type="text" name="test1" value="" style="width:100px">
+                    <input type="button" value="삭제" onclick="remove_item(this)">
+                </div>
+                <input type="button" value="추가" onclick="add_item()"><br>
+            `;
+            document.getElementById('field').appendChild(div);
+            i++;
+        }
+
+        function add_item() {
+            var div = document.createElement('div');
+            div.innerHTML = document.getElementById('pre_set').innerHTML;
+            document.getElementById('field').appendChild(div);
+        }
+
+        function remove_item(obj) {
+            document.getElementById('field').removeChild(obj.parentNode);
+        }
+    </script>
+</body>
+</html>

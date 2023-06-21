@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div id="pre_set" style="display:none">
+   <input type="text" name="test1" value="" style="width:100px">
+   <input type="text" name="test2" value="" style="width:100px">
+   <input type="button" value="삭제" onclick="remove_item(this)">
+</div>
+
+<div id="field"></div>
+
+<input type="button" value=" 추가 " onclick="add_item()"><br>
+추가 버튼을 눌러보세요.
+</body>
+<script>
+     function add_item(){
+          // pre_set 에 있는 내용을 읽어와서 처리..
+          var div = document.createElement('div');
+          div.innerHTML = document.getElementById('pre_set').innerHTML;
+          document.getElementById('field').appendChild(div);
+     }
+     function remove_item(obj){
+          // obj.parentNode 를 이용하여 삭제
+          document.getElementById('field').removeChild(obj.parentNode);
+     }
+</script>
+</html>
