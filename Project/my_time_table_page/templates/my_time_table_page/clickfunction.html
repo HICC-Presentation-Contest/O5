@@ -21,9 +21,9 @@
         margin-bottom:30px;
         padding: 10px;
         width: 300px;
-        height: 600px;
+        height: 250px;
         background-color: #6A24FE;
-        overflow: hidden;
+        overflow: hidden; //original끼리 서로 영역 침범 하지 않도록 영역 지정
     }
     .preset {
         margin-top: 10px;
@@ -33,44 +33,108 @@
 
 <!-- 버튼 -->
 <div class="btnWrap">
-    <button onclick="add_box()">+시간표추가</button>
+    <button onclick="add_group()">+그룹추가</button>
 </div>
 
 <!-- 박스 추가되는 영역 -->
 <div id="boxWrap">
-    <div id="field"></div>
-</div>
+    <div id="field">
+        <!-- 초기 그룹 맨 처음 화면에 뜨는 초기 그룹은 두개임 -->
+        <div class="original" data-group="1">
+                <div class="preset" style="display:none">
+                    <input type="text" name="test1" value="" style="width:100px">
+                    <input type="button" value="삭제" onclick="remove_item(this)">
+                </div>
+                <!-- 그룹 행 -->
+                <div class="groupRow">
+                    <p>그룹1</p>
+                    <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
 
-<script type="text/javascript">
-	var i = 0; // 카운터 변수
-    var j = 1; // 그룹 변수
-    function add_box() {
-
-        var div = document.createElement('div');
-        div.className = 'original';
-        div.innerHTML = `
-            <div class="preset" style="display:none">
-                <input type="text" name="test1" value="" style="width:100px">
-                <input type="button" value="삭제" onclick="remove_item(this)">
+                    <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+                </div>
             </div>
-            <p>그룹${j}</p>
-            <input type="button" value="과목추가" onclick="add_item(this.parentNode)"><br>
-        `;
-        document.getElementById('field').appendChild(div);
-        i++;
-        j++;
-    }
+            <div class="original" data-group="2">
+                <div class="preset" style="display:none">
+                    <input type="text" name="test1" value="" style="width:100px">
+                    <input type="button" value="삭제" onclick="remove_item(this)">
+                </div>
+                <div class="groupRow">
+                    <p>그룹2</p>
+                    <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
+                    <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function add_item(parentNode) {
-        var div = document.createElement('div');
-        var preset = parentNode.querySelector('.preset');
-        div.innerHTML = preset.innerHTML;
-        parentNode.appendChild(div);
-    }
+    <script type="text/javascript">
+        // 그룹의 번호를 재할당하는 함수
+        function sync_group_numbers() {
+            var groups = document.getElementsByClassName('original');
+            var remainingGroups = groups.length;
 
-    function remove_item(obj) {
-        obj.parentNode.parentNode.removeChild(obj.parentNode);
-    }
-</script>
+            // 각 그룹에 순차적인 번호 할당
+            for (var i = 0; i < groups.length; i++) {
+                var group = groups[i];
+                var groupNumber = i + 1;
+                group.setAttribute('data-group', groupNumber);
+                group.querySelector('p').innerText = "그룹" + groupNumber;
+            }
+
+            return remainingGroups;
+        }
+
+        // 그룹을 추가하는 함수
+        function add_group() {
+            var field = document.getElementById('field');
+            var groupNumber = sync_group_numbers() + 1;        //그룹의 수 1증가
+
+            // 새로운 그룹내의 과목 추가
+            var div = document.createElement('div');
+            div.className = 'original';
+            div.setAttribute('data-group', groupNumber);
+            div.innerHTML = `
+                <div class="preset" style="display:none">
+                    <input type="text" name="test1" value="" style="width:100px">
+                    <input type="button" value="삭제" onclick="remove_item(this)">
+                </div>
+                <div class="groupRow">
+                    <p>그룹${groupNumber}</p>
+                    <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
+                    <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+                </div>
+            `;
+            field.appendChild(div);
+        }
+
+
+        //과목 추가 함수
+        function add_item(parentNode) {
+            var div = document.createElement('div');
+            var preset = parentNode.querySelector('.preset');
+            div.innerHTML = preset.innerHTML;
+            parentNode.appendChild(div);
+        }
+
+        //그룹 삭제 함수
+        function remove_group(group) {
+            var remainingGroups = sync_group_numbers();
+
+             // 그룹의 수가 2개 이하인 경우 삭제 불가능함
+            if (remainingGroups <= 2) {
+                alert("시간표를 만들기 위해 2개 이상의 그룹이 필요합니다.");
+            } else {
+                var groupNumber = parseInt(group.getAttribute('data-group'));
+                group.parentNode.removeChild(group);
+                sync_group_numbers();
+            }
+        }
+
+        //과목 삭제 함수
+        function remove_item(obj) {
+            obj.parentNode.parentNode.removeChild(obj.parentNode);
+        }
+
+    </script>
 </body>
 </html>
