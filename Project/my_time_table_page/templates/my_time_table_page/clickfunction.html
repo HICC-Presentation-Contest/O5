@@ -5,73 +5,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <style>
-      #boxWrap {
-          width: auto;
-          height: auto;
-        }
 
-        #boxWrap:after {
-          content: "";
-          display: block;
-          clear: both;
-        }
+      <style>
+       .btnWrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+      .original {
+        display: block;
+        vertical-align: middle;
+        box-sizing: border-box;
+        border-radius: 6px;
+        margin-bottom:30px;
+        padding: 10px;
+        width: 300px;
+        height: 600px;
+        background-color: #6A24FE;
+        overflow: hidden;
+    }
+    .preset {
+        margin-top: 10px;
+        padding: 10px;
+    }
+      </style>
 
-        #boxWrap p+p {
-          margin-left: 5px;
-        }
+<!-- 버튼 -->
+<div class="btnWrap">
+    <button onclick="add_box()">+시간표추가</button>
+</div>
 
-        .original {
-          float: left;
-          width: 100px;
-          height: 100px;
-          background-color: #cbcbcb;
-          text-align: center;
-          line-height: 100px;
-        }
+<!-- 박스 추가되는 영역 -->
+<div id="boxWrap">
+    <div id="field"></div>
+</div>
 
-        .btnWrap {
-          width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <!-- 버튼 -->
-    <div class="btnWrap">
-        <button onclick="add_box()">+</button>
-    </div>
+<script type="text/javascript">
+	var i = 0; // 카운터 변수
+    var j = 1; // 그룹 변수
+    function add_box() {
 
-    <!-- 박스 추가되는 영역 -->
-    <div id="boxWrap">
-        <div id="field"></div>
-    </div>
+        var div = document.createElement('div');
+        div.className = 'original';
+        div.innerHTML = `
+            <div class="preset" style="display:none">
+                <input type="text" name="test1" value="" style="width:100px">
+                <input type="button" value="삭제" onclick="remove_item(this)">
+            </div>
+            <p>그룹${j}</p>
+            <input type="button" value="과목추가" onclick="add_item(this.parentNode)"><br>
+        `;
+        document.getElementById('field').appendChild(div);
+        i++;
+        j++;
+    }
 
-    <script type="text/javascript">
-        var i = 1;
+    function add_item(parentNode) {
+        var div = document.createElement('div');
+        var preset = parentNode.querySelector('.preset');
+        div.innerHTML = preset.innerHTML;
+        parentNode.appendChild(div);
+    }
 
-        function add_box() {
-            var div = document.createElement('div');
-            div.innerHTML = `
-                <div class="original">등장${i}</div>
-                <div id="pre_set" style="display:none">
-                    <input type="text" name="test1" value="" style="width:100px">
-                    <input type="button" value="삭제" onclick="remove_item(this)">
-                </div>
-                <input type="button" value="추가" onclick="add_item()"><br>
-            `;
-            document.getElementById('field').appendChild(div);
-            i++;
-        }
-
-        function add_item() {
-            var div = document.createElement('div');
-            div.innerHTML = document.getElementById('pre_set').innerHTML;
-            document.getElementById('field').appendChild(div);
-        }
-
-        function remove_item(obj) {
-            document.getElementById('field').removeChild(obj.parentNode);
-        }
-    </script>
+    function remove_item(obj) {
+        obj.parentNode.parentNode.removeChild(obj.parentNode);
+    }
+</script>
 </body>
 </html>
