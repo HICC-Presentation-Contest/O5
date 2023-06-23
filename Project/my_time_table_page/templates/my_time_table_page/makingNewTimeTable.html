@@ -39,7 +39,7 @@
     <div id = "makingTimeTableBox_InnerTimeTable" class="w-50">
 
         <div class="btnWrap">
-            <button onclick="add_group()">+그룹추가</button>
+            <button id="btn" class="btn btn-dark" onclick="add_group()">+그룹추가</button>
         </div>
 
             <!-- 박스 추가되는 영역 -->
@@ -49,25 +49,25 @@
                 <div class="original" data-group="1">
                     <div class="preset" style="display:none">
                         <input type="text" name="test1" value="" style="width:100px">
-                        <input type="button" value="삭제" onclick="remove_item(this)">
+                        <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X</button>
                     </div>
                     <!-- 그룹 행 -->
                     <div class="groupRow">
                         <p>그룹1</p>
-                        <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
-
-                        <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+                        <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this.parentNode.parentNode)">과목추가</button>
+                        <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
                     </div>
                 </div>
                 <div class="original" data-group="2">
                     <div class="preset" style="display:none">
-                        <input type="text" name="test1" value="" style="width:100px">
-                        <input type="button" value="삭제" onclick="remove_item(this)">
+                        <input type="text" name="test2" value="" style="width:100px">
+                        <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X</button>
                     </div>
+                    <!-- 그룹 행 -->
                     <div class="groupRow">
-                        <p>그룹2</p>
-                        <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
-                        <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+                        <p>그룹1</p>
+                        <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this.parentNode.parentNode)">과목추가</button>
+                        <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
                     </div>
                 </div>
             </div>
@@ -80,10 +80,9 @@
 
             <div style="width: 60%" class="autocomplete">
 <!--                <input id ="autoInput" class="w-100" type="text" placeholder="검색어를 입력해주세요." onkeyup="sendingData(this);" autocomplete="off"> -->
-                <input id ="autoInput" class="w-100" type="text" placeholder="검색어를 입력해주세요." autocomplete="off">
             </div>
             <div >
-                 <button id = "searchButton" type="button" class="btn " onclick="dataSearch()">검색</button>
+                 <button id = "searchButton" type="button" class="btn " onclick="displayTextList()">검색</button>
             </div>
         </div>
         <title>시간표 정렬</title>
@@ -114,8 +113,6 @@
         </div>
     </div>
         </div>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src = "../../static/js/makingNewTimeTable.js"></script>
-
 </body>
+<script src = "../../static/js/makingNewTimeTable.js"></script>
 </html>

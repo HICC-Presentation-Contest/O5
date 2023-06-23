@@ -52,13 +52,13 @@ function add_group() {
     div.setAttribute('data-group', groupNumber);
     div.innerHTML = `
         <div class="preset" style="display:none">
-            <input type="text" name="test1" value="" style="width:100px">
-            <input type="button" value="삭제" onclick="remove_item(this)">
-        </div>
+             <input type="text" name="test1" value="" style="width:100px">
+             <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X</button>
+             </div>
         <div class="groupRow">
-            <p>그룹${groupNumber}</p>
-            <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
-            <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
+             <p>그룹${groupNumber}</p>
+             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this.parentNode.parentNode)">과목추가</button>
+             <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
         </div>
     `;
     field.appendChild(div);
@@ -164,14 +164,8 @@ function displayTimetable() {
 }
 
 // resultBox에 요소 넣기
-function pushClassData(textList)
-{
-    a = document.createElement("DIV");
-    a.innerHTML = textList[0][2]
-    document.getElementById("resultBox").appendChild(a)
-}
-
-
+var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-1', '미술의이해\n(COMPREHENSION OF ART)', 'C506', '3', '10/20/30/40/50', '55', '20', '비공학', '전영백', '화789', '미술대 수강불가/강의요원 여서영 ', '공통교양\n(서울)', '예술과디자인'],
+    ['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-2', '미술의이해\n(COMPREHENSION OF ART)', 'C807', '3', '10/20/30/40/50', '47', '20', '공학', '손수연', '화789', '미술대 수강불가 ', '공통교양\n(서울)', '예술과디자인']]
 function pushClassData(textData) {
   var a = document.createElement("div");
   a.innerHTML = '<div class="result">' +
@@ -187,7 +181,6 @@ function displayTextList() {
     pushClassData(textList[i]);
   }
 }
-
 
 function sendingData(inp) { //inp는 input객체
 
@@ -213,19 +206,19 @@ function sendingData(inp) { //inp는 input객체
         }
     });
 }
-textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-1', '미술의이해\n(COMPREHENSION OF ART)', 'C506', '3', '10/20/30/40/50', '55', '20', '비공학', '전영백', '화789', '미술대 수강불가/강의요원 여서영 ', '공통교양\n(서울)', '예술과디자인'], ['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-2', '미술의이해\n(COMPREHENSION OF ART)', 'C807', '3', '10/20/30/40/50', '47', '20', '공학', '손수연', '화789', '미술대 수강불가 ', '공통교양\n(서울)', '예술과디자인']]
 
-function dataSearch() {
+
+function submitCheck(event) {
     //submit될 때 페이지 리로드 방지
     //event.preventDefault();
-    var timeTableQuery = document.getElementById("autoInput").innerHTML;
+    var timeTableQuery = document.getElementById("autoInput").value;
 
     //출발지 도착지형식이 참이면 백으로 출발지 도착지 보내기
 
         //결과경로창 보이게끔
 
     $.ajax({
-        url: 'querySubmit',
+        url: 'query_submit',
         type: 'POST',
         data: {
             'time_table_query': timeTableQuery,
@@ -241,7 +234,7 @@ function dataSearch() {
 
             $("#mySpinner").hide();
             // textList = data;
-            displayTextList()
+            pushClassData(textList)
         },
 
     });

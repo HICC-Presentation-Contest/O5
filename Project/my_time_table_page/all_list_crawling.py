@@ -38,11 +38,8 @@ university = dr.find_element(By.XPATH, '//*[@id="table_seoul"]/tbody')  # 전체
 table_tr_list = university.find_elements(By.TAG_NAME, 'tr')  # 테이블에서 열들을 가져온다.
 
 class_array = []  # 저장할 배열
-k = 0;
 for table_tr in table_tr_list:
-    if k <= 14:
-        continue
-    k += 1
+
     temporary_list = []
     # td와 th 태그를 받는다.
     department_list = table_tr.find_elements(By.CSS_SELECTOR, 'th, td')
@@ -54,12 +51,10 @@ for table_tr in table_tr_list:
                 division_list[i] = department_list[i].text
         print("changed division list:", division_list)
     for index in range(len(department_list)):  # 각 열별로 페이지에 들어가서 크롤링 한다.
-
         department_name = department_list[index].text  # 전공이름
         temporary_list.append(department_list[index].text)
         print(temporary_list)
-        if department_name == "융합PBL(Project Based Learning)":
-            continue
+
         if len(department_list[index].find_elements(By.TAG_NAME, 'a')) == 0:  # 만약 a태그가 없으면 클릭하지 않도록
             continue
         department_list[index].find_element(By.TAG_NAME, 'a').send_keys(Keys.ENTER)
