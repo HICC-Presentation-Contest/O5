@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>시간표 입력 및 정렬</title>
+  <script>
+    function addCourse() {
+      // 입력된 시간표 정보 가져오기
+      const major = document.getElementById('major').value;
+      const time = document.getElementById('time').value;
+      const year = parseInt(document.getElementById('year').value);
+      const credit = parseInt(document.getElementById('credit').value);
+
+      // 시간표 정보 객체 생성
+      const course = { major, time, year, credit };
+
+      // 시간표 정보를 서버에 전송
+      fetch('/timetable', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course)
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('시간표 정보가 성공적으로 추가되었습니다.');
+          loadTimetable();
+        } else {
+          console.error('시간표 정보 추가에 실패했습니다.');
+        }
+      });
+    }
+
+    function loadTimetable() {
+      const sortKey = document.getElementById('sortKey').value; // 정렬 키 가져오기
+
+      // 서버에서 정렬된 시간표 정보 가져오기
+      fetch(`/timetable?sortKey=${sortKey}`)
+      .then(response => response.json())
+      .then(data => {
+        const timetableTable = document.getElementById('timetableTable');
+
+        // 기존 테이블 내용 삭제
+        while (timetableTable.firstChild) {
+          timetableTable.removeChild(timetableTable.firstChild);
+        }
+
+        // 정렬된 시간표 출력
+        data.forEach(course => {
+          const row = document.createElement('tr');
+
+          // 과목
+          const majorCell = document.createElement('td');
+          majorCell.textContent = course.major;
+          row.appendChild(majorCell);
+
+          // 시간
+          const timeCell = document.createElement('td');
+          timeCell.textContent = course.time;
+          row.appendChild(timeCell);
+
+          // 학년
+          const yearCell = document.createElement('td');
+          yearCell.textContent = course.year;
+          row.appendChild(yearCell);
+
+          // 학점
+          const creditCell = document.createElement('td');
+          creditCell.textContent = course.credit;
+          row.appendChild(creditCell);
+
+          timetableTable.appendChild(row);
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>시간표 입력 및 정렬</h1>
+  <h2>시간표 입력</h2>
+   <form onsubmit="event.preventDefault(); addCourse();">
+    <label for="major">전공명:</label>
+    <input type="text" id="major" required><br>
+
+    <label for="time">시간:</label>
+    <input type="text" id="time" required><br>
+
+    <label for="year">학년:</label>
+    <input type="number" id="year" required><br>
+
+    <label for="credit">학점:</label>
+    <input type="number" id="credit" required><br>
+
+    <button type="submit">시간표 추가</button>
+  </form>
+
+  <h2>시간표 정렬</h2>
+  <label for="sortKey">정렬 기준:</label>
+  <select id="sortKey" onchange="loadTimetable();">
+    <option value="major">전공</option>
+    <option value="time">시간</option>
+    <option value="year">학년</option>
+    <option value="credit">학점</option>
+  </select>
+
+  <h2>시간표</h2>
+  <table id="timetableTable">
+    <tr>
+      <th>과목</th>
+      <th>시간</th>
+      <th>학년</th>
+      <th>학점</th>
+    </tr>
+  </table>
+
+  <script>
+    loadTimetable(); // 초기 시간표 로딩
+  </script>
+</body>
+</html>
+ <script>
+    function sortTimetable(sortKey) {
+      timetable.sort(function(a, b) {
+        if (sortKey === "time") {
+          // 시간에 대한 정렬
+          var dayA = a.time.substr(0, 2);
+          var dayB = b.time.substr(0, 2);
+          var hourA = parseInt(a.time.substr(2));
+          var hourB = parseInt(b.time.substr(2));
+
+          if (dayA !== dayB) {
+            // 요일이 다른 경우
+            var days = ["월", "화", "수", "목", "금"];
+            return days.indexOf(dayA) - days.indexOf(dayB);
+          } else {
+            // 요일이 같은 경우
+            return hourA - hourB;
+          }
+        } else if (sortKey === "major") {
+          // 전공에 대한 사전식 배열 순서로 정렬
+          return a[sortKey].localeCompare(b[sortKey], "ko-KR");
+        } else {
+          // 다른 키에 대한 정렬
+          return a[sortKey] > b[sortKey] ? 1 : -1;
+        }
+      });
+
+      displayTimetable();
+    }
+
+    function displayTimetable() {
+      var table = document.getElementById("timetable");
+
+      // 기존 테이블 내용 삭제
+      while (table.firstChild) {
+        table.removeChild(table.firstChild);
+      }
+
+      // 정렬된 시간표 출력
+      timetable.forEach(function(course) {
+        var row = document.createElement("tr");
+
+        // 과목
+        var majorCell = document.createElement("td");
+        majorCell.textContent = course.major;
+        row.appendChild(majorCell);
+
+        // 시간
+        var timeCell = document.createElement("td");
+        timeCell.textContent = course.time;
+        row.appendChild(timeCell);
+
+        // 학년
+        var yearCell = document.createElement("td");
+        yearCell.textContent = course.year;
+        row.appendChild(yearCell);
+
+        // 학점
+        var creditCell = document.createElement("td");
+        creditCell.textContent = course.credit;
+        row.appendChild(creditCell);
+
+        table.appendChild(row);
+      });
+    }
+  </script>
+</html>

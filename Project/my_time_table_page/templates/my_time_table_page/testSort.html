@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>시간표 정렬</title>
+  <script>i
+    var timetable = [
+      { major: "과목A", time: "월23", year: 3, credit: 3 },
+      { major: "과목B", time: "화13", year: 2, credit: 2 },
+      { major: "과목C", time: "월10", year: 4, credit: 4 },
+      { major: "과목D", time: "화09", year: 3, credit: 1 },
+    ];
+
+    function sortTimetable(sortKey) {
+      timetable.sort(function(a, b) {
+        if (sortKey === "time") {
+          // 시간에 대한 정렬
+          var dayA = a.time.substr(0, 2);
+          var dayB = b.time.substr(0, 2);
+          var hourA = parseInt(a.time.substr(2));
+          var hourB = parseInt(b.time.substr(2));
+
+          if (dayA !== dayB) {
+            // 요일이 다른 경우
+            var days = ["월", "화", "수", "목", "금"];
+            return days.indexOf(dayA) - days.indexOf(dayB);
+          } else {
+            // 요일이 같은 경우
+            return hourA - hourB;
+          }
+        } else {
+          // 다른 키에 대한 정렬
+          return a[sortKey] > b[sortKey] ? 1 : -1;
+        }
+      });
+
+      displayTimetable();
+    }
+
+    function displayTimetable() {
+      var table = document.getElementById("timetable");
+
+      // 기존 테이블 내용 삭제
+      while (table.firstChild) {
+        table.removeChild(table.firstChild);
+      }
+
+      // 정렬된 시간표 출력
+      timetable.forEach(function(course) {
+        var row = document.createElement("tr");
+
+        // 과목
+        var majorCell = document.createElement("td");
+        majorCell.textContent = course.major;
+        row.appendChild(majorCell);
+
+        // 시간
+        var timeCell = document.createElement("td");
+        timeCell.textContent = course.time;
+        row.appendChild(timeCell);
+
+        // 학년
+        var yearCell = document.createElement("td");
+        yearCell.textContent = course.year;
+        row.appendChild(yearCell);
+
+        // 학점
+        var creditCell = document.createElement("td");
+        creditCell.textContent = course.credit;
+        row.appendChild(creditCell);
+
+        table.appendChild(row);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>시간표 정렬</h1>
+  <p>정렬 기준:
+    <select id="sortKey">
+      <option value="major">전공</option>
+      <option value="time">시간</option>
+      <option value="year">학년</option>
+      <option value="credit">학점</option>
+    </select>
+    <button onclick="sortTimetable(document.getElementById('sortKey').value)">
+      정렬
+    </button>
+  </p>
+
+
