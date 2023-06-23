@@ -34,14 +34,17 @@
 
 #textSearchBox > div {
   display:inline-block;
+  height: 10%;
 }
 
 #searchButton {
   background-color: rgb(243, 156, 18);
+  color: white;
 }
 
 #resultBox{
   border: solid lightgray 1px;
+  height: 80%;
 }
 
 
