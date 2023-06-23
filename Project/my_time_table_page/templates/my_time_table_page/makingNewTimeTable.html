@@ -85,92 +85,32 @@
             </div>
         </div>
         <div id="resultBox" class="p-1 w-100">
-            아
+      <title>시간표 정렬</title>
+        <p>정렬 기준:
+        <select id="sortKey">
+          <option value="major">전공</option>
+          <option value="time">시간</option>
+          <option value="year">학년</option>
+          <option value="credit">학점</option>
+        </select>
+        <button onclick="sortTimetable(document.getElementById('sortKey').value)">
+          정렬
+        </button>
+        </p>
+        <table id="timetable">
+        <tr>
+          <th>과목</th>
+          <th>시간</th>
+          <th>학년</th>
+          <th>학점</th>
+        </tr>
+        </table>
+            </div>
+            <div class="p-1 w-100 d-flex justify-content-end">
+                <button id = "searchButton" type="button" class="btn">시간표 검색하기</button>
+            </div>
+         </div>
         </div>
-        <div class="p-1 w-100 d-flex justify-content-end">
-            <button id = "searchButton" type="button" class="btn">시간표 검색하기</button>
-        </div>
-
-     </div>
-</div>
-
-
-
-    <script type="text/javascript">
-        // 그룹의 번호를 재할당하는 함수
-        function sync_group_numbers() {
-            var groups = document.getElementsByClassName('original');
-            var remainingGroups = groups.length;
-
-            // 각 그룹에 순차적인 번호 할당
-            for (var i = 0; i < groups.length; i++) {
-                var group = groups[i];
-                var groupNumber = i + 1;
-                group.setAttribute('data-group', groupNumber);
-                group.querySelector('p').innerText = "그룹" + groupNumber;
-            }
-
-            return remainingGroups;
-        }
-
-        // 그룹을 추가하는 함수
-        function add_group() {
-            var field = document.getElementById('field');
-            var groupNumber = sync_group_numbers() + 1;        //그룹의 수 1증가
-
-              if (groupNumber > 10) { // 최대 10개까지 추가 가능
-                alert("그룹은 최대 10개까지 추가할 수 있습니다.");
-                return;
-            }
-
-            // 새로운 그룹내의 과목 추가
-            var div = document.createElement('div');
-            div.className = 'original';
-            div.setAttribute('data-group', groupNumber);
-            div.innerHTML = `
-                <div class="preset" style="display:none">
-                    <input type="text" name="test1" value="" style="width:100px">
-                    <input type="button" value="삭제" onclick="remove_item(this)">
-                </div>
-                <div class="groupRow">
-                    <p>그룹${groupNumber}</p>
-                    <input type="button" value="과목추가" onclick="add_item(this.parentNode.parentNode)">
-                    <input type="button" value="그룹 삭제" onclick="remove_group(this.parentNode.parentNode)">
-                </div>
-            `;
-            field.appendChild(div);
-        }
-
-
-        //과목 추가 함수
-        function add_item(parentNode) {
-            var div = document.createElement('div');
-            var preset = parentNode.querySelector('.preset');
-            div.innerHTML = preset.innerHTML;
-            parentNode.appendChild(div);
-        }
-
-        //그룹 삭제 함수
-        function remove_group(group) {
-            var remainingGroups = sync_group_numbers();
-
-             // 그룹의 수가 2개 이하인 경우 삭제 불가능함
-            if (remainingGroups <= 2) {
-                alert("시간표를 만들기 위해 2개 이상의 그룹이 필요합니다.");
-            } else {
-                var groupNumber = parseInt(group.getAttribute('data-group'));
-                group.parentNode.removeChild(group);
-
-                // 그룹 삭제 후 남은 그룹의 번호 재할당
-                sync_group_numbers();
-            }
-        }
-
-        //과목 삭제 함수
-        function remove_item(obj) {
-            obj.parentNode.parentNode.removeChild(obj.parentNode);
-        }
-
-    </script>
 </body>
+<script src = "../../static/js/makingNewTimeTable.js"></script>
 </html>
