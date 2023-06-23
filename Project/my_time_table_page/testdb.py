@@ -33,7 +33,7 @@ conn = pymysql.connect(host='localhost', user='root',
 #
 #     return(str)
 
-
+#화5수7을 화5_수7로 , 경계로 자름
 def cutting_time(time):
     if time == "":
         return
@@ -80,6 +80,7 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
     return new_name
 
 
+
 def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
            sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
     sql = '''insert into subject 
@@ -89,7 +90,6 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
                                          close_student, sugang_division, professor, cutting_time(time), note, major,
                                          field2)
     curs.execute(sql)
-
 
 def search(search_word, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
     first = False
@@ -123,7 +123,8 @@ def search(search_word, grade, credit, completion):  # 검색어, 학년, 학점
         for i in cur_row:
             print(i)
 
-
+# 테이블에 순서대로 num(1부터 끝까지, 기본키) 학년 개설학과 주관학과 이수구분 영역 학수번호 과목명 강의실 학점 제한인원 수강인원 폐강인원 수강구분 교수
+# 시간, 비고, 전공, 영역 순서대로 저장
 curs = conn.cursor()
 curs.execute("drop table if exists subject cascade")
 curs.execute(""" # 수업 테이블 생성
