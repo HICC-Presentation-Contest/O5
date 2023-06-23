@@ -172,6 +172,23 @@ function pushClassData(textList)
 }
 
 
+function pushClassData(textData) {
+  var a = document.createElement("div");
+  a.innerHTML = '<div class="result">' +
+    '<div class="subject">' + textData[6] + '</div>' +
+    '<div class="nameTime">' + textData[13] + ' ' + textData[14] + '</div> ' +
+    '<div class="detail">' + textData[0] + '학년 ' + textData[3] + ' ' + textData[8] + '학점 ' + textData[13] + '</div>' +
+    '</div>';
+  document.getElementById("resultBox").appendChild(a);
+}
+
+function displayTextList() {
+  for (var i = 0; i < textList.length; i++) {
+    pushClassData(textList[i]);
+  }
+}
+
+
 function sendingData(inp) { //inp는 input객체
 
     if (inp == document.getElementById('autoInput')) {
@@ -198,10 +215,10 @@ function sendingData(inp) { //inp는 input객체
 }
 textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-1', '미술의이해\n(COMPREHENSION OF ART)', 'C506', '3', '10/20/30/40/50', '55', '20', '비공학', '전영백', '화789', '미술대 수강불가/강의요원 여서영 ', '공통교양\n(서울)', '예술과디자인'], ['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-2', '미술의이해\n(COMPREHENSION OF ART)', 'C807', '3', '10/20/30/40/50', '47', '20', '공학', '손수연', '화789', '미술대 수강불가 ', '공통교양\n(서울)', '예술과디자인']]
 
-function submitCheck(event) {
+function dataSearch() {
     //submit될 때 페이지 리로드 방지
     //event.preventDefault();
-    var timeTableQuery = document.getElementById("autoInput").value;
+    var timeTableQuery = document.getElementById("autoInput").innerHTML;
 
     //출발지 도착지형식이 참이면 백으로 출발지 도착지 보내기
 
@@ -224,7 +241,7 @@ function submitCheck(event) {
 
             $("#mySpinner").hide();
             // textList = data;
-            pushClassData(textList)
+            displayTextList()
         },
 
     });
