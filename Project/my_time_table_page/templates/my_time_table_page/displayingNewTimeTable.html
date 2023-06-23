@@ -6,8 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, height=device-height,
-                     minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+          content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
 
     <!-- 부트스트랩용 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,46 +30,35 @@
 
 <body>
 
-<!-- 페이지 로고 -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <strong>
-    <a class="navbar-brand" href="myTimeTable.demo" id="myTimeTable_demo"style="text-align:left" style="background-color: #439771">[시간표 고르기]</a></strong>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+<!-- 페이지 상단 로고 -->
+<nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
+    <a class="navbar-brand" href="myTimeTable.demo">내 시간표 보기</a>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading1">First</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading2">Second</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+                <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+            </ul>
+        </li>
+    </ul>
 </nav>
+
+<!-- 칸 나누기-->
+<div id="makingTimeTableBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
+     data-bs-root-margin="0px 0px -40%"
+     data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+
 
 <!--(1) 왼쪽 상단의 만들어진 시간표 테이블-->
 <div class="left">
@@ -81,6 +69,7 @@
         <tr>
             <th scope="col" ;></th>
             <th scope="col" ;>월</th>
+            <th scope="col" ;>화</th>
             <th scope="col" ;>화</th>
             <th scope="col" ;>수</td>
             <th scope="col" ;>목</td>
@@ -194,32 +183,33 @@
 <div class="right">
 
     <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
-    <div style="text-align:left;font-size:20px;float:left;height:20%">
-        <p><strong>[가능한 다른 경우의 시간표]</strong></p></div>
+<div style="text-align:left;float:left;height:50%">
+    <p><strong>[가능한 다른 경우의 시간표]</strong></p></div>
 
-    <!--(3) 오른쪽 하단의 정렬기능-->
-    <div style="text-align:left;font-size:20px;float:left;height:80%">
-        <p><strong>[정렬기능]</strong></p>
+<!--(3) 오른쪽 하단의 정렬기능-->
+<div style="text-align:left;float:left;height:50%">
+    <p><strong>[정렬기능]</strong></p>
 
-        <!--<style="width:80px;height:30px;font-size:20px;color:#439771"></style>-->
-        <form method="get" action="form-action.html">
+    <!--<style="width:80px;height:30px;font-size:20px;color:#439771"></style>-->
+    <form method="get" action="form-action.html">
 
-            <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 확보(11~14시)</label>
-            <label><input type="checkbox" name="function" value="savingFreeDay">공강일 있는 거만 보기</label>
-            <label><input type="checkbox" name="function" value="savingAllClear">올클 위주로 보기</label>
-            <label><input type="checkbox" name="function" value="savingMorningClass">오전 강의 위주로</label>
-            <label><input type="checkbox" name="function" value="savingAfternoonClass">오후 강의 위주로 </label>
-            <!--
-              <div style="text-align:left">
-            -->
-        </form>
-        <input type="submit" value="확인"></div>
+        <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 확보(11~14시)</label>
+        <label><input type="checkbox" name="function" value="savingFreeDay">공강일 있는 거만 보기</label>
+        <label><input type="checkbox" name="function" value="savingAllClear">올클 위주로 보기</label>
+        <label><input type="checkbox" name="function" value="savingMorningClass">오전 강의 위주로</label>
+        <label><input type="checkbox" name="function" value="savingAfternoonClass">오후 강의 위주로 </label>
+
+    </form>
+    <input type="submit" value="확인" div class="right"></div>
 
 </div>
 
 </div>
 </div>
 </form>
+
+
+
 
 </body>
 </html>
