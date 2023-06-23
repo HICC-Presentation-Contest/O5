@@ -5,12 +5,13 @@
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>시간표 정렬</title>
-  <script>i
+<script>
+    // 시간표 데이터
     var timetable = [
-      { major: "과목A", time: "월23", year: 3, credit: 3 },
-      { major: "과목B", time: "화13", year: 2, credit: 2 },
-      { major: "과목C", time: "월10", year: 4, credit: 4 },
-      { major: "과목D", time: "화09", year: 3, credit: 1 },
+      { major: "대예이", time: "월23", year: 3, credit: 3 },
+      { major: "컴프", time: "화13", year: 2, credit: 2 },
+      { major: "대학물리", time: "월10", year: 4, credit: 4 },
+      { major: "영어", time: "화09", year: 3, credit: 1 },
     ];
 
     function sortTimetable(sortKey) {
@@ -89,5 +90,20 @@
       정렬
     </button>
   </p>
+<table id="timetable">
+    <tr>
+      <th>과목</th>
+      <th>시간</th>
+      <th>학년</th>
+      <th>학점</th>
+    </tr>
+  </table>
+
+  <script>
+    // 페이지 로드 시 초기 시간표 출력
+    displayTimetable();
+  </script>
+</body>
+</html>
 
 
