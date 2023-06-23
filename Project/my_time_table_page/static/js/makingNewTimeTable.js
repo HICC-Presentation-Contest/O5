@@ -171,7 +171,7 @@ function pushClassData(textData) {
   a.innerHTML = '<div class="result">' +
     '<div class="subject">' + textData[6] + '</div>' +
     '<div class="nameTime">' + textData[13] + ' ' + textData[14] + '</div> ' +
-    '<div class="detail">' + textData[0] + '학년 ' + textData[3] + ' ' + textData[8] + '학점 ' + textData[13] + '</div>' +
+    '<div class="detail">' + textData[0] + '학년 ' + textData[3] + ' ' + textData[8] + '학점 ' + textData[5] + '</div>' +
     '</div>';
   document.getElementById("resultBox").appendChild(a);
 }
