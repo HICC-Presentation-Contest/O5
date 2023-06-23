@@ -208,7 +208,7 @@ function submitCheck(event) {
         //결과경로창 보이게끔
 
     $.ajax({
-        url: 'query_submit',
+        url: 'querySubmit',
         type: 'POST',
         data: {
             'time_table_query': timeTableQuery,
