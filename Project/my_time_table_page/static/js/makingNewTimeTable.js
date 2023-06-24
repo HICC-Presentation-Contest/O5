@@ -445,3 +445,7 @@ function searchWordSubmit() {
 }
 
 
+function groupCheck() {
+    document.getElementById("searchButton").disabled = true;
+}
+

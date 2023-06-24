@@ -7,7 +7,9 @@
   width: 48%;
   height: 30%;
   margin: 2.7px;
-  background-color: #9FA8DA;
+  /*background-color: #9FA8DA;*/
+  background-color: #5A96E3;
+
   text-align: center;
 }
 
@@ -16,7 +18,7 @@
 
   height: 80vh;
   margin: 2%;
-  background-color: rgb(243, 233, 170);
+  background-color: #E7CEA6;
 }
 #leftBox{
 
@@ -37,8 +39,8 @@
   height: 10%;
 }
 
-#searchButton {
-  background-color: rgb(243, 156, 18);
+.searchButton {
+  background-color: #0A6EBD; /*버튼색*/
   color: white;
 }
 
@@ -71,5 +73,6 @@ padding: 10px;
 text-align: inline-block;
 }
 #btn{
-background-color: #6A24FE;
+/*background-color: #6A24FE;*/
+background-color: #A1C2F1;
 }

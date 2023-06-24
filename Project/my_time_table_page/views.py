@@ -12,6 +12,10 @@ def making_new_time_table_page(request):
     return render(request, 'my_time_table_page/makingNewTimeTable.html', {})
 
 
+def displaying_new_time_table_page(request):
+    return render(request, 'my_time_table_page/displayingNewTimeTable.html', {})
+
+
 # 검색창에 글자 적었을떄
 @csrf_exempt
 def suggested_search_word(request):
