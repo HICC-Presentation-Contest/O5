@@ -11,20 +11,20 @@
   text-align: center;
 }
 
-#makingTimeTableBox {
+#basicBox {
   border-radius: 10px;
 
-  height: 75vh;
-  margin: 5%;
+  height: 80vh;
+  margin: 2%;
   background-color: rgb(243, 233, 170);
 }
-#makingTimeTableBox_InnerTimeTable{
+#leftBox{
 
   margin: 1%;
   overflow-y:scroll;
 }
 
-#makingTimeTableBox_SearchBox{
+#rightBox{
   background-color: white;
   margin: 1%;
   margin-left: 0;

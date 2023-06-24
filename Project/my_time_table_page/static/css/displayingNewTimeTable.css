@@ -12,12 +12,12 @@
     /*font-size: 30px;*/
 }
 
-div {
-    color: black;
-    /*font-size: 50px;*/
-    text-align: center;
-    text-decoration: none;
-}
+/*div {*/
+/*    color: black;*/
+/*    !*font-size: 50px;*!*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*}*/
 
 a {
     color: rgb(243, 233, 170);
@@ -84,31 +84,31 @@ th, td {
 }
 
 
-div {
-    width: 100%;
-    height: 20px;
+/*div {*/
+/*    width: 100%;*/
+/*    !*height: 20px; 여기서 전체 div에 적용되어서 이상해짐*!*/
 
-   border: 1px solid rgb(243, 233, 170);
-}
+/*   border: 1px solid rgb(243, 233, 170);*/
+/*}*/
 
-div.left {
-    width: 50%;
-    height: 50%;
-    float: left;
-    box-sizing: border-box;
+/*div.left {*/
+/*    width: 50%;*/
+/*    height: 50%;*/
+/*    float: left;*/
+/*    box-sizing: border-box;*/
 
-    background-color: rgb(243, 233, 170);
+/*    background-color: rgb(243, 233, 170);*/
 
-}
+/*}*/
 
-div.right {
-    width: 50%;
-    height: 50%;
-    float: right;
-    box-sizing: border-box;
+/*div.right {*/
+/*    width: 50%;*/
+/*    height: 50%;*/
+/*    float: right;*/
+/*    box-sizing: border-box;*/
 
-   background: #FFFFFF;
-}
+/*   background: #FFFFFF;*/
+/*}*/
 
 #myTimeTable_demo {
     text-align: left;
@@ -122,12 +122,25 @@ div.right {
 }
 
 
-#makingTimeTableBox {
-    border-radius: 10px;
 
-    height: 75vh;
-    margin: 5%;
-    background-color: rgb(243, 233, 170); /*뒷부분 반으로 갈려있었던 배경 부분 색*/
+#basicBox {
+  border-radius: 10px;
+
+  height: 80vh;
+  margin: 2%;
+  background-color: #E7CEA6;
 }
 
-
+#leftBox{
+    width: 50%;
+    margin: 1%;
+    overflow-y:auto;
+}
+#rightBox{
+    width: 50%;
+    background-color: white;
+    margin: 1%;
+    margin-left: 0;
+    border-radius: 10px;
+    padding: 1%;
+}
