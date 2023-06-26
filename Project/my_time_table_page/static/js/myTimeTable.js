@@ -203,21 +203,32 @@ function addClassToTimeTable(TimeTableClass) {
 function basicUserInformation(TimeTableClass) {
     $('#timeTableNameList').empty(); // 기존 리스트 지우기
     let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
-    for (let i = 0; i < timeTableNameList.length; i++) { //키값에 맞게 타임테이블이름 리스트에 추가해준다.
+     //키값에 맞게 타임테이블이름 리스트에 추가해준다.
+    for (let i = 0; i < timeTableNameList.length; i++) {
         $('#myTimeTableName').html(timeTableNameList[i]);
         let innerList = document.createElement('button');
         $(innerList).addClass("list-group-item list-group-item-action");
         $(innerList).text(timeTableNameList[i]);
         // $(innerList).click(addClassToTimeTable(this.text()))
-        $(innerList).attr('onclick', 'timeTableNameClick(this)')
+        $(innerList).attr('onclick', 'timeTableNameClick(this)');
+        $(innerList).css('text-align', 'center');
         $('#timeTableNameList').append(innerList);
     }
+    // + 버튼 추가
+    let innerList = document.createElement('button');
+    $(innerList).addClass("list-group-item list-group-item-action");
+    $(innerList).text('+');
+    $(innerList).attr('onclick', 'location.href="makingNewTimeTable";');
+    $(innerList).css('text-align', 'center');
+    $('#timeTableNameList').append(innerList);
+
     addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
 
 }
 
 function timeTableNameClick(event){
     let myTimeTable = TimeTableClass[event.innerHTML];
+    $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
     addClassToTimeTable(myTimeTable)
 }
 
