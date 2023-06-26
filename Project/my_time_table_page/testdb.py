@@ -1,6 +1,7 @@
 import pymysql
+
 # import all_list_crawling
-#import test_read
+# import test_read
 conn = pymysql.connect(host='localhost', user='root',
                        password='hrimaly', db='test1', charset='utf8')
 
@@ -32,7 +33,7 @@ conn = pymysql.connect(host='localhost', user='root',
 #
 #     return(str)
 
-#화5수7을 화5_수7로 , 경계로 자름
+# 화5수7을 화5_수7로 , 경계로 자름
 # def cutting_time(time):
 #     if time == "":
 #         return
@@ -110,10 +111,11 @@ def cutting_time(time):
     cut_time_str = ""
     for i in range(len(cut_time)):
         cut_time_str += cut_time[i]
-        if i == len(cut_time)-1:
+        if i == len(cut_time) - 1:
             break
         cut_time_str += ','
     return cut_time_str
+
 
 def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
     new_name = ""
@@ -124,9 +126,9 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
     return new_name
 
 
-
 def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
            sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
+    curs = conn.cursor()
     sql = '''insert into subject 
         values({0}, "{1}", "{2}","{3}","{4}","{5}","{6}","{7}","{8}","{9}","{10}","{11}","{12}","{13}","{14}","{15}",
         "{16}","{17}","{18}");'''.format(index, grade, department1, department2, completion, field1, id,
@@ -134,42 +136,45 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
                                          close_student, sugang_division, professor, cutting_time(time), note, major,
                                          field2)
     curs.execute(sql)
+    conn.commit()
+    conn.close()
 
-def search(search_word, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
+
+def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
+    curs = conn.cursor()
     first = False
     sql = "select * from subject"
-    if search_word != "0":  # 검색어가 전체가 아닐 때
-        sql += " where sname like \"%" + search_word + "%\""
+    if search_word != "-1":  # 검색어가 전체가 아닐 때
+        sql += " where name like \"%" + search_word + "%\""
         first = True
-    if grade != "0":
+    if grade != "-1":
         if not first:
-            sql += " where sgrade = \"" + grade + "\""
+            sql += " where grade = \"" + grade + "\""
             first = True
         else:
-            sql += " and sgrade = \"" + grade + "\""
-    if credit != "0":
+            sql += " and grade = \"" + grade + "\""
+    if credit != "-1":
         if not first:
-            sql += " where scredit = \"" + credit + "\""
+            sql += " where credit = \"" + credit + "\""
             first = True
         else:
-            sql += " and scredit = \"" + credit + "\""
-    if completion != "0":
+            sql += " and credit = \"" + credit + "\""
+    if completion != "-1":
         if not first:
-            sql += " where scompletion = \"" + completion + "\""
+            sql += " where completion = \"" + completion + "\""
             first = True
         else:
-            sql += " and scompletion = \"" + completion + "\""
+            sql += " and completion = \"" + completion + "\""
     sql += ";"
-    print(sql)
     curs.execute(sql)
     rows = curs.fetchall()
-    for cur_row in rows:
-        for i in cur_row:
-            print(i)
+    conn.commit()
+    conn.close()
+    return rows
 
 # 테이블에 순서대로 num(1부터 끝까지, 기본키) 학년 개설학과 주관학과 이수구분 영역 학수번호 과목명 강의실 학점 제한인원 수강인원 폐강인원 수강구분 교수
 # 시간, 비고, 전공, 영역 순서대로 저장
-curs = conn.cursor()
+##curs = conn.cursor()
 # curs.execute("drop table if exists subject cascade")
 # curs.execute(""" # 수업 테이블 생성
 # create table subject(
@@ -211,7 +216,7 @@ curs = conn.cursor()
 #                i[15], i[16], i[17])
 #     index += 1
 
-#DB 테스트 출력
+# DB 테스트 출력
 # sql = ("select * from subject")
 # curs.execute(sql)
 # rows = curs.fetchall()
@@ -219,6 +224,3 @@ curs = conn.cursor()
 #     for i in cur_row:
 #         print(i, end=",")
 #     print()
-
-conn.commit()
-conn.close()
