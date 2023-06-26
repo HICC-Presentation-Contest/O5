@@ -8,14 +8,18 @@ from selenium.webdriver.common.keys import Keys
 
 url = 'https://sugang.hongik.ac.kr/cn50000.jsp'
 
+f = open('class2_data.txt', 'w')
+
+all_class_list = []
+
 # 옵션 생성
 options = webdriver.ChromeOptions()
 # 창 숨기는 옵션 추가
 options.add_argument("headless")
 
 # 기본 세팅하기
-# dr = webdriver.Chrome(options=options)  # 크롬 드라이버를 실행하는 명령어를 dr로 지정, 이건 옵션추가
-dr = webdriver.Chrome()  # 크롬 드라이버를 실행하는 명령어를 dr로 지정
+dr = webdriver.Chrome(options=options)  # 크롬 드라이버를 실행하는 명령어를 dr로 지정, 이건 옵션추가
+#dr = webdriver.Chrome()  # 크롬 드라이버를 실행하는 명령어를 dr로 지정
 dr.get(url)  # 드라이버를 통해 url의 웹 페이지를 오픈
 time.sleep(1)
 act = ActionChains(dr)  # 드라이버에 동작을 실행시키는 명령어를 act로 지정
@@ -38,6 +42,8 @@ university = dr.find_element(By.XPATH, '//*[@id="table_seoul"]/tbody')  # 전체
 table_tr_list = university.find_elements(By.TAG_NAME, 'tr')  # 테이블에서 열들을 가져온다.
 
 class_array = []  # 저장할 배열
+count = 0
+count1 = 0
 for table_tr in table_tr_list:
 
     temporary_list = []
@@ -54,6 +60,8 @@ for table_tr in table_tr_list:
         department_name = department_list[index].text  # 전공이름
         temporary_list.append(department_list[index].text)
         print(temporary_list)
+        if department_name == "융합PBL(Project Based Learning)":
+            continue
 
         if len(department_list[index].find_elements(By.TAG_NAME, 'a')) == 0:  # 만약 a태그가 없으면 클릭하지 않도록
             continue
@@ -78,10 +86,10 @@ for table_tr in table_tr_list:
                 temporary_array.append(element_td.text)  # 원소들의 텍스트를 임시 배열(리스트 안 원소)에 넣는다.
                 if len(element_td.find_elements(By.TAG_NAME, 'a')) != 0:
                     element_td.find_element(By.TAG_NAME, 'a').send_keys(Keys.ENTER)
-                    time.sleep(0.1)
+                    #time.sleep(0.1)
                     dr.switch_to.window(dr.window_handles[2])  # 페이지 변경
                     dr.get_window_position(dr.window_handles[2])  # 페이지 변경
-                    time.sleep(0.1)
+                    #time.sleep(0.1)
                     class_time = dr.find_element(By.XPATH, '/html/body/table[1]/tbody/tr[4]/td[4]')
                     temporary_array.append(class_time.text)
                     dr.close()
@@ -94,8 +102,18 @@ for table_tr in table_tr_list:
 
             if len(temporary_array) >= 5:  # 데이터 무결성 체크, 임시 배열이 강의라면 class 배열에 넣어준다.
                 class_array.append(temporary_array)
+                # for i in temporary_array:
+                #     f.write(i.replace("\n",""))
+                #     f.write("_")
+                # f.write("\n")
 
-        print(class_array)
         dr.close()
         dr.switch_to.window(dr.window_handles[0])  # 페이지 변경
         dr.get_window_position(dr.window_handles[0])  # 페이지 변경
+
+for i in class_array:
+    for j in i:
+        f.write(j.replace("\n"," "))
+        f.write("_")
+    f.write("\n")
+f.close()

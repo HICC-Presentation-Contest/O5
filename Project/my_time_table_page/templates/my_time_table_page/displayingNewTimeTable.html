@@ -58,13 +58,13 @@
 </nav>
 
 <!-- 칸 나누기-->
-<div id="makingTimeTableBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
+<div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
      data-bs-root-margin="0px 0px -40%"
      data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 
 
     <!--(1) 왼쪽 상단의 만들어진 시간표 테이블-->
-    <div class="left">
+    <div id="leftBox">
         <p><strong id="created_Timetable">[생성된 시간표]</strong></p>
         <br>
         <table id="myTimeTable">
@@ -184,11 +184,12 @@
        (3) 오른쪽 하단에는 체크박스로 정렬기능들이 보여짐-->
 
 
-    <div class="right">
+    <div id="rightBox">
 
         <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
-        <div style="text-align:left;float:left;height:80%">
-            <p><strong>[가능한 다른 경우의 시간표]</strong></p></div>
+        <p><strong>[가능한 다른 경우의 시간표]</strong></p>
+        <div id="possibleTimeTable">
+            </div>
 
         <!--(3) 오른쪽 하단의 정렬기능-->
         <div style="text-align:left;float:left;height:80%">

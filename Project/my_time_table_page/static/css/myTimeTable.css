@@ -17,29 +17,42 @@ a{
 
 
 
-/*input{
-    background-color: #439771;
-    border: none;
-    width: 80px;
-    height: 45px;
-    border-radius: 4px;
-    font-size: 23px;
-    font-weight: bold;s
-    color: white;
-}*/
+#basicBox {
+  border-radius: 10px;
 
+  height: 80vh;
+  margin: 2%;
+  background-color: #E7CEA6;
+}
+#leftBox{
 
-#myTimeTable{ border-collapse : collapse; }  /*이중선 제거*/
+    margin: 1%;
+    overflow-y:auto;
+}
+#rightBox{
+  background-color: white;
+  margin: 1%;
+  margin-left: 0;
+  border-radius: 10px;
+  padding: 1%;
+}
+
+#myTimeTable{
+    border-collapse : collapse;
+    background-color: white;
+    width: 100%;
+
+}  /*이중선 제거*/
 
 /*테이블 안에 th td 기본 속성지정*/
 #myTimeTable > tr > th, td{
-     width: 70px;
+     width: 12.5%;
      height: 50px;
      text-align: center;
      border: 1px solid #439771;
-   }
+}
 #myTimeTable > th{
-    width: 70px;
+    width: 12.5%;
      height: 50px;
      text-align: center;
      border: 1px solid #439771;
@@ -51,4 +64,4 @@ a{
     font-size: large;
 }
 
-#basicTimeTable{ color:red }
+#basicTimeTableButton{ color:red }
