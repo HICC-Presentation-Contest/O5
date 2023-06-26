@@ -169,7 +169,7 @@ var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과�
 function pushClassData(textData) {
   var a = document.createElement("div");
   a.innerHTML = '<div class="result">' +
-    '<div class="subject">' + textData[6] + '</div>' +
+    '<div class="subject">' + textData[6] + u2w87'</div>' +
     '<div class="nameTime">' + textData[13] + ' ' + textData[14] + '</div> ' +
     '<div class="detail">' + textData[0] + '학년 ' + textData[3] + ' ' + textData[8] + '학점 ' + textData[5] + '</div>' +
     '</div>';
