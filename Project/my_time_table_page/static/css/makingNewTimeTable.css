@@ -47,6 +47,10 @@
 #resultBox{
   border: solid lightgray 1px;
   height: 80%;
+  overflow-y: auto;
+}
+.result{
+  border: solid lightgray 1px;
 }
 
 
