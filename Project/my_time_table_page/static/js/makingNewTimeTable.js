@@ -129,8 +129,7 @@ function sortTimetable(sortKey) {
 function displayTimetable() {
     var table = document.getElementById("timetable");
 
-<<<<<<< HEAD
-  // 기존 테이블 내용 삭제
+      // 기존 테이블 내용 삭제
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
