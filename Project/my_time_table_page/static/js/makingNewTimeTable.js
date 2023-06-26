@@ -436,7 +436,7 @@ function searchWordSubmit() {
         success: function (data) {
 
             $("#mySpinner").hide();
-            // textList = data;
+            textList = data;
             displayTextList()
         },
 

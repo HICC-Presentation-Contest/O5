@@ -39,7 +39,9 @@ def suggested_search_word(request):
 def search_word_submit(request):
     search_word = request.POST['search_word']
     result_box_list = list(testdb.search(search_word, "-1", "-1", "-1", "-1"))
+
     answer = {
         'result_box_list': result_box_list
     }
+
     return JsonResponse(answer)

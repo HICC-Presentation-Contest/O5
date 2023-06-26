@@ -2,8 +2,8 @@ import pymysql
 
 # import all_list_crawling
 # import test_read
-conn = pymysql.connect(host='localhost', user='root',
-                       password='hrimaly', db='test1', charset='utf8')
+# conn = pymysql.connect(host='localhost', user='root',
+#                        password='hrimaly', db='test1', charset='utf8')
 
 
 def cutting_time(time):
@@ -63,6 +63,8 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
 
 def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
            sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
+    conn = pymysql.connect(host='localhost', user='root',
+                           password='hrimaly', db='test1', charset='utf8')
     curs = conn.cursor()
     sql = '''insert into subject 
         values({0}, "{1}", "{2}","{3}","{4}","{5}","{6}","{7}","{8}","{9}","{10}","{11}","{12}","{13}","{14}","{15}",
@@ -76,7 +78,10 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
 
 
 def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
+    conn = pymysql.connect(host='localhost', user='root',
+                           password='hrimaly', db='test1', charset='utf8')
     curs = conn.cursor()
+    curs.execute("use test1;")
     first = False
     sql = "select * from subject"
     if search_word != "-1":  # 검색어가 전체가 아닐 때
@@ -101,11 +106,15 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
         else:
             sql += " and completion = \"" + completion + "\""
     sql += ";"
+    print(sql)
     curs.execute(sql)
     rows = curs.fetchall()
+    for i in rows:
+        print(i)
     conn.commit()
     conn.close()
     return rows
+
 
 # 테이블에 순서대로 num(1부터 끝까지, 기본키) 학년 개설학과 주관학과 이수구분 영역 학수번호 과목명 강의실 학점 제한인원 수강인원 폐강인원 수강구분 교수
 # 시간, 비고, 전공, 영역 순서대로 저장
@@ -159,3 +168,8 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
 #     for i in cur_row:
 #         print(i, end=",")
 #     print()
+
+
+# print(search("소프트","-1","-1","-1","-1"))
+# print(search("화학","-1","-1","-1","-1"))
+# print(search("물리","-1","-1","-1","-1"))
