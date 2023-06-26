@@ -112,7 +112,7 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
     conn.close()
     return rows
 
-# 자동완성 검색, 과목 이름은 index 7
+# 자동완성 검색, 과목 이름은 index 7 search 함수로 해당 과목 검색 후 중복 제거
 def search_predictive(search_word):
     search_list = list(search(search_word,"-1","-1","-1","-1"))
     result_list = []
