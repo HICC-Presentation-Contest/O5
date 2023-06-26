@@ -106,11 +106,8 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
         else:
             sql += " and completion = \"" + completion + "\""
     sql += ";"
-    print(sql)
     curs.execute(sql)
     rows = curs.fetchall()
-    for i in rows:
-        print(i)
     conn.commit()
     conn.close()
     return rows
