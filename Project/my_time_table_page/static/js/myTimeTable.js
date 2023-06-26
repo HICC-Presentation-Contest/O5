@@ -2,13 +2,31 @@
 
 // 크롤링 에시
 var TimeTableClass =
-[
-	['스페인어', '월234'],
-	['컴퓨터구조', '화2_수2_목2'],
-	['컴퓨터네트워크', '수3_금23'],
-	['알고리즘분석', '화5_수5_목5'],
-	['프로그래밍언어론', '화9_금56']
-];
+	{
+		'기본시간표1':[
+			['스페인어', '월234'],
+			['컴퓨터구조', '화2_수2_목2'],
+			['컴퓨터네트워크', '수3_금23'],
+			['알고리즘분석', '화5_수5_목5'],
+			['프로그래밍언어론', '화9_금56']
+		],
+		'기본시간표2':[
+			['스페인어', '토234'],
+			['컴퓨터구조', '화2_수2_목2'],
+			['컴퓨터네트워크', '수3_금23'],
+			['알고리즘분석', '화5_수5_목5'],
+			['프로그래밍언어론', '화9_금56']
+		],
+		'기본시간표3':[
+			['스페인어', '일234'],
+			['컴퓨터구조', '화2_수2_목2'],
+			['컴퓨터네트워크', '수3_금23'],
+			['알고리즘분석', '화5_수5_목5'],
+			['프로그래밍언어론', '화9_금56']
+		],
+
+	}
+;
 
 // 요일 한국어에서 영어로 변환
 function KorToEngOfDay(day)
@@ -66,6 +84,39 @@ function addClassToTimeTable(TimeTableClass)
 
 }
 
-window.onload=function(){
-	addClassToTimeTable(TimeTableClass);
+
+// 딕셔너리를 받아서 개인 시간표 세팅하기 안의 함수
+function basicUserInformation(basicTimeTableName)
+{
+
+	$('#myTimeTableName').html(basicTimeTableName);
+	innerList = document.createElement('button');
+	$(innerList).addClass( "list-group-item list-group-item-action" );
+	$(innerList).text(basicTimeTableName);
+	$('#timeTableNameList').append(innerList);
 }
+
+
+// 딕셔너리를 받아서 개인 시간표 세팅하기
+function basicUserInformation(TimeTableClass)
+{
+	$('#timeTableNameList').empty()
+	let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
+	for(let i=0; i < timeTableNameList.length; i++) {
+		$('#myTimeTableName').html(timeTableNameList[i]);
+		innerList = document.createElement('button');
+		$(innerList).addClass( "list-group-item list-group-item-action" );
+		$(innerList).text(timeTableNameList[i]);
+		$('#timeTableNameList').append(innerList);
+	}
+	addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
+
+}
+
+
+
+window.onload=function(){
+	basicUserInformation(TimeTableClass);
+
+}
+
