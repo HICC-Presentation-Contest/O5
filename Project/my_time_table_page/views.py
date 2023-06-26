@@ -27,7 +27,7 @@ def returning_to_mytimetable_page(request):
 @csrf_exempt
 def suggested_search_word(request):
     search_word = request.POST['search_word']
-    suggested_search_word_list = []
+    suggested_search_word_list = testdb.search_predictive(search_word)
     answer = {
         'suggested_search_word_list': suggested_search_word_list
     }

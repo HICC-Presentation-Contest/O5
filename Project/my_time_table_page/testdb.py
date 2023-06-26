@@ -60,7 +60,7 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
         new_name += i
     return new_name
 
-
+# 데이터베이스에 데이터 삽입
 def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
            sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
     conn = pymysql.connect(host='localhost', user='root',
@@ -76,7 +76,7 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
     conn.commit()
     conn.close()
 
-
+# DB에서 검색
 def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
     conn = pymysql.connect(host='localhost', user='root',
                            password='hrimaly', db='test1', charset='utf8')
@@ -112,6 +112,23 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
     conn.close()
     return rows
 
+# 자동완성 검색, 과목 이름은 index 7
+def search_predictive(search_word):
+    search_list = list(search(search_word,"-1","-1","-1","-1"))
+    result_list = []
+    if not search_list:
+        return
+    result_list.append(search_list[0][7])
+    for i in range(1, len(search_list)):
+        isoverlapping = False
+        for j in result_list:
+            if j == search_list[i][7]:
+                isoverlapping = True
+                break
+        if not isoverlapping:
+            result_list.append(search_list[i][7])
+
+    return result_list
 
 # 테이블에 순서대로 num(1부터 끝까지, 기본키) 학년 개설학과 주관학과 이수구분 영역 학수번호 과목명 강의실 학점 제한인원 수강인원 폐강인원 수강구분 교수
 # 시간, 비고, 전공, 영역 순서대로 저장
@@ -166,7 +183,4 @@ def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 
 #         print(i, end=",")
 #     print()
 
-
-# print(search("소프트","-1","-1","-1","-1"))
-# print(search("화학","-1","-1","-1","-1"))
-# print(search("물리","-1","-1","-1","-1"))
+search_predictive("실험")
