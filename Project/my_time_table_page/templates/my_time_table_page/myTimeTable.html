@@ -12,9 +12,7 @@
     <!-- css파일 -->
     <link rel="stylesheet" href="../../static/css/myTimeTable.css" type="text/css">
     <!-- 제이쿼리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    c
 
 
 </head>
@@ -52,36 +50,10 @@
      data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2"
      tabindex="0">
     <!--왼쪽박스-->
-    <div id="leftBox" class="w-50">
+    <div id="leftBox" class="w-75">
         <!-- 시간표 테이블-->
 
-        <div class="d-flex flex-row justify-content-between">
-            <div id="myTimeTableName">
-                시간표 이름
-            </div>
-            <button type="button" class="btn text-white" style="background-color: #0A6EBD">기본시간표로 지정하기</button>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Dropdown
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <button class="dropdown-item text-center" type="button">기본 시간표 <span id="basicTimeTableButton">기본</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item text-center" type="button">시간표1</button>
-                    </li>
-                    <li>
-                        <button class="dropdown-item text-center" type="button"
-                                onclick="location.href = 'makingNewTimeTable' ">+
-                        </button>
-                    </li>
-                </ul>
-            </div>
 
-        </div>
 
 
         <table id="myTimeTable">
@@ -192,11 +164,49 @@
 
         </table>
 
-        <button type="button" class="btn text-white" style="background-color: #0A6EBD">현재 시간표에 추가하기</button>
 
     </div>
     <!--    오른쪽박스 -->
-    <div id="rightBox" class="w-50">
+    <div id="rightBox" class="w-25">
+        <div class="d-flex flex-row justify-content-between">
+            <div id="myTimeTableName">
+                시간표 이름
+            </div>
+            <button type="button" class="btn text-white" style="background-color: #0A6EBD">기본시간표로 지정하기</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul id class="list-group">
+                    <li class="list-group-item">An item <span id="basicTimeTableButton">기본</span></li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">
+                        <button class="dropdown-item text-center" type="button"
+                                onclick="location.href = 'makingNewTimeTable' ">+
+                        </button>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item text-center" type="button">기본 시간표 <span id="basicTimeTableButton">기본</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item text-center" type="button">시간표1</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item text-center" type="button"
+                                onclick="location.href = 'makingNewTimeTable' ">+
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <button type="button" class="btn text-white" style="background-color: #0A6EBD">현재 시간표에 추가하기</button>
 
     </div>
 </div>
