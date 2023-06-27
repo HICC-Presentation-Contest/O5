@@ -59,7 +59,7 @@ function KorToEngOfDay(day) {
     }
 }
 
-function timeTableRemover(){
+function timeTableRemover() {
     document.getElementById('myTimeTable').innerHTML =
         "<tr>\n" +
         "                <td scope=\"col\" ;></td>\n" +
@@ -213,7 +213,7 @@ function addClassToTimeTable(TimeTableClass) {
 function basicUserInformation(TimeTableClass) {
     $('#timeTableNameList').empty(); // 기존 리스트 지우기
     let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
-     //키값에 맞게 타임테이블이름 리스트에 추가해준다.
+    //키값에 맞게 타임테이블이름 리스트에 추가해준다.
     for (let i = 0; i < timeTableNameList.length; i++) {
         $('#myTimeTableName').html(timeTableNameList[i]);
         let innerList = document.createElement('button');
@@ -236,7 +236,7 @@ function basicUserInformation(TimeTableClass) {
 
 }
 
-function timeTableNameClick(event){
+function timeTableNameClick(event) {
     let myTimeTable = TimeTableClass[event.innerHTML];
     $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
     addClassToTimeTable(myTimeTable)
@@ -251,38 +251,12 @@ window.onload = function () {
 
 
 // 시간표 다중 슬라이드 코드
-var slides = document.querySelector('.slides'),
-  slide = document.querySelectorAll('.slides li'),
-  currentIdx = 0,
-  slideCount = slide.length,
-  slideWidth = 300,
-  slideMargin = 30,
-  prevBtn = document.querySelector('.prev'),
-  nextBtn = document.querySelector('.next');
-
-slides.style.width =
-  (slideWidth + slideMargin) * slideCount - slideMargin + 'px';
-
-function moveSlide(num) {
-  slides.style.left = -num * 330 + 'px';
-  currentIdx = num;
-}
-
-nextBtn.addEventListener('click', function () {
-  if( currentIdx < slideCount - 3){
-    moveSlide(currentIdx + 1);
-  }else{
-    moveSlide(0);
-  }
+$(document).ready(function () {
+    $('#myCarousel').carousel({
+        interval: 100
+    })
 });
 
-prevBtn.addEventListener('click', function () {
-  if( currentIdx > 0){
-    moveSlide(currentIdx - 1);
-  }else{
-    moveSlide(slideCount - 3);
-  }
-});
 
 /* 코드 예시
 var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-1', '미술의이해\n(COMPREHENSION OF ART)', 'C506', '3', '10/20/30/40/50', '55', '20', '비공학', '전영백', '화789', '미술대 수강불가/강의요원 여서영 ', '공통교양\n(서울)', '예술과디자인'],
@@ -304,7 +278,6 @@ function displayTextList() {
     }
 }
 */
-
 
 
 /*
