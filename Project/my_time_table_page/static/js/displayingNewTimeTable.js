@@ -250,12 +250,50 @@ window.onload = function () {
 }
 
 
-// 시간표 다중 슬라이드 코드
+// 시간표 다중 슬라이드 코드_ 누구꺼지?
 $(document).ready(function () {
     $('#myCarousel').carousel({
         interval: 100
     })
 });
+
+
+// 시간표 다중 슬라이드 코드_영상보고 쓴 것
+var slides = document.querySelector('.slides'),
+    slide = document.querySelector('.slides li'),
+    currentIdx = 0, //현재
+    slideCount = slide.length,
+    prevBtn = document.querySelector('.prev'),
+    slideWidth = 110,
+    slideMargin = 10,
+    nextBtn = document.querySelector('.next');
+
+slides.style.width = (slideWidth + slideMargin)*slideCount - slideMargin + 'px';
+
+function moveSlide(num){
+    slides.style.left = -num * 120 + 'px';
+    currentIdx = num;
+}
+nextBtn.addEventListener('click', function(){
+    if(currentIdx < slideCount - 5){
+       moveSlide(currentIdx + 1);
+    }
+    else
+    {
+        moveSlide(0);
+    }
+});
+prevBtn.addEventListener('click', function(){
+    if(currentIdx > 0){
+       moveSlide(currentIdx - 1);
+    }
+    else
+    {
+        moveSlide(slideCount - 5);
+    }
+});
+
+
 
 
 /* 코드 예시

@@ -163,7 +163,7 @@ list{list-style:none;}
 
 .slide_wrapper {
     position: relative;
-    width: 590px; /*(110*5 + 10*4)*/
+    width: 670px; /*(110*6 + 10*5) 590 */
     margin: 0 auto; /*가운데*/
     height: 110px;
    overflow:hidden;
@@ -178,6 +178,7 @@ list{list-style:none;}
     float:left;
     margin-right: 10px;
 }
+
 .controls span{
     position: absolute;
     background-color: #333;
@@ -187,8 +188,7 @@ list{list-style:none;}
     top:50%;
     transform:translateY(-50%);
 }
-.controls span.prev{right:calc(100% + 50px)}
-.controls span.next{left:calc(100% + 50px)}
+
 
 #possibleTimeTable{
     width: 100%;
