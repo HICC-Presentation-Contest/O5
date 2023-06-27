@@ -55,11 +55,14 @@
 {% if user.is_authenticated %}
     로그인성공
     {{ user.username }}님 환영합니다.
+{#    앱이름과 name을 이용해 경로설정#}
+    <a href="{% url 'users:logout'%}">로그아웃</a>
 {% else %}
 <form action="" class="form-signin" method="POST" id="login-form">
     {% csrf_token %}
     <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required><BR>
     <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
     <input type="submit" value="로그인">
+    <a href="{% url 'users:signup' %}">회원가입</a>
 </form>
 {% endif %}
