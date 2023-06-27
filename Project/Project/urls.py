@@ -20,4 +20,6 @@ from django.urls import include
 
 urlpatterns = [
     path('', include("my_time_table_page.urls")),
+    path('auth/', include("accounts.urls")),
+
 ]

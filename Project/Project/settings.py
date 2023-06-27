@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'my_time_table_page',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test1',
         'USER': 'root',
-        'PASSWORD': 'hrimaly',
+        'PASSWORD': 'dhqlfkrj1@',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -127,3 +128,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL ='accounts.User' # accounts라는 앱에서 User를 사용해주겠다.
