@@ -30,86 +30,26 @@ def generate_possible_combinations(all_groups):
             if not valid:
                 break
 
-        if valid:
-            possible_combinations.append(timetable)
+        # 빈 시간 확인
+        empty_slots = [['True' for _ in range(12)] for _ in range(5)]
+        for day, schedule in enumerate(timetable):
+            for period, course in enumerate(schedule):
+                if course != '':
+                    empty_slots[day][period] = 'False'
+
+        # 조합 정보와 함께 결과 리스트에 추가
+        possible_combinations.append([empty_slots, combination])
 
     return possible_combinations
 
-def sort_day(timetable):
-    sorted_timetable = timetable.copy()
-
-    for day, schedule in sorted_timetable.items():
-        if all(course == '' for course in schedule):
-            sorted_timetable[day].append(True)
-        else:
-            sorted_timetable[day].append(False)
-
-    return sorted_timetable
-
-def convert_to_dict(combination):
-    week = ['월', '화', '수', '목', '금']
-    timetable_dict = {}
-
-    for day_index, day in enumerate(week):
-        timetable_dict[day] = combination[day_index]
-
-    return timetable_dict
-
-def get_combined_timetables(sorted_combinations):
-    combined_timetables = {}
-
-    for index, combination in enumerate(sorted_combinations, start=1):
-        timetable_dict = convert_to_dict(combination)
-        combined_timetables[f'조합{index}'] = timetable_dict
-
-    return combined_timetables
-
-def generate_combined_timetables(all_groups):
-    possible_combinations = generate_possible_combinations(all_groups)
-    sorted_combinations = sorted(possible_combinations, key=lambda x: (x[0][1:], x[1][1:]))
-
-    combined_timetables = get_combined_timetables(sorted_combinations)
-
-    for combination_name, combination in combined_timetables.items():
-        combined_timetables[combination_name] = sort_day(combination)
-
-    return combined_timetables
-
-def add_empty_slots(combined_timetables):
-    for combination_name, combination in combined_timetables.items():
-        for day, schedule in combination.items():
-            if schedule[-1]:  # True: 공강
-                empty_slots = []
-                for period, course in enumerate(schedule[:-1]):
-                    if course == '':
-                        empty_slots.append(period + 1)
-                combined_timetables[combination_name][day].append(empty_slots)
-            else:  # False: 비어있는 수업 시간
-                empty_slots = []
-                for period, course in enumerate(schedule[:-1]):
-                    if course == '':
-                        empty_slots.append(period + 1)
-                combined_timetables[combination_name][day].append(empty_slots)
-
-    return combined_timetables
-
 # 입력 그룹 설정
 group1 = [['스페인어', '월2,월3,월4'], ['컴퓨터구조', '화2,수2,목2'], ['컴퓨터네트워크', '수3,금2,금3']]
-group2 = [['알고리즘분석', '화5,수5,목5'], ['프로그래밍언어론', '화9,금5,금6']]
+group2 = [['알고리즘분석', '화5,수5,목5'], ['프로그래밍언어론', '화9,금5']]
 group3 = [['대수1', '월3,월4,월5'], ['선형대수학', '화3,목4,목5'], ['확률및통계', '화4,수3,수4']]
 
 all_groups = [group1, group2, group3]
 
-# 가능한 조합 생성
-combined_timetables = generate_combined_timetables(all_groups)
+possible_combinations = generate_possible_combinations(all_groups)
 
-# 빈 값 및 비어있는 수업 시간 추가
-combined_timetables = add_empty_slots(combined_timetables)
 
-# 조합별 시간표 출력
-for combination_name, combination in combined_timetables.items():
-    print(combination_name + ":")
-    for day, schedule in combination.items():
-        print(day + ":", schedule)
-    print()
-
+print(possible_combinations)
