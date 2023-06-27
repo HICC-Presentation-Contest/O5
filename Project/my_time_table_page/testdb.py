@@ -79,7 +79,7 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
 # DB에서 검색
 def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
     conn = pymysql.connect(host='localhost', user='root',
-                           password='hrimaly', db='test1', charset='utf8')
+                           password='dhqlfkrj1@', db='test1', charset='utf8')
     curs = conn.cursor()
     curs.execute("use test1;")
     first = False

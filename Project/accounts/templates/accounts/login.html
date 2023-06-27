@@ -1,0 +1,51 @@
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/login.css" type="text/css">
+
+</head>
+<body>
+    <div class="login-wrapper">
+        <h2>내시간표 만들기</h2>
+            <form action="login.html" class="form-signin" method="POST" id="login-form">
+                {% csrf_token %}
+                <input type="text" name="id" id="id" class="form-control" placeholder="Id" autofocus required><BR>
+                <input type="text" name="pass" id="pass" class="form-control" placeholder="Password" required><br>
+        	    <p class="check" id="check">${check}</p><br/>
+                <label for="remember-check">
+                <input type="checkbox" id="remember-check">아이디 저장하기
+                </label><input type="submit" value="로그인">
+            </form>
+        <br>
+        <div class="links">
+            <a href="memberId.html">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> | <a href="memberRegist">회원가입</a>
+        </div>
+    </div>
+</body>
+
+  <script type="text/javascript">
+
+  		$("#id").focusout(function(){
+
+	     if($('#id').val() == ""){
+	   		$('#check').text('아이디를 입력해주세요.');
+	   	  	$('#check').css('color', '#6A24FE');
+
+	     }else{
+	    	 $('#check').hide();
+	     }
+	     });
+
+  		$("#pass").focusout(function(){
+	     if($('#pass').val() == ""){
+	   		$('#check').text('비밀번호를 입력해주세요');
+	   	  	$('#check').css('color', '#6A24FE');
+	     }else{
+	    	 $('#check').hide();
+	     }
+	     });
+
+  </script>
+</html>
