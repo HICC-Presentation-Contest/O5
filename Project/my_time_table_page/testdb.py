@@ -2,8 +2,6 @@ import pymysql
 
 # import all_list_crawling
 # import test_read
-# conn = pymysql.connect(host='localhost', user='root',
-#                        password='hrimaly', db='test1', charset='utf8')
 
 # 각자 비밀번호로 수정해주세요
 db_password = "hrimaly"
@@ -81,11 +79,7 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
 # DB에서 검색
 def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
     conn = pymysql.connect(host='localhost', user='root',
-<<<<<<< Updated upstream
-                           password='dhqlfkrj1@', db='test1', charset='utf8')
-=======
                            password=db_password, db='test1', charset='utf8')
->>>>>>> Stashed changes
     curs = conn.cursor()
     curs.execute("use test1;")
     first = False
@@ -138,30 +132,33 @@ def search_predictive(search_word):
 
 # 테이블에 순서대로 num(1부터 끝까지, 기본키) 학년 개설학과 주관학과 이수구분 영역 학수번호 과목명 강의실 학점 제한인원 수강인원 폐강인원 수강구분 교수
 # 시간, 비고, 전공, 영역 순서대로 저장
-##curs = conn.cursor()
-# curs.execute("drop table if exists subject cascade")
-# curs.execute(""" # 수업 테이블 생성
-# create table subject(
-#                 num int,
-#                 grade varchar(5),
-#                 department1 varchar(30),
-#                 department2 varchar(30),
-#                 completion varchar(30),
-#                 field1 varchar(30),
-#                 id varchar(30),
-#                 name varchar(100),
-#                 classroom varchar(50),
-#                 credit varchar(10),
-#                 limit_student varchar(30),
-#                 sugang_student varchar(30),
-#                 close_student varchar(30),
-#                 sugang_division varchar(30),
-#                 professor varchar(30),
-#                 time varchar(50),
-#                 note varchar(100),
-#                 major varchar(30),
-#                 field2 varchar(30),
-#                 primary key (num));""")
+def create_subject_table():
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    curs.execute("drop table if exists subject cascade")
+    curs.execute(""" # 수업 테이블 생성
+    create table subject(
+                num int,
+                grade varchar(5),
+                department1 varchar(30),
+                department2 varchar(30),
+                completion varchar(30),
+                field1 varchar(30),
+                id varchar(30),
+                name varchar(100),
+                classroom varchar(50),
+                credit varchar(10),
+                limit_student varchar(30),
+                sugang_student varchar(30),
+                close_student varchar(30),
+                sugang_division varchar(30),
+                professor varchar(30),
+                time varchar(50),
+                note varchar(100),
+                major varchar(30),
+                field2 varchar(30),
+                primary key (num));""")
 
 # 로그인 테이블 생성
 def create_user_table():
@@ -198,22 +195,22 @@ def create_group_table():
 
 
 
-# # 크롤링한 데이터 DB에 넣음
-# data = test_read.class_list
-# index = 0
-# for i in data:
-#     for j in range(len(i)):
-#         i[j].replace("\n", "")
-#     if len(i) == 16:  # 영역 , 강의식이 없는 경우(싸강)
-#         insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], "None_classroom", i[5], i[6], i[7], i[8], i[9], i[10],
-#                i[11], i[12], i[13], i[14], i[15])
-#     elif len(i) == 17:  # 영역이 없는 경우
-#         insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12],
-#                i[13], i[14], i[15], i[16])
-#     else:
-#         insert(index, i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14],
-#                i[15], i[16], i[17])
-#     index += 1
+def insert_data():
+    data = test_read.class_list
+    index = 0
+    for i in data:
+        for j in range(len(i)):
+            i[j].replace("\n", "")
+        if len(i) == 16:  # 영역 , 강의식이 없는 경우(싸강)
+            insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], "None_classroom", i[5], i[6], i[7], i[8], i[9], i[10],
+                i[11], i[12], i[13], i[14], i[15])
+        elif len(i) == 17:  # 영역이 없는 경우
+            insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12],
+                i[13], i[14], i[15], i[16])
+        else:
+            insert(index, i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14],
+                i[15], i[16], i[17])
+        index += 1
 
 # DB 테스트 출력
 # sql = ("select * from subject")
