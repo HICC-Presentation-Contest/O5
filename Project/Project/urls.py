@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+
 urlpatterns = [
     path('', include("accounts.urls")),
+    path('myTimeTable/', include("my_time_table_page.urls")),
     path('auth/', include("accounts.urls")),
 
 ]

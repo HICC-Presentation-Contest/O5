@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from .models import User
@@ -12,7 +12,8 @@ def login_view(request):
         if user is not None:
             print("인증성공")
             login(request, user)
-            return render(request, 'my_time_table_page/myTimeTable.html', {})
+            return HttpResponseRedirect('/myTimeTable/') # urls 변경
+            # return render(request, 'my_time_table_page/myTimeTable.html')
         else:
             print("인증실패")
     return render(request, "accounts/login.html")
