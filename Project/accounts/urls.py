@@ -3,12 +3,13 @@ from django.urls import path
 from . import views
 # django.contrib.auth에 인증 체계가 모여있다.
 
-app_name = "users"
+app_name = "accounts"
 
 urlpatterns = [
-    path("login/", views.login_view, name="login"), # 로그인페이지
-    path("logout/", views.logout_view, name='logout'), # 로그아웃페이지
-    path("signup/", views.signup_view, name='signup'), # 로그아웃페이지
+    path("", views.login_view, name="login"),  # 로그인페이지
+    path("login/", views.login_view, name="login"),  # 로그인페이지
+    path("logout/", views.logout_view, name='logout'),  # 로그아웃페이지
+    path("signup/", views.signup_view, name='signup'),  # 로그아웃페이지
 
 ]
 

@@ -19,7 +19,7 @@ from django.urls import path
 from django.urls import include
 
 urlpatterns = [
-    path('', include("my_time_table_page.urls")),
+    path('', include("accounts.urls")),
     path('auth/', include("accounts.urls")),
 
 ]
