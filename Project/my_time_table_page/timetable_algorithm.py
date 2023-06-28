@@ -4,11 +4,11 @@ def generate_possible_combinations(all_groups):
     possible_combinations = []
 
     def day_to_index(day):
-        return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}[day]
+        return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4, '토': 5, '일': 6}[day]
 
     # 모든 그룹의 조합을 생성
     for combination in itertools.product(*all_groups):
-        timetable = [['']*12 for _ in range(5)]  # 시간표, 초기값은 빈 문자열로 설정
+        timetable = [['']*12 for _ in range(7)]  # 시간표, 초기값은 빈 문자열로 설정
         valid = True  # 유효성 여부
 
         # 각 그룹의 과목과 시간표 확인
@@ -31,7 +31,7 @@ def generate_possible_combinations(all_groups):
                 break
 
         # 빈 시간 확인
-        empty_slots = [['True' for _ in range(12)] for _ in range(5)]
+        empty_slots = [['True' for _ in range(12)] for _ in range(7)]
         for day, schedule in enumerate(timetable):
             for period, course in enumerate(schedule):
                 if course != '':
@@ -53,3 +53,4 @@ possible_combinations = generate_possible_combinations(all_groups)
 
 
 print(possible_combinations)
+
