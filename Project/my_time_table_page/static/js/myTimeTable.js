@@ -330,3 +330,23 @@ function loadingUserTimeTable(){
 
     });
 }
+
+//시간표 이름 수정하는 함수
+function ClickReviseButton() {
+    //이름 수정할 시간표의 숫자 입력
+    // let ClassForIndex = document.createElement('button');
+    let numPrompt = prompt('이름을 수정할 시간표의 숫자를 입력해주세요.');
+    let num = Number(numPrompt);
+
+    if (num <= 0)
+        alert("올바른 숫자를 입력해주세요.")
+
+    else {       //입력된 숫자의 시간표 이름의 수정사항 입력받음
+        let buttonElements = $(".list-group")   // 여기서 오류 -> class명을 못 잡음
+        var existingtext = $("buttonElements[num]");
+        var textPrompt = prompt('어떻게 수정하시겠습니까?', existingtext);
+        $("buttonElements[num]").text(textPrompt);
+    }
+}
+
+$("#RevisionButton").click(ClickReviseButton);
