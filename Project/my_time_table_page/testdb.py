@@ -5,6 +5,8 @@ import pymysql
 # conn = pymysql.connect(host='localhost', user='root',
 #                        password='hrimaly', db='test1', charset='utf8')
 
+# 각자 비밀번호로 수정해주세요
+db_password = "hrimaly"
 
 def cutting_time(time):
     now_day = ""
@@ -64,7 +66,7 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
 def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
            sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
     conn = pymysql.connect(host='localhost', user='root',
-                           password='hrimaly', db='test1', charset='utf8')
+                           password=db_password, db='test1', charset='utf8')
     curs = conn.cursor()
     sql = '''insert into subject 
         values({0}, "{1}", "{2}","{3}","{4}","{5}","{6}","{7}","{8}","{9}","{10}","{11}","{12}","{13}","{14}","{15}",
@@ -79,7 +81,11 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
 # DB에서 검색
 def search(search_word, time, grade, credit, completion):  # 검색어, 학년, 학점, 이수구분을 이용한 검색기능
     conn = pymysql.connect(host='localhost', user='root',
+<<<<<<< Updated upstream
                            password='dhqlfkrj1@', db='test1', charset='utf8')
+=======
+                           password=db_password, db='test1', charset='utf8')
+>>>>>>> Stashed changes
     curs = conn.cursor()
     curs.execute("use test1;")
     first = False
@@ -156,7 +162,42 @@ def search_predictive(search_word):
 #                 major varchar(30),
 #                 field2 varchar(30),
 #                 primary key (num));""")
-#
+
+# 로그인 테이블 생성
+def create_user_table():
+    conn = pymysql.connect(host='localhost', user='root',
+                           password= db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    curs.execute("use test1;")
+    curs.execute("""create table user(
+        id varchar(30),
+        password varchar(30),
+        primary key(id));""")
+    conn.commit()
+    conn.close()
+
+# 그룹 테이블 생성
+def create_group_table():
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    curs.execute("use test1;")
+    curs.execute("""create table group(
+            group_index int,
+            id varchar(30),
+            subject_index int,
+            primary key(group_index),
+            foreign key (id) references user(id),
+            foreign key (subject_index) references subject(num));""")
+    conn.commit()
+    conn.close()
+
+
+
+
+
+
+
 # # 크롤링한 데이터 DB에 넣음
 # data = test_read.class_list
 # index = 0
@@ -182,5 +223,3 @@ def search_predictive(search_word):
 #     for i in cur_row:
 #         print(i, end=",")
 #     print()
-
-search_predictive("실험")
