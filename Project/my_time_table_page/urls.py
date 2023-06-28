@@ -9,5 +9,7 @@ urlpatterns = [
     path('suggestedSearchWord', views.suggested_search_word, name='suggested_search_word'),
     path('displayingNewTimeTable', views.displaying_new_time_table_page, name='displaying_new_time_table_page'),
     path('scrollspyHeading2', views.returning_to_mytimetable_page, name='returning_to_mytimetable_page'),
+    path('sendingUserTimeTable', views.sending_user_time_table, name='sending_user_time_table'),
+    path('loadingUserTimeTable', views.loading_user_time_table, name='loading_user_time_table'),
     path('accounts/', include("accounts.urls")),
 ]

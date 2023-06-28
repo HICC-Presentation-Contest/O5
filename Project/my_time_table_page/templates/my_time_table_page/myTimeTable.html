@@ -172,11 +172,15 @@
     </div>
     <!--    오른쪽박스 -->
     <div id="rightBox" class="w-25">
-        <div>
-            <div>내 시간표</div>
-            <div id="timeTableNameList" class="list-group">
-            </div>
+
+        <div id="selectedTimeTable">
+            내 시간표
+            <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="sendingUserTimeTable()">보내기</button>
+
         </div>
+        <div id="timeTableNameList" class="list-group">
+        </div>
+
 
         <button type="button" class="btn text-white" style="background-color: #0A6EBD">기본시간표로 지정하기</button>
 

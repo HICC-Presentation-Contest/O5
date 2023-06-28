@@ -23,6 +23,28 @@ def returning_to_mytimetable_page(request):
     return render(request, 'my_time_table_page/myTimeTable.html', {})
 
 
+def sending_user_time_table(request):
+
+    user_time_table = request.POST['user_time_table']
+
+    answer = {
+        'none': []
+    }
+
+    return JsonResponse(answer)
+
+
+def loading_user_time_table(request):
+
+    user_time_table = request.POST['user_time_table']
+
+    answer = {
+        'none': []
+    }
+
+    return JsonResponse(answer)
+
+
 # 검색창에 글자 적었을떄
 @csrf_exempt
 def suggested_search_word(request):

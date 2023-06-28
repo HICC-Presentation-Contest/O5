@@ -1,3 +1,22 @@
+//csrf token 건들지 말것
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
 
 // 크롤링 에시
 var TimeTableClass =
@@ -24,8 +43,7 @@ var TimeTableClass =
             ['프로그래밍언어론', '화9_금56']
         ],
 
-    }
-;
+    };
 
 // 요일 한국어에서 영어로 변환
 function KorToEngOfDay(day) {
@@ -237,3 +255,78 @@ window.onload = function () {
 
 }
 
+
+let userTimeTable =
+    ['abc',[
+            ['기본시간표1', [
+                ['스페인어', '월234'],
+                ['컴퓨터구조', '화2_수2_목2'],
+                ['컴퓨터네트워크', '수3_금23'],
+                ['알고리즘분석', '화5_수5_목5'],
+                ['프로그래밍언어론', '화9_금56']
+            ]],
+            ['기본시간표2', [
+                ['스페인어', '토234'],
+                ['컴퓨터구조', '화2_수2_목2'],
+                ['컴퓨터네트워크', '수3_금23'],
+                ['알고리즘분석', '화5_수5_목5'],
+                ['프로그래밍언어론', '화9_금56']
+            ]],
+            ['기본시간표3', [
+                ['스페인어', '일234'],
+                ['컴퓨터구조', '화2_수2_목2'],
+                ['컴퓨터네트워크', '수3_금23'],
+                ['알고리즘분석', '화5_수5_목5'],
+                ['프로그래밍언어론', '화9_금56']
+            ]]
+
+        ]
+    ]
+
+
+
+
+function sendingUserTimeTable() {
+    $.ajax({
+        url: 'sendingUserTimeTable',
+        type: 'POST',
+        traditional: true, // 배열 넘기기 옵션
+        data: {
+            'user_time_table': userTimeTable,
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        datatype: 'json',
+        beforeSend: function (request) {
+            // Performed before calling Ajax
+            $("#mySpinner").show();
+
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+            // textList = data;
+
+        },
+
+    });
+}
+
+function loadingUserTimeTable(){
+        $.ajax({
+        url: 'loadingUserTimeTable',
+        type: 'POST',
+        traditional: true, // 배열 넘기기 옵션
+        datatype: 'json',
+        beforeSend: function (request) {
+            // Performed before calling Ajax
+            $("#mySpinner").show();
+
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+            basicUserInformation(TimeTableClass);
+            // textList = data;
+
+        },
+
+    });
+}
