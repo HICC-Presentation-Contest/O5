@@ -225,6 +225,7 @@ function basicUserInformation(TimeTableClass) {
     for (let i = 0; i < timeTableNameList.length; i++) {
         $('#myTimeTableName').html(timeTableNameList[i]);
         let innerList = document.createElement('button');
+        $(innerList).attr('id',timeTableNameList[i]);
         $(innerList).addClass("list-group-item list-group-item-action");
         $(innerList).text(timeTableNameList[i]);
         // $(innerList).click(addClassToTimeTable(this.text()))
@@ -239,7 +240,7 @@ function basicUserInformation(TimeTableClass) {
     $(innerList).attr('onclick', 'location.href="makingNewTimeTable";');
     $(innerList).css('text-align', 'center');
     $('#timeTableNameList').append(innerList);
-
+    $('#selectedTimeTableName').html(timeTableNameList[0]);
     addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
 
 }
@@ -247,6 +248,7 @@ function basicUserInformation(TimeTableClass) {
 function timeTableNameClick(event){
     let myTimeTable = TimeTableClass[event.innerHTML];
     $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
+    $('#selectedTimeTableName').html(event.innerHTML);
     addClassToTimeTable(myTimeTable)
 }
 
@@ -334,19 +336,29 @@ function loadingUserTimeTable(){
 //시간표 이름 수정하는 함수
 function ClickReviseButton() {
     //이름 수정할 시간표의 숫자 입력
-    // let ClassForIndex = document.createElement('button');
-    let numPrompt = prompt('이름을 수정할 시간표의 숫자를 입력해주세요.');
-    let num = Number(numPrompt);
+    // if (num <= 0)
+    //     alert("올바른 숫자를 입력해주세요.")
 
-    if (num <= 0)
-        alert("올바른 숫자를 입력해주세요.")
-
-    else {       //입력된 숫자의 시간표 이름의 수정사항 입력받음
-        let buttonElements = $(".list-group")   // 여기서 오류 -> class명을 못 잡음
-        var existingtext = $("buttonElements[num]");
-        var textPrompt = prompt('어떻게 수정하시겠습니까?', existingtext);
-        $("buttonElements[num]").text(textPrompt);
-    }
+    // else {       //입력된 숫자의 시간표 이름의 수정사항 입력받음
+    // let buttonElements = $(".list-group")   // 여기서 오류 -> class명을 못 잡음
+    // var existingtext = $("buttonElements[num]");
+    console.log('g');
+    let textPrompt = prompt('어떻게 수정하시겠습니까?');
+    document.getElementById('selectedTimeTable').innerHTML = textPrompt;
+    // $("buttonElements[num]").text(textPrompt);
+    // }
 }
 
-$("#RevisionButton").click(ClickReviseButton);
+
+
+/* 기본시간표로 지정하기 버튼을 누르면 왼쪽 div에 있는 시간표를 기본시간표로 지정하고
+기본시간표1~ list-group class의 가장 상단으로 시간표 목록 올리는 함수
+ */
+// function assigningToBasicTimeTable(){
+//
+// $().html($('#myTimeTableName'));
+//
+// }
+//
+// $('#myTimeTableName').html(timeTableNameList[i]);
+// $("#AssigningButton").click(assigningToBasicTimeTable);
