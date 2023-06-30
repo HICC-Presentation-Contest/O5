@@ -27,6 +27,7 @@ function sync_group_numbers() {
     for (var i = 0; i < groups.length; i++) {
         var group = groups[i];
         var groupNumber = i + 1;
+        group.setAttribute('id', 'original' + groupNumber);
         group.setAttribute('data-group', groupNumber);
         group.querySelector('p').innerText = "그룹" + groupNumber;
     }
@@ -48,6 +49,7 @@ function add_group() {
     var div = document.createElement('div');
     div.className = 'original';
     div.setAttribute('data-group', groupNumber);
+    div.setAttribute('id', 'original' + groupNumber);
     div.innerHTML = `
         <div class="preset" style="display:none">
              <input type="text" name="test1" value="" style="width:100px">
@@ -55,7 +57,7 @@ function add_group() {
              </div>
         <div class="groupRow">
              <p>그룹${groupNumber}</p>
-             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this.parentNode.parentNode)">과목추가</button>
+             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this)">과목추가</button>
              <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
         </div>
     `;
@@ -63,12 +65,21 @@ function add_group() {
 }
 
 
+// //과목 추가 함수
+// function add_item(parentNode) {
+//     var div = document.createElement('div');
+//     var preset = parentNode.querySelector('.preset');
+//     div.innerHTML = preset.innerHTML;
+//     parentNode.appendChild(div);
+// }
+
 //과목 추가 함수
-function add_item(parentNode) {
-    var div = document.createElement('div');
-    var preset = parentNode.querySelector('.preset');
-    div.innerHTML = preset.innerHTML;
-    parentNode.appendChild(div);
+let clickedGroup = 0;
+function add_item(event){
+    $('.original').css('background-color', 'white');
+    let groupDiv = event.parentNode.parentNode;
+    clickedGroup = $(groupDiv).attr('data-group');
+    $(groupDiv).css('background-color', 'lightgray');
 }
 
 //그룹 삭제 함수
@@ -87,10 +98,10 @@ function remove_group(group) {
     }
 }
 
-//과목 삭제 함수
-function remove_item(obj) {
-    obj.parentNode.parentNode.removeChild(obj.parentNode);
-}
+// //과목 삭제 함수
+// function remove_item(obj) {
+//     obj.parentNode.parentNode.removeChild(obj.parentNode);
+// }
 
 // 시간표 데이터
 var timetable = [
@@ -394,10 +405,10 @@ var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과�
 
 function pushClassData(textData) {
     var a = document.createElement("div");
-    a.innerHTML = '<div class="result">' +
-        '<div class="subject"><strong>' + textData[6] + '</strong></div>' +
-        '<div class="nameTime">' + textData[13] + ' ' + textData[14] + '</div> ' +
-        '<div class="detail">' + textData[0] + '학년 ' + textData[3] + ' ' + textData[8] + '학점 ' + textData[5] + '</div>' +
+    a.innerHTML = '<div class="result" onclick="passOverData(this)">' +
+        '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
+        '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
+        '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] + '</div>' +
         '</div>';
     document.getElementById("resultBox").appendChild(a);
 }
@@ -408,6 +419,14 @@ function displayTextList() {
     }
 }
 
+// 왼쪽 그룹으로 데이터 넘기기
+function passOverData(event){
+    // if ()
+    let my_div = document.createElement('div');
+    my_div.innerHTML = event.innerHTML;
+    console.log('#original' + clickedGroup.toString());
+    $('#original' + clickedGroup.toString()).append(my_div);
+}
 
 // 사용자가 검색버튼을 눌렀을떄
 function searchWordSubmit() {

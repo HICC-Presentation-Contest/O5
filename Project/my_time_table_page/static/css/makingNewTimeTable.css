@@ -9,7 +9,6 @@
 }
 * {
     font-family: 'S-CoreDream-3Light';
-    background: white;
 }
 
 .classbox{
@@ -108,4 +107,8 @@ text-align: inline-block;
   height: 100%;
 /*background-color: #6A24FE;*/
 background-color: #A1C2F1;
+}
+
+.original{
+    border: solid 1px lightgray;
 }
