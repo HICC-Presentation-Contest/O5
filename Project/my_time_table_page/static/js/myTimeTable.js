@@ -1,4 +1,6 @@
 //csrf token 건들지 말것
+
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -173,7 +175,7 @@ function timeTableRemover(){
         "            </tr>"
 }
 
-function addClassToTimeTable(TimeTableClass) {
+function addClassToTimeTable(userTimeTable) {
     timeTableRemover()
     // 수업이름
     let className = '';
@@ -186,9 +188,10 @@ function addClassToTimeTable(TimeTableClass) {
     // html에 넣을 id
     let id = '';
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
-    for (let i = 0; i < TimeTableClass.length; i++) {
-        className = TimeTableClass[i][0];
-        timeList = TimeTableClass[i][1].split("_"); // 월2 화2 수2 이렇게 쪼개진다.
+    console.log(userTimeTable);
+    for (let i = 0; i < userTimeTable.length; i++) {
+        className = userTimeTable[i][0];
+        timeList = userTimeTable[i][1].split("_"); // 월2 화2 수2 이렇게 쪼개진다.
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
         {
             day = KorToEngOfDay(timeList[j].substr(0, 1)); // 월234에서 월 가져온다.
@@ -237,11 +240,52 @@ function basicUserInformation(TimeTableClass) {
     let innerList = document.createElement('button');
     $(innerList).addClass("list-group-item list-group-item-action");
     $(innerList).text('+');
-    $(innerList).attr('onclick', 'location.href="makingNewTimeTable";');
+    $(innerList).attr('onclick', 'remakeTimeTableNameList()'); //리스트 추가하는 함수 설정
     $(innerList).css('text-align', 'center');
     $('#timeTableNameList').append(innerList);
     $('#selectedTimeTableName').html(timeTableNameList[0]);
     addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
+
+}
+//새 리스트를 html에 추가
+function remakeTimeTableNameList(){
+    appendUserTimeTable(userTimeTable[1]);
+    basicUserInformation(userTimeTable[1]);
+}
+
+
+
+// 시간표 이름 체크리스트
+basicTimeTableNameCheck = {};
+for (let i = 0;i < 100; i++){
+    basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
+}
+
+// 시간표이름 리스트에 새 항목 추가
+function appendUserTimeTable(userTimeTable) {
+
+    // for (let i = 0; i < userTimeTable[1].length; i++) {
+    //     // console.log(userTimeTable[1][i][0]);
+    //     // console.log(/기본시간표[0-99]/g.test(userTimeTable[1][i][0]));
+    //     if (/기본시간표[0-99]/g.test(userTimeTable[1][i][0])) {
+    //         basicTimeTableNameCheck[userTimeTable[1][i][0]] = true;
+    //     }
+    // }
+    for (let key in userTimeTable){
+        if (/기본시간표[0-99]/g.test(key)) {
+            basicTimeTableNameCheck[key] = true;
+        }
+    }
+
+    console.log(basicTimeTableNameCheck);
+    for(let key in basicTimeTableNameCheck){
+        if(basicTimeTableNameCheck[key] == false){
+            userTimeTable[key] = [];
+            console.log(userTimeTable);
+            return
+        }
+
+    }
 
 }
 
@@ -249,41 +293,40 @@ function timeTableNameClick(event){
     let myTimeTable = TimeTableClass[event.innerHTML];
     $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
     $('#selectedTimeTableName').html(event.innerHTML);
-    addClassToTimeTable(myTimeTable)
+    if(myTimeTable != []){
+        addClassToTimeTable(myTimeTable);
+    }
 }
 
-window.onload = function () {
-    basicUserInformation(TimeTableClass);
 
-}
 
 
 let userTimeTable =
-    ['abc',[
-            ['기본시간표1', [
+    ['abc',
+        {
+            '기본시간표1': [
                 ['스페인어', '월234'],
                 ['컴퓨터구조', '화2_수2_목2'],
                 ['컴퓨터네트워크', '수3_금23'],
                 ['알고리즘분석', '화5_수5_목5'],
                 ['프로그래밍언어론', '화9_금56']
-            ]],
-            ['기본시간표2', [
+            ],
+            '기본시간표2': [
                 ['스페인어', '토234'],
                 ['컴퓨터구조', '화2_수2_목2'],
                 ['컴퓨터네트워크', '수3_금23'],
                 ['알고리즘분석', '화5_수5_목5'],
                 ['프로그래밍언어론', '화9_금56']
-            ]],
-            ['기본시간표3', [
+            ],
+            '기본시간표3': [
                 ['스페인어', '일234'],
                 ['컴퓨터구조', '화2_수2_목2'],
                 ['컴퓨터네트워크', '수3_금23'],
                 ['알고리즘분석', '화5_수5_목5'],
                 ['프로그래밍언어론', '화9_금56']
-            ]]
+            ]
 
-        ]
-    ]
+        }]
 
 
 
@@ -325,7 +368,8 @@ function loadingUserTimeTable(){
         },
         success: function (data) {
             $("#mySpinner").hide();
-            basicUserInformation(TimeTableClass);
+            TimeTableClass = data;
+            // basicUserInformation(TimeTableClass);
             // textList = data;
 
         },
@@ -334,7 +378,7 @@ function loadingUserTimeTable(){
 }
 
 //시간표 이름 수정하는 함수
-function ClickReviseButton() {
+function clickReviseButton() {
     //이름 수정할 시간표의 숫자 입력
     // if (num <= 0)
     //     alert("올바른 숫자를 입력해주세요.")
@@ -345,8 +389,8 @@ function ClickReviseButton() {
     console.log('g');
     let textPrompt = prompt('어떻게 수정하시겠습니까?');
     document.getElementById('selectedTimeTable').innerHTML = textPrompt;
-    // $("buttonElements[num]").text(textPrompt);
-    // }
+    // // $("buttonElements[num]").text(textPrompt);
+    // // }
 }
 
 
@@ -362,3 +406,10 @@ function ClickReviseButton() {
 //
 // $('#myTimeTableName').html(timeTableNameList[i]);
 // $("#AssigningButton").click(assigningToBasicTimeTable);
+
+
+window.onload = function () {
+    // loadingUserTimeTable()
+    basicUserInformation(TimeTableClass); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
+
+}

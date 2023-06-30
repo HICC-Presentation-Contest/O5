@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt  # ajax POST 응답하기 위해 필요한 보안 토큰
 from django.http import JsonResponse
 from . import testdb
+import json
 
 
 
@@ -24,9 +25,11 @@ def returning_to_mytimetable_page(request):
 
 
 def sending_user_time_table(request):
-
-    user_time_table = request.POST['user_time_table']
-
+    payment_data = []
+    if request.method == 'POST':
+        payment_data = json.loads(request.body)
+    # user_time_table = request.POST['user_time_table']
+    print('s')
     answer = {
         'none': []
     }
