@@ -18,14 +18,14 @@
 /*    position: center;*/
 /*    font-size: 14px;*/
 /*}*/
-.login-wrapper {
+.signup-wrapper {
     width: 400px;
     height: 350px;
     padding: 40px;
     box-sizing: border-box;
 }
 
-.login-wrapper > h2{
+.signup-wrapper > h2{
     font-size: 24px;
     text-align: center;
     color: #6A24FE;
@@ -49,8 +49,8 @@
     font-size: 16px;
     background-color: #6A24FE;
     /*margin-top: 20px;*/
-    margin-left:110px;
-    width: 80px;
+    margin-left: 90px;
+    width: 130px;
     height:45px;
     border: none;
     text-align: center;
