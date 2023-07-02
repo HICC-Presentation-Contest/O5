@@ -63,7 +63,7 @@ def suggested_search_word(request):
 @csrf_exempt
 def search_word_submit(request):
     search_word = request.POST['search_word']
-    result_box_list = list(testdb.search(search_word, "-1", "-1", "-1", "-1"))
+    result_box_list = list(testdb.search(search_word, -1,"-1", "-1", "-1", "-1"))
 
     answer = {
         'result_box_list': result_box_list
@@ -79,6 +79,9 @@ def send_group_list(request):
         print(data)
     # 이 부분에 함수 돌려서 answer 값에 넣어준다.
     result_time_table = []
+    for i in range(len(data)):
+        for j in range(len(data[i])):
+            result_time_table.append(testdb.search("-1",data[i][j],"-1","-1","-1","-1"))
     answer = {
         'result_time_table': result_time_table,
     }
