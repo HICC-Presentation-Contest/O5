@@ -4,7 +4,7 @@ import pymysql
 # import test_read
 
 # 각자 비밀번호로 수정해주세요
-db_password = "hrimaly"
+db_password = "0000"
 
 def cutting_time(time):
     now_day = ""

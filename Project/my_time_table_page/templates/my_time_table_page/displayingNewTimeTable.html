@@ -5,6 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <meta name="viewport"
           content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
 
@@ -191,27 +193,25 @@
         <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
         <p><strong>[가능한 다른 경우의 시간표]</strong></p>
         <div id="possibleTimeTable">
-            <div class="slide_wrapper ">
-                <ul class="slides flex">
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                  <li><img src="http://placehold.it/110x110" alt=""></li>
-                </ul>
-                <p class="controls">
-                  <span class="prev"><i class="fas fa-chevron-left"></i></span>
-                  <span class="next"><i class="fas fa-chevron-right"></i></span>
-                </p>
-              </div>
+            <!-- Swiper -->
+    <div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">Slide 1</div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+    <div class="swiper-slide">Slide 4</div>
+    <div class="swiper-slide">Slide 5</div>
+    <div class="swiper-slide">Slide 6</div>
+  </div>
 
-              <div class="ha"></div>
-            </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <div class="swiper-scrollbar"></div>
+  </div>
+        </div>
+              </div>
 
         <!--(3) 오른쪽 하단의 정렬기능-->
         <div style="text-align:left;float:left;height:80%">
