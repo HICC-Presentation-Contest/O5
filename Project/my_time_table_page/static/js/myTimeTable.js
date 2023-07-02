@@ -702,7 +702,8 @@ var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과�
 
 function pushClassData(textData) {
     var a = document.createElement("div");
-    a.innerHTML = '<div class="result" onclick="classNameClick(this)">' +
+    // a.innerHTML = '<div class="result" onclick="classNameClick(this)">' +
+    a.innerHTML = '<div class="result" >' +
         '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
         '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
         '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] +'</div>' +
@@ -718,6 +719,19 @@ function displayTextList() {
     for (var i = 0; i < textList.length; i++) {
         pushClassData(textList[i]);
     }
+    // 이부분은 hover나 클릭했을때 왼쪽시간표에 보여주는것
+    $('.result').hover(function(){
+         classNameClick(this);
+    });
+    $('.result').click(function() {
+        // 강의를 usertimeTable에 추가, 단 겹치면 추가안한다.
+        insertToUserTimeTable(this);
+        let myTimeTable = userTimeTable[1][$('#myTimeTableName').html()];
+        // console.log(myTimeTable);
+        if(myTimeTable != []) {
+            addClassToTimeTable(myTimeTable);
+        }
+    });
 }
 
 // result div hover 일떄 시간표 표시
@@ -728,7 +742,10 @@ function classNameClick(event){
     $('.result').css('background-color', 'white'); // 전체 색 하얀색으로
     $(event).css('background-color', 'lightgray'); // 클릭한것만 음영효과
     let classTime = $(event).children('.classTime');
-    shadingTimeTable(classTime[0].innerHTML);
+    if (classTime.length != 0){
+        shadingTimeTable(classTime[0].innerHTML);
+
+    }
 }
 function shadingTimeTable(classTime) {
     // 수업의 요일
@@ -752,5 +769,48 @@ function shadingTimeTable(classTime) {
 
     }
 
+}
+
+//userTimeTable에 수업을 넣는 함수
+function  insertToUserTimeTable(event){
+    let className = '';
+    // 시간 정보
+    let timeList = '';
+    // 수업의 요일
+    let day = '';
+    // 수업의 요일의 시간
+    let timeOfDay = '';
+    // html에 넣을 id
+    let id = '';
+    // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
+    // console.log(userTimeTable);
+
+    className = $(event).children('.subject');
+    className = $(className[0]).children();
+    className = $(className[0]).html(); // 수업이름
+    let classTime = $(event).children('.classTime'); // 수업 시간
+
+    timeList = $(classTime[0]).html().split(","); // 월2 화2 수2 이렇게 쪼개진다.
+    for (let j = 0; j < timeList.length; j++) // 월234는 한번.
+    {
+        day = KorToEngOfDay(timeList[j].substr(0, 1)); // 월234에서 월 가져온다.
+        timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
+
+        //for문을 들리면서 만약 기존시간표에 겹친다면 경고창 띄우고 리턴.
+        for (let k = 0; k < timeOfDay.length; k++) {
+            id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
+            if ($(id).text() != ''){
+                alert('강의가 겹칩니다');
+                return
+            }
+        }
+
+    }
+    //userTimeTable에 넣기
+    let temporaryList = userTimeTable[1][$('#myTimeTableName').html()];
+    // console.log(temporaryList);
+    temporaryList.push([className, classTime[0].innerHTML]);
+    userTimeTable[1][$('#myTimeTableName').html()] = temporaryList;
+    console.log(temporaryList);
 
 }
