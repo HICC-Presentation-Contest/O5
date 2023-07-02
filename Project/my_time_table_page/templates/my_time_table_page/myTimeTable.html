@@ -22,7 +22,7 @@
 <body>
 <!-- 페이지 로고 -->
 {% if user.is_authenticated %}
-    <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
+    <nav id="navbar-example2" class="navbar px-3 mb-3">
         <strong><a class="navbar-brand" href="myTimeTable.demo">내 시간표 보기</a></strong>
         <ul class="nav nav-pills">
             <li class="nav-item">
@@ -48,7 +48,7 @@
          data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2"
          tabindex="0">
         <!--왼쪽박스-->
-        <div id="leftBox" class="w-75">
+        <div id="leftBox">
             <!-- 시간표 테이블-->
             <div id="myTimeTableName">
                     시간표 이름
@@ -71,94 +71,94 @@
                 <!-- 1교시 -->
                 <tr>
                     <td class="myTimeTable_time display-5">9:00 - 10:00</td>
-                    <td id="timeTable_mon_1"></td>
-                    <td id="timeTable_tue_1"></td>
-                    <td id="timeTable_wed_1"></td>
-                    <td id="timeTable_thu_1"></td>
-                    <td id="timeTable_fri_1"></td>
-                    <td id="timeTable_sat_1"></td>
-                    <td id="timeTable_sun_1"></td>
+                    <td id="timeTable_mon_1" class='tableTd'></td>
+                    <td id="timeTable_tue_1" class='tableTd'></td>
+                    <td id="timeTable_wed_1" class='tableTd'></td>
+                    <td id="timeTable_thu_1" class='tableTd'></td>
+                    <td id="timeTable_fri_1" class='tableTd'></td>
+                    <td id="timeTable_sat_1" class='tableTd'></td>
+                    <td id="timeTable_sun_1" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">10:00 - 11:00</td>
-                    <td id="timeTable_mon_2"></td>
-                    <td id="timeTable_tue_2"></td>
-                    <td id="timeTable_wed_2"></td>
-                    <td id="timeTable_thu_2"></td>
-                    <td id="timeTable_fri_2"></td>
-                    <td id="timeTable_sat_2"></td>
-                    <td id="timeTable_sun_2"></td>
+                    <td id="timeTable_mon_2" class='tableTd'></td>
+                    <td id="timeTable_tue_2" class='tableTd'></td>
+                    <td id="timeTable_wed_2" class='tableTd'></td>
+                    <td id="timeTable_thu_2" class='tableTd'></td>
+                    <td id="timeTable_fri_2" class='tableTd'></td>
+                    <td id="timeTable_sat_2" class='tableTd'></td>
+                    <td id="timeTable_sun_2" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">11:00 - 12:00</td>
-                    <td id="timeTable_mon_3"></td>
-                    <td id="timeTable_tue_3"></td>
-                    <td id="timeTable_wed_3"></td>
-                    <td id="timeTable_thu_3"></td>
-                    <td id="timeTable_fri_3"></td>
-                    <td id="timeTable_sat_3"></td>
-                    <td id="timeTable_sun_3"></td>
+                    <td id="timeTable_mon_3" class='tableTd'></td>
+                    <td id="timeTable_tue_3" class='tableTd'></td>
+                    <td id="timeTable_wed_3" class='tableTd'></td>
+                    <td id="timeTable_thu_3" class='tableTd'></td>
+                    <td id="timeTable_fri_3" class='tableTd'></td>
+                    <td id="timeTable_sat_3" class='tableTd'></td>
+                    <td id="timeTable_sun_3" class='tableTd'></td>
                 </tr>
 
                 <tr>
                     <td class="myTimeTable_time display-5">12:00 - 13:00</td>
-                    <td id="timeTable_mon_4"></td>
-                    <td id="timeTable_tue_4"></td>
-                    <td id="timeTable_wed_4"></td>
-                    <td id="timeTable_thu_4"></td>
-                    <td id="timeTable_fri_4"></td>
-                    <td id="timeTable_sat_4"></td>
-                    <td id="timeTable_sun_4"></td>
+                    <td id="timeTable_mon_4" class='tableTd'></td>
+                    <td id="timeTable_tue_4" class='tableTd'></td>
+                    <td id="timeTable_wed_4" class='tableTd'></td>
+                    <td id="timeTable_thu_4" class='tableTd'></td>
+                    <td id="timeTable_fri_4" class='tableTd'></td>
+                    <td id="timeTable_sat_4" class='tableTd'></td>
+                    <td id="timeTable_sun_4" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">13:00 - 14:00</td>
-                    <td id="timeTable_mon_5"></td>
-                    <td id="timeTable_tue_5"></td>
-                    <td id="timeTable_wed_5"></td>
-                    <td id="timeTable_thu_5"></td>
-                    <td id="timeTable_fri_5"></td>
-                    <td id="timeTable_sat_5"></td>
-                    <td id="timeTable_sun_5"></td>
+                    <td id="timeTable_mon_5" class='tableTd'></td>
+                    <td id="timeTable_tue_5" class='tableTd'></td>
+                    <td id="timeTable_wed_5" class='tableTd'></td>
+                    <td id="timeTable_thu_5" class='tableTd'></td>
+                    <td id="timeTable_fri_5" class='tableTd'></td>
+                    <td id="timeTable_sat_5" class='tableTd'></td>
+                    <td id="timeTable_sun_5" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">14:00 - 15:00</td>
-                    <td id="timeTable_mon_6"></td>
-                    <td id="timeTable_tue_6"></td>
-                    <td id="timeTable_wed_6"></td>
-                    <td id="timeTable_thu_6"></td>
-                    <td id="timeTable_fri_6"></td>
-                    <td id="timeTable_sat_6"></td>
-                    <td id="timeTable_sun_6"></td>
+                    <td id="timeTable_mon_6" class='tableTd'></td>
+                    <td id="timeTable_tue_6" class='tableTd'></td>
+                    <td id="timeTable_wed_6" class='tableTd'></td>
+                    <td id="timeTable_thu_6" class='tableTd'></td>
+                    <td id="timeTable_fri_6" class='tableTd'></td>
+                    <td id="timeTable_sat_6" class='tableTd'></td>
+                    <td id="timeTable_sun_6" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">15:00 - 16:00</td>
-                    <td id="timeTable_mon_7"></td>
-                    <td id="timeTable_tue_7"></td>
-                    <td id="timeTable_wed_7"></td>
-                    <td id="timeTable_thu_7"></td>
-                    <td id="timeTable_fri_7"></td>
-                    <td id="timeTable_sat_7"></td>
-                    <td id="timeTable_sun_7"></td>
+                    <td id="timeTable_mon_7" class='tableTd'></td>
+                    <td id="timeTable_tue_7" class='tableTd'></td>
+                    <td id="timeTable_wed_7" class='tableTd'></td>
+                    <td id="timeTable_thu_7" class='tableTd'></td>
+                    <td id="timeTable_fri_7" class='tableTd'></td>
+                    <td id="timeTable_sat_7" class='tableTd'></td>
+                    <td id="timeTable_sun_7" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">16:00 - 17:00</td>
-                    <td id="timeTable_mon_8"></td>
-                    <td id="timeTable_tue_8"></td>
-                    <td id="timeTable_wed_8"></td>
-                    <td id="timeTable_thu_8"></td>
-                    <td id="timeTable_fri_8"></td>
-                    <td id="timeTable_sat_8"></td>
-                    <td id="timeTable_sun_8"></td>
+                    <td id="timeTable_mon_8" class='tableTd'></td>
+                    <td id="timeTable_tue_8" class='tableTd'></td>
+                    <td id="timeTable_wed_8" class='tableTd'></td>
+                    <td id="timeTable_thu_8" class='tableTd'></td>
+                    <td id="timeTable_fri_8" class='tableTd'></td>
+                    <td id="timeTable_sat_8" class='tableTd'></td>
+                    <td id="timeTable_sun_8" class='tableTd'></td>
                 </tr>
                 <tr>
                     <td class="myTimeTable_time display-5">17:00 - 18:00</td>
-                    <td id="timeTable_mon_9"></td>
-                    <td id="timeTable_tue_9"></td>
-                    <td id="timeTable_wed_9"></td>
-                    <td id="timeTable_thu_9"></td>
-                    <td id="timeTable_fri_9"></td>
-                    <td id="timeTable_sat_9"></td>
-                    <td id="timeTable_sun_9"></td>
+                    <td id="timeTable_mon_9" class='tableTd'></td>
+                    <td id="timeTable_tue_9" class='tableTd'></td>
+                    <td id="timeTable_wed_9" class='tableTd'></td>
+                    <td id="timeTable_thu_9" class='tableTd'></td>
+                    <td id="timeTable_fri_9" class='tableTd'></td>
+                    <td id="timeTable_sat_9" class='tableTd'></td>
+                    <td id="timeTable_sun_9" class='tableTd'></td>
                 </tr>
 
 
@@ -167,7 +167,7 @@
 
         </div>
         <!--    오른쪽박스 -->
-        <div id="rightBox" class="w-25">
+        <div id="rightBox" >
 
             <div id="selectedTimeTable">
                 <div id = 'selectedTimeTableName'></div>
@@ -182,9 +182,50 @@
 
 
 
-            <button type="button" class="btn text-white" style="background-color: #0A6EBD">현재 시간표에 추가하기</button>
+            <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="appendClassToNowTimeTable()">현재 시간표에 추가하기</button>
             <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick = 'location.href="makingNewTimeTable"'>시간표 알고리즘 돌리기</button>
 
+        </div>
+        <div id="rightBox1" >
+            <div id="textSearchBox">
+                {% csrf_token %}
+
+                <div style="width: 60%" class="autocomplete">
+                    <input id="autoInput" class="w-100" type="search" placeholder="검색어를 입력해주세요."
+                           onkeyup="suggestedSearchWord(this);" autocomplete="off">
+                </div>
+                <div>
+                    <button type="button" class="btn searchButton" onclick="searchWordSubmit()">검색</button>
+                </div>
+            </div>
+            <title>시간표 정렬</title>
+            <p>정렬 기준:
+                <select id="sortKey">
+                    <option value="major">전공</option>
+                    <option value="time">시간</option>
+                    <option value="year">학년</option>
+                    <option value="credit">학점</option>
+                </select>
+                <button onclick="sortTimetable(document.getElementById('sortKey').value)">
+                    정렬
+                </button>
+            </p>
+            <table id="timetable">
+                <tr>
+                    <th>과목</th>
+                    <th>시간</th>
+                    <th>학년</th>
+                    <th>학점</th>
+                </tr>
+            </table>
+            <div id="resultBox" class="p-1 w-100">
+
+            </div>
+            <div class="p-1 w-100 d-flex justify-content-end">
+                <button type="button" class="btn searchButton" onclick='appendingGroupList()'>시간표 검색하기
+                </button>
+
+            </div>
         </div>
     </div>
 

@@ -494,6 +494,7 @@ function searchWordSubmit() {
 
 }
 
+// 백으로 보낼 그룹리스트를 형성하는 함수
 let sendingGroupList = [];
 function appendingGroupList(){
     let groupList = $('#field').children('.original'); // group리스트는 그룹1, 그룹2등등
