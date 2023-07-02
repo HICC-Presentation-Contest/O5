@@ -51,10 +51,10 @@ function add_group() {
     div.setAttribute('data-group', groupNumber);
     div.setAttribute('id', 'original' + groupNumber);
     div.innerHTML = `
-        <div class="preset" style="display:none">
-             <input type="text" name="test1" value="" style="width:100px">
-             <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X</button>
-             </div>
+<!--        <div class="preset" style="display:none">-->
+<!--             <input type="text" name="test1" value="" style="width:100px">-->
+<!--             <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X</button>-->
+<!--             </div>-->
         <div class="groupRow">
              <p>그룹${groupNumber}</p>
              <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this)">과목추가</button>
@@ -81,6 +81,9 @@ function add_item(event){
     clickedGroup = $(groupDiv).attr('data-group');
     $(groupDiv).css('background-color', 'lightgray');
 }
+
+
+
 
 //그룹 삭제 함수
 function remove_group(group) {
@@ -420,13 +423,31 @@ function displayTextList() {
 }
 
 // 왼쪽 그룹으로 데이터 넘기기
-function passOverData(event){
-    // if ()
-    let my_div = document.createElement('div');
-    my_div.innerHTML = event.innerHTML;
-    console.log('#original' + clickedGroup.toString());
-    $('#original' + clickedGroup.toString()).append(my_div);
+function passOverData(event){ // event는 클릭한 객체
+    let detailHtml = $(event).children('.detail'); // 이 객체의 detail파트는 고유하므로 이걸로 중복체크
+    if (duplicateClassCheck(detailHtml[0].innerText)) // 이 객체의 detail파트는 고유하므로 이걸로 중복체크, 중복이 아니라면 실행
+        let my_div = document.createElement('div');
+        $(my_div).attr('class', 'classInOriginal');
+        my_div.innerHTML = event.innerHTML;
+        // console.log('#original' + clickedGroup.toString());
+        $('#original' + clickedGroup.toString()).append(my_div);
+    }
 }
+
+
+// 그룹 안 수업 중복 체크 함수 중복되면 false, 중복아니면 true 리턴 x로는 고유번호가 포함된 html을 받는다.
+function duplicateClassCheck(x){
+    let clickedGroupDiv = document.getElementById('original' + clickedGroup);
+    let childrenElement = $(clickedGroupDiv).find('.classInOriginal');
+    for(let i = 0; i < childrenElement.length; i++){
+        if ($(childrenElement[i]).children('.detail').html() == x){
+            return false;
+
+        }
+    }
+    return true;
+}
+
 
 // 사용자가 검색버튼을 눌렀을떄
 function searchWordSubmit() {

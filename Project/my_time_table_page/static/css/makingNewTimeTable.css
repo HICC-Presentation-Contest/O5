@@ -76,9 +76,9 @@ display: inline-block;
 vertical-align: middle;
 box-sizing: border-box;
 border-radius: 6px;
-margin-bottom:30px;
-padding: 10px;
-width: 400px;
+margin-bottom:3%;
+padding: 1%;
+width: 100%;
 background-color: #FFFFFF;
 overflow: hidden; //original끼리 서로 영역 침범 하지 않도록 영역 지정
 }
