@@ -50,6 +50,7 @@ function add_group() {
     div.className = 'original';
     div.setAttribute('data-group', groupNumber);
     div.setAttribute('id', 'original' + groupNumber);
+    div.setAttribute('onclick', 'add_item(this)');
     div.innerHTML = `
 <!--        <div class="preset" style="display:none">-->
 <!--             <input type="text" name="test1" value="" style="width:100px">-->
@@ -57,8 +58,8 @@ function add_group() {
 <!--             </div>-->
         <div class="groupRow">
              <p>그룹${groupNumber}</p>
-             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this)">과목추가</button>
-             <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
+<!--             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this)">과목추가</button>-->
+             <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parent   Node)">그룹삭제</button>
         </div>
     `;
     field.appendChild(div);
@@ -74,10 +75,11 @@ function add_group() {
 // }
 
 //과목 추가 함수
-let clickedGroup = 0;
+let clickedGroup = 1;
 function add_item(event){
     $('.original').css('background-color', 'white');
-    let groupDiv = event.parentNode.parentNode;
+    // let groupDiv = event.parentNode.parentNode;
+    let groupDiv = event;
     clickedGroup = $(groupDiv).attr('data-group');
     $(groupDiv).css('background-color', 'lightgray');
 }

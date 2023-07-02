@@ -56,7 +56,7 @@
             <div id="boxWrap">
                 <div id="field">
                     <!-- 초기 그룹 맨 처음 화면에 뜨는 초기 그룹은 두개임 -->
-                    <div class="original" data-group="1" id="original1">
+                    <div class="original" data-group="1" id="original1" onclick="add_item(this)" style="background-color :lightgray">
 {#                        <div class="preset" style="display:none">#}
 {#                            <input type="text" name="test1" value="" style="width:100px">#}
 {#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
@@ -65,15 +65,15 @@
                         <!-- 그룹 행 -->
                         <div class="groupRow">
                             <p>그룹1</p>
-                            <button type="button" id="btn" class="btn btn-dark"
-                                    onclick="add_item(this)">과목추가</과목추가>
-                            </button>
+{#                            <button type="button" id="btn" class="btn btn-dark"#}
+{#                                    onclick="add_item(this)">과목추가</과목추가>#}
+{#                            </button>#}
                             <button type="button" id="btn" class="btn btn-dark"
                                     onclick="remove_group(this.parentNode.parentNode)">그룹삭제
                             </button>
                         </div>
                     </div>
-                    <div class="original" data-group="2" id = 'original2'>
+                    <div class="original" data-group="2" id = 'original2' onclick="add_item(this)">
 {#                        <div class="preset" style="display:none">#}
 {#                            <input type="text" name="test2" value="" style="width:100px">#}
 {#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
@@ -82,9 +82,9 @@
                         <!-- 그룹 행 -->
                         <div class="groupRow">
                             <p>그룹2</p>
-                            <button type="button" id="btn" class="btn btn-dark"
-                                    onclick="add_item(this)">과목추가
-                            </button>
+{#                            <button type="button" id="btn" class="btn btn-dark"#}
+{#                                    onclick="add_item(this)">과목추가#}
+{#                            </button>#}
                             <button type="button" id="btn" class="btn btn-dark"
                                     onclick="remove_group(this.parentNode.parentNode)">그룹삭제
                             </button>
@@ -131,10 +131,6 @@
             </div>
             <div class="p-1 w-100 d-flex justify-content-end">
                 <button type="button" class="btn searchButton" onclick='appendingGroupList()'>시간표 검색하기
-                </button>
-
-                <button id="searchButton" type="button" class="btn" disabled
-                        onclick="location.href = 'timetable.displayingNewTimeTable'">시간표 검색하기
                 </button>
 
             </div>
