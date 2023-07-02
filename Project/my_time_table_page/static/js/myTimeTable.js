@@ -241,42 +241,24 @@ function basicUserInformation(TimeTableClass) { // 매개변수는 usertimetable
     }
 
 }
-//새 리스트를 html에 추가
-function remakeTimeTableNameList(){
+
+// 새 시간표를 HTML에 추가
+function remakeTimeTableNameList() {
     appendUserTimeTable(userTimeTable[1]);
+  basicUserInformation(userTimeTable[1]);
+}
+
+// 시간표 삭제 함수
+function deleteTimeTableList() {
+  if (!confirm('삭제하시면 복구할 수 없습니다.\n정말로 삭제하시겠습니까??')) {
+    return false;
+  }
+  let name = $('#selectedTimeTableName').html();
+    delete (userTimeTable[1])[name];
     basicUserInformation(userTimeTable[1]);
 }
 
-
-
-// 시간표 이름 체크리스트
-basicTimeTableNameCheck = {};
-for (let i = 0;i < 100; i++){
-    basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
-}
-
-// 시간표이름 리스트에 새 항목 추가
-function appendUserTimeTable(userTimeTable) {
-
-
-    for (let key in userTimeTable){
-        if (/기본시간표[0-99]/g.test(key)) {
-            basicTimeTableNameCheck[key] = true;
-        }
-    }
-
-    // console.log(basicTimeTableNameCheck);
-    for(let key in basicTimeTableNameCheck){
-        if(basicTimeTableNameCheck[key] == false){
-            userTimeTable[key] = [];
-            // console.log(userTimeTable);
-            return
-        }
-
-    }
-
-}
-
+// 시간표 이름 클릭 시 동작
 function timeTableNameClick(event){
     let myTimeTable = userTimeTable[1][event.innerHTML];
     $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
@@ -285,6 +267,43 @@ function timeTableNameClick(event){
     if(myTimeTable != []){
         addClassToTimeTable(myTimeTable);
     }
+}
+
+// 초기 실행
+function remakeTimeTableNameList() {
+    appendUserTimeTable(userTimeTable[1]);
+    basicUserInformation(userTimeTable[1]);
+}
+// 시간표 이름 체크리스트
+let basicTimeTableNameCheck = {};
+let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
+
+
+// 기본시간표 체크리스트 초기화
+for (let i = 1; i <= 100; i++) {
+  basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
+}
+
+// 시간표이름 리스트에 새 항목 추가
+function appendUserTimeTable(userTimeTable) {
+    // 기본시간표 체크 상태 갱신
+    for (let key in userTimeTable) {
+        if (/기본시간표[0-99]/g.test(key)) {
+            basicTimeTableNameCheck[key] = true;
+        }
+    }
+
+ // 다음 사용 가능한 시간표 번호 찾기
+  while (basicTimeTableNameCheck['기본시간표' + nextTimeTableNumber.toString()]) {
+    nextTimeTableNumber++;
+  }
+
+  // 다음 시간표 번호로 시간표 추가
+  let nextTimeTableName = '기본시간표' + nextTimeTableNumber.toString();
+  userTimeTable[nextTimeTableName] = [];
+  basicTimeTableNameCheck[nextTimeTableName] = true;
+
+  nextTimeTableNumber++; // 다음 시간표 번호 증가
 }
 
 
@@ -391,14 +410,14 @@ function clickRevise() {
     // // }
 }
 
-function deleteTimeTableList(){
-    if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){
-        return false;
-    }
-    let name = $('#selectedTimeTableName').html();
-    delete (userTimeTable[1])[name];
-    basicUserInformation(userTimeTable[1]);
-}
+//function deleteTimeTableList(){
+   // if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){
+     //   return false;
+   // }
+   // let name = $('#selectedTimeTableName').html();
+   // delete (userTimeTable[1])[name];
+  //  basicUserInformation(userTimeTable[1]);
+//}
 
 /* 기본시간표로 지정하기 버튼을 누르면 왼쪽 div에 있는 시간표를 기본시간표로 지정하고
 기본시간표1~ list-group class의 가장 상단으로 시간표 목록 올리는 함수
