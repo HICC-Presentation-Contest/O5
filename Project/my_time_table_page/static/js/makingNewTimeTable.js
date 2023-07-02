@@ -360,7 +360,7 @@ let autocomplete = (function () {
 
     let _removeListener = function () {
         if (_inp !== null) {
-            console.log(_inp)
+            // console.log(_inp)
             _inp.removeEventListener("keyup", inputEvent, false);
             _inp.removeEventListener("keydown", keydownEvent, false);
         }
@@ -393,7 +393,7 @@ function suggestedSearchWord(inp) { //inp는 input객체
         datatype: 'json',
         success: function (data) {
             receivedList = data['suggested_search_word_list'];
-            console.log(receivedList);
+            // console.log(receivedList);
             if(receivedList != null){
                 autocomplete.setAutocomplete(inp, receivedList); //autocomplete함수를 input객체를 받아 실행
                 autocomplete.inputEvent(nowKeyboardCode);
@@ -415,8 +415,8 @@ function pushClassData(textData) {
     a.innerHTML = '<div class="result" onclick="passOverData(this)">' +
         '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
         '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
-        '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + '<div>' + textData[6] + '</div>' +'</div>' +
-        '</div>';
+        '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] +'</div>' +
+        '<div class = "classIdentityNumber" style="display: none">' + textData[0] + '</div>' + '</div>';
     document.getElementById("resultBox").appendChild(a);
 }
 
@@ -432,6 +432,7 @@ function displayTextList() {
 // 왼쪽 그룹으로 데이터 넘기기
 function passOverData(event){ // event는 클릭한 객체
     let detailHtml = $(event).children('.detail'); // 이 객체의 detail파트는 고유하므로 이걸로 중복체크
+
     if (duplicateClassCheck(detailHtml[0].innerText)){
         let my_div = document.createElement('div');
         $(my_div).attr('class', 'classInOriginal');
@@ -491,10 +492,27 @@ function searchWordSubmit() {
 
 }
 
-function sendingGroupList(){
-    let groupList = $('#field').children();
-    console.log(groupList);
+let sendingGroupList = [];
+function appendingGroupList(){
+    let groupList = $('#field').children('.original'); // group리스트는 그룹1, 그룹2등등
+    for (let i = 0; i < groupList.length; i++){ // 그룹별로 for문 돌린다.
+        let groupClassList = $(groupList[i]).children('.classInOriginal');
+        // 그룹안에 시간이 없을경우 continue
+        if (groupClassList.length == 0){
+            continue
+        }
+        // 시간이 있으면 고유번호를 리스트에 추가해준다.
+        let innerGroupList = []; //고유번호가 들어가는 임시리스트
+        for (let j = 0; j < groupClassList.length; j++){
+            let classIdentityNumber = $(groupClassList[j]).children('.classIdentityNumber');
+            innerGroupList.push(classIdentityNumber[0].innerHTML); //수업 고유번호를 리스트에 추가
+        }
+        sendingGroupList.push(innerGroupList);
+
+    }
+    console.log(sendingGroupList);
 }
+
 
 
 function groupCheck() {
