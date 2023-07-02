@@ -152,31 +152,7 @@ function timeTableRemover(){
 
 
 
-var TimeTableClass =
-    {
-        '기본시간표1': [
-            ['스페인어', '월2,월3,월4'],
-            ['컴퓨터구조', '화2,수2,목2'],
-            ['컴퓨터네트워크', '수3,금23'],
-            ['알고리즘분석', '화5,수5,목5'],
-            ['프로그래밍언어론', '화9,금56']
-        ],
-        '기본시간표2': [
-            ['스페인어', '토234'],
-            ['컴퓨터구조', '화2,수2,목2'],
-            ['컴퓨터네트워크', '수3,금23'],
-            ['알고리즘분석', '화5,수5,목5'],
-            ['프로그래밍언어론', '화9,금56']
-        ],
-        '기본시간표3': [
-            ['스페인어', '일234'],
-            ['컴퓨터구조', '화2,수2,목2'],
-            ['컴퓨터네트워크', '수3,금23'],
-            ['알고리즘분석', '화5,수5,목5'],
-            ['프로그래밍언어론', '화9,금56']
-        ],
 
-    };
 function addClassToTimeTable(userTimeTable) {
     timeTableRemover()
     // 수업이름
@@ -217,7 +193,6 @@ function basicUserInformation(TimeTableClass) { // 매개변수는 usertimetable
     let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
      //키값에 맞게 타임테이블이름 리스트에 추가해준다.
     for (let i = 0; i < timeTableNameList.length; i++) {
-        $('#myTimeTableName').html(timeTableNameList[i]);
         let innerList = document.createElement('button');
         $(innerList).attr('id',timeTableNameList[i]);
         $(innerList).addClass("list-group-item list-group-item-action");
@@ -237,6 +212,7 @@ function basicUserInformation(TimeTableClass) { // 매개변수는 usertimetable
     $('#selectedTimeTableName').html(timeTableNameList[0]);
     // 시간표 내용있을떄만 실행
     if(TimeTableClass[timeTableNameList[0]] != []){
+        $('#myTimeTableName').html(timeTableNameList[0]);
         addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
     }
 
@@ -426,6 +402,13 @@ window.onload = function () {
 
 }
 
+
+//resultBox1의 닫기 버튼
+function rightBox1Remove(){
+    $('#rightBox').css('display', 'block');
+    $('#rightBox1').css('display', 'none');
+    $('#leftBox').css('width','75%');
+}
 
 
 //자동완성

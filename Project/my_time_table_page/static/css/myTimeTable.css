@@ -152,6 +152,8 @@ background-color: #A1C2F1;
      text-align: center;
      border: 1px solid #439771;
 }
+
+/*왼쪼시간표 th 요소들*/
 #myTimeTable > th{
     width: 12.5%;
      height: 50px;
@@ -165,7 +167,10 @@ background-color: #A1C2F1;
     font-size: large;
 }
 
+
+/*기본 시간표 표시를 위한 버튼*/
 #basicTimeTableButton{ color:red }
+
 
 #selectedTimeTable{
     border: solid lightgray 1px;
@@ -173,5 +178,10 @@ background-color: #A1C2F1;
     height: 20%;
 }
 
+#rightBox1RemoveButton{
+    position: fixed;
+    /*right값은 margin+padding의 2%와 자체크기 1.5em 을 합쳤다*/
+    right: calc(1.5em + 2%);
 
+}
 
