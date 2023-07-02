@@ -273,11 +273,6 @@ const swiper = new Swiper('.swiper-container', {
   // effect: 'fade',
 
   //자동 스크를링
-  autoplay: {
-    //시간 1000 이 1초
-    delay: 2500,
-    disableOnInteraction: false,
-   },
 
   //페이징
   pagination: {
