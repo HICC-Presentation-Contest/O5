@@ -27,8 +27,8 @@ function sync_group_numbers() {
     for (var i = 0; i < groups.length; i++) {
         var group = groups[i];
         var groupNumber = i + 1;
-        group.setAttribute('id', 'original' + groupNumber);
         group.setAttribute('data-group', groupNumber);
+        group.setAttribute('id', 'original' + groupNumber);
         group.querySelector('p').innerText = "그룹" + groupNumber;
     }
 
@@ -59,11 +59,12 @@ function add_group() {
         <div class="groupRow">
              <p>그룹${groupNumber}</p>
 <!--             <button type="button" id="btn" class="btn btn-dark" onclick="add_item(this)">과목추가</button>-->
-             <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parent   Node)">그룹삭제</button>
+             <button type="button" id="btn" class="btn btn-dark" onclick="remove_group(this.parentNode.parentNode)">그룹삭제</button>
         </div>
     `;
     field.appendChild(div);
 }
+
 
 
 // //과목 추가 함수
@@ -441,6 +442,12 @@ function passOverData(event){ // event는 클릭한 객체
         my_div.innerHTML = event.innerHTML;
         // console.log('#original' + clickedGroup.toString());
         $('#original' + clickedGroup.toString()).append(my_div);
+        var deleteButton = $('<button>').addClass('btn btn-dark btn-sm').text('X');
+          deleteButton.click(function (event) {
+              my_div.html('');
+          });
+           my_div.append(deleteButton);
+
     }
 }
 
