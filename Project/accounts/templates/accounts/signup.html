@@ -28,13 +28,25 @@
 
 <body>
 
-<div class="signup-wrapper" style="margin: 0 auto; margin-top: 120px">
+<div class="signup-wrapper" style="margin: 0 auto; margin-top: 30px">
     <h2>회원가입</h2>
     <form action="" class="form-signin" method="POST" id="login-form">
         {% csrf_token %}
+        <br>
+        아이디를 입력해주세요.
         <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required><br>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Email" autofocus required><br>
+
+        비밀번호를 입력해주세요.
+        <input type="text" name="password1" id="password1" class="form-control" placeholder="Password" autofocus required><br>
+
+        비밀번호를 다시 한 번 입력해주세요.
+        <div class="alert alert-success" id="alert-success" style="">비밀번호가 일치합니다.</div>
+        <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+
+        <input type="password" name="password2" id="password2" class="form-control" placeholder="Checking Password" autofocus required><br>
+
+        이메일을 입력해주세요.
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" autofocus required><br>
         {#        <p>아이디</p>#}
         {#        <input type="text" name="username">#}
         {#        <p>비밀번호</p>#}
@@ -52,3 +64,4 @@
 <script src='../../static/js/signup.js'></script>
 </body>
 </html>
+
