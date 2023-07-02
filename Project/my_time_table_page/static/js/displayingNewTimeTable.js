@@ -242,9 +242,13 @@ function timeTableNameClick(event) {
     addClassToTimeTable(myTimeTable)
 }
 
-
+let resultTimeTableList = [];
 window.onload = function () {
     // basicUserInformation(TimeTableClass);
+
+    if(localStorage.getItem('resultTimeTable')){
+        resultTimeTableList = localStorage.getItem('resultTimeTable');
+    }
     let timeTableNameList = Object.keys(TimeTableClass);
     addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
 }

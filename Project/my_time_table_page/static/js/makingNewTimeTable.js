@@ -511,8 +511,42 @@ function appendingGroupList(){
 
     }
     console.log(sendingGroupList);
+    sendGroupListToBack(sendingGroupList);
 }
 
+function sendGroupListToBack(sendingGroupList){
+    // sendingGroupList = [[1,2],[3,4]];
+    // sendingGroupList = {'아기': '돼지', '삼': '형제'};
+    if (sendingGroupList.length == 0){
+        alert('그룹이 비었습니다.');
+        return;
+    }
+
+    console.log(sendingGroupList);
+    $.ajax({
+        url: 'sendGroupList',
+        type: 'POST',
+        // data부분은 딕셔너리로 넘겨준다
+        // traditional: true, // 배열전달하기위한 조건
+        data: {
+            'group_list': JSON.stringify(sendingGroupList),
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        datatype: 'json',
+        beforeSend: function (request) {
+            // Performed before calling Ajax
+            $("#mySpinner").show();
+
+        },
+        success: function (data) {
+            let resultTimeTable = data.result_time_table;
+            $("#mySpinner").hide();
+            localStorage.setItem('resultTimeTable', resultTimeTable);
+            location.replace('displayingNewTimeTable');
+        },
+
+    });
+}
 
 
 function groupCheck() {
