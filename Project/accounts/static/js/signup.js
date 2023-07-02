@@ -17,3 +17,26 @@ $("#pass").focusout(function(){
      $('#check').hide();
  }
  });
+
+
+//비밀번호 재확인 코드
+$(function(){
+    $("#alert-success").hide();
+    $("#alert-danger").hide();
+    $("input").keyup(function(){
+        let pwd1 = $("#password1").val();
+        let pwd2 = $("#password2").val();
+        if(pwd1 !== "" || pwd2 != ""){
+            if(pwd1 == pwd2){
+                $("#alert-success").show();
+                $("#alert-danger").hide();
+                $("#submit").removeAttr("disabled");
+            }
+            else{
+                $("#alert-success").hide();
+                $("#alert-danger").show();
+                $("#submit").attr("disabled", "disabled");
+            }
+        }
+    });
+});
