@@ -99,7 +99,7 @@
                 {% csrf_token %}
 
                 <div style="width: 60%" class="autocomplete">
-                    <input id="autoInput" class="w-100" type="text" placeholder="검색어를 입력해주세요."
+                    <input id="autoInput" class="w-100" type="search" placeholder="검색어를 입력해주세요."
                            onkeyup="suggestedSearchWord(this);" autocomplete="off">
                 </div>
                 <div>
@@ -130,7 +130,7 @@
 
             </div>
             <div class="p-1 w-100 d-flex justify-content-end">
-                <button type="button" class="btn searchButton" onclick="location.href = 'displayingNewTimeTable'">시간표 검색하기
+                <button type="button" class="btn searchButton" onclick='sendingGroupList()'>시간표 검색하기
                 </button>
 
                 <button id="searchButton" type="button" class="btn" disabled

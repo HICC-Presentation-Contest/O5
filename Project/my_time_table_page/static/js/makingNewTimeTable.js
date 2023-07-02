@@ -393,10 +393,14 @@ function suggestedSearchWord(inp) { //inp는 input객체
         datatype: 'json',
         success: function (data) {
             receivedList = data['suggested_search_word_list'];
-            autocomplete.setAutocomplete(inp, receivedList); //autocomplete함수를 input객체를 받아 실행
-            autocomplete.inputEvent(nowKeyboardCode);
-            autocomplete.keydownEvent(nowKeyboardCode);
             console.log(receivedList);
+            if(receivedList != null){
+                autocomplete.setAutocomplete(inp, receivedList); //autocomplete함수를 input객체를 받아 실행
+                autocomplete.inputEvent(nowKeyboardCode);
+                autocomplete.keydownEvent(nowKeyboardCode);
+
+            }
+
         }
     });
 }
@@ -411,12 +415,15 @@ function pushClassData(textData) {
     a.innerHTML = '<div class="result" onclick="passOverData(this)">' +
         '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
         '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
-        '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] + '</div>' +
+        '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + '<div>' + textData[6] + '</div>' +'</div>' +
         '</div>';
     document.getElementById("resultBox").appendChild(a);
 }
 
 function displayTextList() {
+    if(document.getElementById("resultBox").length != 0) {
+        document.getElementById('resultBox').replaceChildren();
+    }
     for (var i = 0; i < textList.length; i++) {
         pushClassData(textList[i]);
     }
@@ -482,6 +489,11 @@ function searchWordSubmit() {
 
     });
 
+}
+
+function sendingGroupList(){
+    let groupList = $('#field').children();
+    console.log(groupList);
 }
 
 
