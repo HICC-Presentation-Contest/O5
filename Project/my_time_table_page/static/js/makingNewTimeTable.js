@@ -425,7 +425,7 @@ function displayTextList() {
 // 왼쪽 그룹으로 데이터 넘기기
 function passOverData(event){ // event는 클릭한 객체
     let detailHtml = $(event).children('.detail'); // 이 객체의 detail파트는 고유하므로 이걸로 중복체크
-    if (duplicateClassCheck(detailHtml[0].innerText)) // 이 객체의 detail파트는 고유하므로 이걸로 중복체크, 중복이 아니라면 실행
+    if (duplicateClassCheck(detailHtml[0].innerText)){
         let my_div = document.createElement('div');
         $(my_div).attr('class', 'classInOriginal');
         my_div.innerHTML = event.innerHTML;
