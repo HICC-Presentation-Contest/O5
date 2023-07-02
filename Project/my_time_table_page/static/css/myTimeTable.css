@@ -172,12 +172,17 @@ background-color: #A1C2F1;
 #basicTimeTableButton{ color:red }
 
 
-#selectedTimeTable{
-    border: solid lightgray 1px;
+#selectedTimeTable {
+     border: solid lightgray 1px;
     width: 100%;
-    height: 20%;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
+#selectedTimeTable > div,
+#selectedTimeTable > button {
+  margin-bottom: 10px; /* 요소 사이의 간격을 설정 */
+}
 #rightBox1RemoveButton{
     position: fixed;
     /*right값은 margin+padding의 2%와 자체크기 1.5em 을 합쳤다*/
