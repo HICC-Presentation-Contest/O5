@@ -371,9 +371,14 @@ function sendingUserTimeTable() {
 }
 
 function loadingUserTimeTable(){
+        let userID = $('#userID').html();
         $.ajax({
         url: 'loadingUserTimeTable',
         type: 'POST',
+        data: {
+            'userID': userID,
+            'csrfmiddlewaretoken': csrftoken,
+        },
         datatype: 'json',
         beforeSend: function (request) {
             // Performed before calling Ajax
