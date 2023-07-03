@@ -1,11 +1,8 @@
-from timetable_algorithm import *
+from .timetable_algorithm import *
 
 
 # 원하는 날에 공강이 있는 시간표 재배치
 def empty_Day(possible_combinations):
-    def day_to_index(day):
-        return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4, '토': 5, '일': 6}[day]
-
     empty_days_input = input("원하는 날짜 입력: ")
     empty_days = empty_days_input.split(',')
     empty_day_combinations = []
@@ -30,11 +27,3 @@ def empty_Day(possible_combinations):
 
     return empty_day_combinations
 
-
-empty_day_combinations = empty_Day(possible_combinations)
-empty_day_combinations_result_list = []  # 프런트로 보내줄 결과
-for empty_slots, combination in empty_day_combinations:
-    empty_day_combinations_result_list.append(combination)
-
-for i in empty_day_combinations_result_list:
-    print(i)

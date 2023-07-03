@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt  # ajax POST 응답하기 위해 필요한 보안 토큰
 from django.http import JsonResponse
 from . import testdb
+from . import timetable_algorithm
 import json
 
 
@@ -77,11 +78,13 @@ def send_group_list(request):
         # data는 2차원 리스트이며 각 안쪽 리스트는 각각의 그룹을 의미하며, 그 리스트 안에는 각 수업의 고유번호(db key값)이 들어있다
         data = json.loads(request.POST['group_list'])
         print(data)
-    # 이 부분에 함수 돌려서 answer 값에 넣어준다.
-    result_time_table = []
+    all_groups = []
     for i in range(len(data)):
+        tmp = []
         for j in range(len(data[i])):
-            result_time_table.append(testdb.search("-1",data[i][j],"-1","-1","-1","-1"))
+            tmp.append(testdb.search("-1", data[i][j], "-1", "-1", "-1", "-1"))
+        all_groups.append(tmp)
+    result_time_table = timetable_algorithm.generate_possible_combinations(all_groups)
     answer = {
         'result_time_table': result_time_table,
     }
