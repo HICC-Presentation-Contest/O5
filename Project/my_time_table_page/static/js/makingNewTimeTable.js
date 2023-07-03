@@ -508,6 +508,7 @@ function searchWordSubmit() {
 // 백으로 보낼 그룹리스트를 형성하는 함수
 let sendingGroupList = [];
 function appendingGroupList(){
+    sendingGroupList = [];
     let groupList = $('#field').children('.original'); // group리스트는 그룹1, 그룹2등등
     for (let i = 0; i < groupList.length; i++){ // 그룹별로 for문 돌린다.
         let groupClassList = $(groupList[i]).children('.classInOriginal');
@@ -518,7 +519,9 @@ function appendingGroupList(){
         // 시간이 있으면 고유번호를 리스트에 추가해준다.
         let innerGroupList = []; //고유번호가 들어가는 임시리스트
         for (let j = 0; j < groupClassList.length; j++){
+            console.log(groupClassList[j].innerText);
             let classIdentityNumber = $(groupClassList[j]).children('.classIdentityNumber');
+            console.log(classIdentityNumber[0].innerHTML);
             innerGroupList.push(classIdentityNumber[0].innerHTML); //수업 고유번호를 리스트에 추가
         }
         sendingGroupList.push(innerGroupList);
@@ -527,7 +530,7 @@ function appendingGroupList(){
     console.log(sendingGroupList);
     sendGroupListToBack(sendingGroupList);
 }
-
+// 백으로 그룹 리스트 넘기기
 function sendGroupListToBack(sendingGroupList){
     // sendingGroupList = [[1,2],[3,4]];
     // sendingGroupList = {'아기': '돼지', '삼': '형제'};
@@ -535,7 +538,7 @@ function sendGroupListToBack(sendingGroupList){
         alert('그룹이 비었습니다.');
         return;
     }
-
+    // sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
     console.log(sendingGroupList);
     $.ajax({
         url: 'sendGroupList',
@@ -553,7 +556,9 @@ function sendGroupListToBack(sendingGroupList){
 
         },
         success: function (data) {
-            let resultTimeTable = data.result_time_table;
+            let resultTimeTable = data.resultTimeTable;
+            // console.log('알고리즘결과');
+            // console.log(resultTimeTable);
             $("#mySpinner").hide();
             localStorage.setItem('resultTimeTable', resultTimeTable);
             location.replace('displayingNewTimeTable');
