@@ -26,11 +26,11 @@ def returning_to_mytimetable_page(request):
 
 
 def sending_user_time_table(request):
-    payment_data = []
+    data = []
     if request.method == 'POST':
-        payment_data = json.loads(request.body)
-    # user_time_table = request.POST['user_time_table']
-    print('s')
+        # data는 2차원 리스트이며 각 안쪽 리스트는 각각의 그룹을 의미하며, 그 리스트 안에는 각 수업의 고유번호(db key값)이 들어있다
+        data = json.loads(request.POST['user_time_table'])
+    print(data)
     answer = {
         'none': []
     }
@@ -39,11 +39,10 @@ def sending_user_time_table(request):
 
 
 def loading_user_time_table(request):
-
-    user_time_table = request.POST['user_time_table']
+    userList = []
 
     answer = {
-        'none': []
+        'none': userList
     }
 
     return JsonResponse(answer)
@@ -53,7 +52,10 @@ def loading_user_time_table(request):
 @csrf_exempt
 def suggested_search_word(request):
     search_word = request.POST['search_word']
-    suggested_search_word_list = testdb.search_predictive(search_word)
+    if search_word != "":
+        suggested_search_word_list = testdb.search_predictive(search_word)
+    else:
+        suggested_search_word_list = []
     answer = {
         'suggested_search_word_list': suggested_search_word_list
     }

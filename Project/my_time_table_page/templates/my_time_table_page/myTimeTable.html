@@ -28,7 +28,7 @@
                 <a class="nav-link" href="{% url 'accounts:logout'%}">로그아웃</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{user.username}}님</a>
+                <a class="nav-link" href="#scrollspyHeading3"><span id = 'userID'>{{user.username}}</span>님</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
@@ -55,7 +55,7 @@
 
 
 
-            <table id="myTimeTable">
+            <table id="myTimeTable" class="">
                 <!-- 각 요소의 id 이름형식은 timeTable_요일_교시 ex. timetable_mon_1-->
                 <tr>
                     <td scope="col" ;></td>
@@ -188,7 +188,7 @@
 
 
 
-            <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="appendClassToNowTimeTable()">현재 시간표에 추가하기</button>
+            <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="appendClassToNowTimeTable()">수업 추가</button>
             <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick = 'location.href="makingNewTimeTable"'>시간표 알고리즘 돌리기</button>
 
         </div>

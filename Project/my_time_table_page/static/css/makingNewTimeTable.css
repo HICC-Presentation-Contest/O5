@@ -156,3 +156,20 @@ background-color: #A1C2F1;
 #field{
     overflow-y: auto;
 }
+
+
+
+/*과목삭제버튼*/
+
+.timeTableDeleteButton{
+    position: absolute;
+    top:0.1em;
+    right: 0.1em;
+    /*right: 0.5em;*/
+    width: 0.5em;
+    height: 0.5em   ;
+}
+
+.classInOriginal{
+    position: relative;
+}
