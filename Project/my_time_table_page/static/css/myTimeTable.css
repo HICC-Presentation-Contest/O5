@@ -186,7 +186,7 @@ background-color: #A1C2F1;
   margin-bottom: 10px; /* 요소 사이의 간격을 설정 */
 }
 #rightBox1RemoveButton{
-    position: fixed;
+    position: absolute;
     /*right값은 margin+padding의 2%와 자체크기 1.5em 을 합쳤다*/
     right: calc(1.5em + 2%);
 

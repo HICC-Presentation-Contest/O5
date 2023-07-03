@@ -29,7 +29,7 @@
                 <a class="nav-link" href="{% url 'accounts:logout'%}">로그아웃</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{user.username}}님</a>
+                <a class="nav-link" href="#scrollspyHeading3"><span id = 'userID'>{{user.username}}</span>님</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
@@ -172,7 +172,7 @@
             <div id="selectedTimeTable">
                 <div id = 'selectedTimeTableName'></div>
                 <button type="button" id="deleteTimeTableList"  class="btn text-white" style="background-color: #0A6EBD" onclick='deleteTimeTableList()'>삭제</button>
-{#                <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="sendingUserTimeTable()">보내기</button>#}
+                <button type="button" class="btn text-white" style="background-color: #0A6EBD" onclick="sendingUserTimeTable()">보내기</button>
                 <button type="button" id="revisingButton"  class="btn text-white" style="background-color: #0A6EBD" onclick='clickReviseButton()'>시간표 이름 수정하기</button>
                 <button type="button" id="assigningButton" class="btn text-white" style="background-color: #0A6EBD">기본시간표로 지정하기</button>
 

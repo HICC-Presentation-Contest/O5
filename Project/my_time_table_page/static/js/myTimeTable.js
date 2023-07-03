@@ -351,9 +351,8 @@ function sendingUserTimeTable() {
     $.ajax({
         url: 'sendingUserTimeTable',
         type: 'POST',
-        traditional: true, // 배열 넘기기 옵션
         data: {
-            'user_time_table': userTimeTable,
+            'user_time_table': JSON.stringify(userTimeTable),
             'csrfmiddlewaretoken': csrftoken,
         },
         datatype: 'json',
@@ -372,10 +371,14 @@ function sendingUserTimeTable() {
 }
 
 function loadingUserTimeTable(){
+        let userID = $('#userID').html();
         $.ajax({
         url: 'loadingUserTimeTable',
         type: 'POST',
-        traditional: true, // 배열 넘기기 옵션
+        data: {
+            'userID': userID,
+            'csrfmiddlewaretoken': csrftoken,
+        },
         datatype: 'json',
         beforeSend: function (request) {
             // Performed before calling Ajax
@@ -384,7 +387,7 @@ function loadingUserTimeTable(){
         },
         success: function (data) {
             $("#mySpinner").hide();
-            TimeTableClass = data;
+            userTimeTable = data;
             // basicUserInformation(TimeTableClass);
             // textList = data;
 
@@ -402,44 +405,15 @@ function clickReviseButton() {
 }
 
 function clickRevise() {
-    //이름 수정할 시간표의 숫자 입력
-    // if (num <= 0)
-    //     alert("올바른 숫자를 입력해주세요.")
-
-    // else {       //입력된 숫자의 시간표 이름의 수정사항 입력받음
-    // let buttonElements = $(".list-group")   // 여기서 오류 -> class명을 못 잡음
-    // var existingtext = $("buttonElements[num]");
     let textPrompt = prompt('어떻게 수정하시겠습니까?');
     let name = document.getElementById('selectedTimeTableName').innerHTML;
     userTimeTable[1][textPrompt] = userTimeTable[1][name];
     delete userTimeTable[1][name];
-    // document.getElementById('selectedTimeTableName').innerHTML = textPrompt;
-    // // $("buttonElements[num]").text(textPrompt);
-    // // }
 }
 
-//function deleteTimeTableList(){
-   // if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){
-     //   return false;
-   // }
-   // let name = $('#selectedTimeTableName').html();
-   // delete (userTimeTable[1])[name];
-  //  basicUserInformation(userTimeTable[1]);
-//}
-
-/* 기본시간표로 지정하기 버튼을 누르면 왼쪽 div에 있는 시간표를 기본시간표로 지정하고
-기본시간표1~ list-group class의 가장 상단으로 시간표 목록 올리는 함수
- */
-// function assigningToBasicTimeTable(){
-//
-// $().html($('#myTimeTableName'));
-//
-// }
-//
-// $('#myTimeTableName').html(timeTableNameList[i]);
-// $("#AssigningButton").click(assigningToBasicTimeTable);
 
 
+// 현재시간표에 수업 넣기
 function appendClassToNowTimeTable(){
     $('#rightBox').css('display', 'none');
     $('#rightBox1').css('display', 'block');
