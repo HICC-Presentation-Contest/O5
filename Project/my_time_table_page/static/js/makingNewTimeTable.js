@@ -83,6 +83,7 @@ function add_item(event){
     let groupDiv = event;
     clickedGroup = $(groupDiv).attr('data-group');
     $(groupDiv).css('background-color', 'lightgray');
+    $('#autoInput').val('');
 }
 
 
