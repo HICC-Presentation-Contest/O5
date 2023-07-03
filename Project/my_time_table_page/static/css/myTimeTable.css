@@ -180,8 +180,7 @@ background-color: #A1C2F1;
   justify-content: space-between;
 }
 
-#selectedTimeTable > div,
-#selectedTimeTable > button {
+#selectedTimeTable > div{
   margin-bottom: 10px; /* 요소 사이의 간격을 설정 */
 }
 #rightBox1RemoveButton{
