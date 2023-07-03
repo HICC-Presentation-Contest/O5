@@ -19,7 +19,7 @@ a{
 #basicBox {
   border-radius: 10px;
 
-  height: 80vh;
+  height: 90vh;
   margin: 2%;
   background-color: #E7CEA6;
 }
@@ -151,6 +151,7 @@ background-color: #A1C2F1;
      height: 50px;
      text-align: center;
      border: 1px solid #439771;
+    font-size: smaller;
 }
 
 /*왼쪼시간표 th 요소들*/
