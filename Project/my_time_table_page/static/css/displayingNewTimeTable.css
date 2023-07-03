@@ -49,8 +49,8 @@ select {
 input {
     background-color: rgb(243, 233, 170);
     border: none;
-    width: 80px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     border-radius: 4px;
     font-size: 23px;
     font-weight: bold;

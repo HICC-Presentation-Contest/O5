@@ -220,15 +220,22 @@
             <!--<style="width:80px;height:30px;font-size:20px;color:#439771"></style>-->
             <form method="get" action="form-action.html">
 
-                <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 확보(11~14시)</label>
+                 <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 포함(11~14시)</label>
                 <br>
-                <label><input type="checkbox" name="function" value="savingFreeDay">공강일 있는 거만 보기</label>
+                <label><input type="checkbox" name="function" id="savingFreeDay" value="savingFreeDay" onchange="toggleWeekdays()">공강일 포함 </label>
                 <br>
-                <label><input type="checkbox" name="function" value="savingAllClear">올클 위주로 보기</label>
+                  <div id="weekdays" style="display: none;">
+                <label><input type="checkbox" name="weekday" value="Monday">월</label>
+                <label><input type="checkbox" name="weekday" value="Tuesday">화</label>
+                <label><input type="checkbox" name="weekday" value="Wednesday">수</label>
+                <label><input type="checkbox" name="weekday" value="Thursday">목</label>
+                <label><input type="checkbox" name="weekday" value="Friday">금</label></div>
                 <br>
                 <label><input type="checkbox" name="function" value="savingMorningClass">오전 강의 위주로</label>
                 <br>
                 <label><input type="checkbox" name="function" value="savingAfternoonClass">오후 강의 위주로 </label>
+ <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 포함(11~14시)</label>
+                <br>
 
             </form>
 
