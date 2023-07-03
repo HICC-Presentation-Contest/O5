@@ -165,18 +165,22 @@ function addClassToTimeTable(userTimeTable) {
     let timeOfDay = '';
     // html에 넣을 id
     let id = '';
+    let identityNumber = '';
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
     // console.log(userTimeTable);
     for (let i = 0; i < userTimeTable.length; i++) {
         className = userTimeTable[i][0];
         timeList = userTimeTable[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
+        identityNumber = userTimeTable[i][2];
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
         {
             day = KorToEngOfDay(timeList[j].substr(0, 1)); // 월234에서 월 가져온다.
             timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
             for (let k = 0; k < timeOfDay.length; k++) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-                $(id).text(className);
+                $(id).html('<button type="button" class="btn-close timeTableDeleteButton" aria-label="Close" onclick="deleteClass(this)"></button>'
+                    + className
+                    + '<div class="classIdentityNumber" style="display:none">' + identityNumber + '</div>');
             }
 
         }
@@ -215,7 +219,30 @@ function basicUserInformation(TimeTableClass) { // 매개변수는 usertimetable
         $('#myTimeTableName').html(timeTableNameList[0]);
         addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
     }
+}
 
+//과목 삭제 버튼 관련 함수
+function deleteClass(event){
+    if (!confirm('삭제하시면 복구할 수 없습니다.\n정말로 삭제하시겠습니까??')) {
+        return false;
+    }
+    let identityNumber = $(event.parentNode).children('.classIdentityNumber');
+    identityNumber = identityNumber[0].innerHTML;
+    let timeTableName = $('#myTimeTableName').html(); //시간표 이름 뽑아온다.
+    let timeTable = userTimeTable[1][timeTableName];
+    // 삭제한 걸 제외한 리스트 생성
+    let temporaryList = [];
+    for(let i = 0;i < timeTable.length; i++){
+
+        if(timeTable[i][2] != identityNumber){
+            console.log(timeTable[i][2]);
+            console.log(identityNumber);
+            temporaryList.push(timeTable[i]);
+        }
+    }
+    // 생성한 리스트를 넣어준다.
+    userTimeTable[1][timeTableName] = temporaryList;
+    addClassToTimeTable(userTimeTable[1][timeTableName]);
 }
 
 // 새 시간표를 HTML에 추가
@@ -223,6 +250,9 @@ function remakeTimeTableNameList() {
     appendUserTimeTable(userTimeTable[1]);
   basicUserInformation(userTimeTable[1]);
 }
+
+
+
 
 // 시간표 삭제 함수
 function deleteTimeTableList() {
@@ -245,11 +275,13 @@ function timeTableNameClick(event){
     }
 }
 
-// 초기 실행
-function remakeTimeTableNameList() {
-    appendUserTimeTable(userTimeTable[1]);
-    basicUserInformation(userTimeTable[1]);
-}
+// // 초기 실행
+// function remakeTimeTableNameList() {
+//     appendUserTimeTable(userTimeTable[1]);
+//     basicUserInformation(userTimeTable[1]);
+// }
+
+
 // 시간표 이름 체크리스트
 let basicTimeTableNameCheck = {};
 let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
@@ -289,25 +321,25 @@ let userTimeTable =
     ['abc',
         {
             '기본시간표1': [
-                ['스페인어', '월234'],
-                ['컴퓨터구조', '화2,수2,목2'],
-                ['컴퓨터네트워크', '수3,금23'],
-                ['알고리즘분석', '화5,수5,목5'],
-                ['프로그래밍언어론', '화9,금56']
+                ['스페인어', '월234', '1'],
+                ['컴퓨터구조', '화2,수2,목2', '2'],
+                ['컴퓨터네트워크', '수3,금23', '3'],
+                ['알고리즘분석', '화5,수5,목5', '4'],
+                ['프로그래밍언어론', '화9,금56', '5']
             ],
             '기본시간표2': [
-                ['스페인어', '토234'],
-                ['컴퓨터구조', '화2,수2,목2'],
-                ['컴퓨터네트워크', '수3,금23'],
-                ['알고리즘분석', '화5,수5,목5'],
-                ['프로그래밍언어론', '화9,금56']
+                ['스페인어', '토234', '6'],
+                ['컴퓨터구조', '화2,수2,목2', '7'],
+                ['컴퓨터네트워크', '수3,금23', '8'],
+                ['알고리즘분석', '화5,수5,목5', '9'],
+                ['프로그래밍언어론', '화9,금56', '10']
             ],
             '기본시간표3': [
-                ['스페인어', '일234'],
-                ['컴퓨터구조', '화2,수2,목2'],
-                ['컴퓨터네트워크', '수3,금23'],
-                ['알고리즘분석', '화5,수5,목5'],
-                ['프로그래밍언어론', '화9,금56']
+                ['스페인어', '일234', '11'],
+                ['컴퓨터구조', '화2,수2,목2', '12'],
+                ['컴퓨터네트워크', '수3,금23', '13'],
+                ['알고리즘분석', '화5,수5,목5', '14'],
+                ['프로그래밍언어론', '화9,금56', '15']
             ]
 
         }]
@@ -784,12 +816,18 @@ function  insertToUserTimeTable(event){
     let timeOfDay = '';
     // html에 넣을 id
     let id = '';
+    //  고유번호
+    let classIdentityNumber = '';
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
     // console.log(userTimeTable);
 
     className = $(event).children('.subject');
     className = $(className[0]).children();
     className = $(className[0]).html(); // 수업이름
+
+    classIdentityNumber = $(event).children('.classIdentityNumber');
+    classIdentityNumber = classIdentityNumber[0].innerHTML;
+
     let classTime = $(event).children('.classTime'); // 수업 시간
 
     timeList = $(classTime[0]).html().split(","); // 월2 화2 수2 이렇게 쪼개진다.
@@ -813,7 +851,7 @@ function  insertToUserTimeTable(event){
     //userTimeTable에 넣기
     let temporaryList = userTimeTable[1][$('#myTimeTableName').html()];
     // console.log(temporaryList);
-    temporaryList.push([classNameList[0], classTime[0].innerHTML]);
+    temporaryList.push([classNameList[0], classTime[0].innerHTML, classIdentityNumber]);
     userTimeTable[1][$('#myTimeTableName').html()] = temporaryList;
     console.log(temporaryList);
 

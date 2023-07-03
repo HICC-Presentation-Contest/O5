@@ -149,9 +149,10 @@ background-color: #A1C2F1;
 #myTimeTable > tr > th, td{
      width: 12.5%;
      height: 50px;
-     text-align: center;
+     /*text-align: center;*/
      border: 1px solid #439771;
     font-size: smaller;
+    position: relative;
 }
 
 /*왼쪼시간표 th 요소들*/
@@ -190,4 +191,15 @@ background-color: #A1C2F1;
     right: calc(1.5em + 2%);
 
 }
+
+.timeTableDeleteButton{
+    position: absolute;
+    top:0.1em;
+    right: 0.1em;
+    /*right: 0.5em;*/
+    width: 0.5em;
+    height: 0.5em   ;
+    z-index: 2; /* 음수 값으로 우선순위를 낮출 수 있음 */
+}
+
 
