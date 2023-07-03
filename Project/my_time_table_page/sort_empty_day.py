@@ -1,5 +1,5 @@
-from .timetable_algorithm import *
-
+def day_to_index(day):
+    return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4, '토': 5, '일': 6}[day]
 
 # 원하는 날에 공강이 있는 시간표 재배치
 def empty_Day(possible_combinations):
@@ -26,4 +26,5 @@ def empty_Day(possible_combinations):
             empty_day_combinations.append(combination)
 
     return empty_day_combinations
+
 
