@@ -439,7 +439,7 @@ function passOverData(event){ // event는 클릭한 객체
     if (duplicateClassCheck(detailHtml[0].innerText)){
         let my_div = document.createElement('div');
         $(my_div).attr('class', 'classInOriginal');
-        my_div.innerHTML = event.innerHTML + '<button type="button" class="btn-close timeTableDeleteButton" disabled aria-label="Close" onclick="deleteClass(this)"></button>';
+        my_div.innerHTML = event.innerHTML + '<button type="button" class="btn-close timeTableDeleteButton" aria-label="Close" onclick="deleteClass(this)"></button>';
         // console.log('#original' + clickedGroup.toString());
         // var deleteButton = $('<button>').addClass('btn btn-dark btn-sm').text('X');
         // deleteButton.click(function (event) {
@@ -449,6 +449,10 @@ function passOverData(event){ // event는 클릭한 객체
 
         $('#original' + clickedGroup.toString()).append(my_div);
     }
+}
+
+function deleteClass(event){
+    $(event.parentNode).empty();
 }
 
 
