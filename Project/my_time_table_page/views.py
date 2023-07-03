@@ -53,7 +53,10 @@ def loading_user_time_table(request):
 @csrf_exempt
 def suggested_search_word(request):
     search_word = request.POST['search_word']
-    suggested_search_word_list = testdb.search_predictive(search_word)
+    if search_word != "":
+        suggested_search_word_list = testdb.search_predictive(search_word)
+    else:
+        suggested_search_word_list = []
     answer = {
         'suggested_search_word_list': suggested_search_word_list
     }
