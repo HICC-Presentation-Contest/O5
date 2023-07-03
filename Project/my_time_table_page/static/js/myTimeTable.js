@@ -808,10 +808,12 @@ function  insertToUserTimeTable(event){
         }
 
     }
+    //클래스네임 영어 제거
+    let classNameList = className.split(' ');
     //userTimeTable에 넣기
     let temporaryList = userTimeTable[1][$('#myTimeTableName').html()];
     // console.log(temporaryList);
-    temporaryList.push([className, classTime[0].innerHTML]);
+    temporaryList.push([classNameList[0], classTime[0].innerHTML]);
     userTimeTable[1][$('#myTimeTableName').html()] = temporaryList;
     console.log(temporaryList);
 
