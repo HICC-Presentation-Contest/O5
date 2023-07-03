@@ -260,17 +260,23 @@ const swiper = new Swiper('.swiper-container', {
   //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
   direction: 'horizontal',
   //한번에 보여지는 페이지 숫자
-  slidesPerView: 3,
+  slidesPerView: 4,
   //페이지와 페이지 사이의 간격
-  spaceBetween: 30,
+  spaceBetween: 70,
+  //버튼 클릭시 이동하는 칸수
+  slidesPerGroup: 4,
+  //슬라이드가 밀리지 않도록 보정
+  centeredSlides: false,
   //드레그 기능 true 사용가능 false 사용불가
   debugger: true,
   //반복 기능 true 사용가능 false 사용불가
-  loop: true,
-  //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
-  centeredSlides: true,
+  loop: false,
   // 페이지 전환효과 slidesPerView효과와 같이 사용 불가
   // effect: 'fade',
+  // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+  // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+  loopFillGroupWithBlank : true,
+
 
   //자동 스크를링
 
