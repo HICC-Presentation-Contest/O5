@@ -216,13 +216,14 @@
 
 {#            <div id = 'resultTimeTableListBox'> </div>#}
         </div>
+        <div style="width: 100%" class="d-flex flex-row-reverse">
+            <button type="button" class="btn searchButton text-white" style="background-color: #0A6EBD; ">시간표 저장</button>
+        </div>
 
         <!--(3) 오른쪽 하단의 정렬기능-->
-        <div style="text-align:left;float:left;height:80%">
+        <div style="text-align:left;height:80%">
             <p><strong>[시간표 정렬기능]</strong></p>
 
-            <!--<style="width:80px;height:30px;font-size:20px;color:#439771"></style>-->
-            <form method="get" action="form-action.html">
 
                 <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 확보(11~14시)</label>
                 <br>
@@ -233,16 +234,14 @@
                 <label><input type="checkbox" name="function" value="savingMorningClass">오전 강의 위주로</label>
                 <br>
                 <label><input type="checkbox" name="function" value="savingAfternoonClass">오후 강의 위주로 </label>
+                <button type="submit" class="btn searchButton text-white" style="background-color: #0A6EBD;">정렬</button>
 
-            </form>
 
-            <input type="button" class="btn" value="확인" style="float:right;">
 
 
 
         </div>
 {#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
-        <button type="button" class="btn searchButton text-white" style="background-color: #0A6EBD;">검색</button>
 
     </div>
 </div>

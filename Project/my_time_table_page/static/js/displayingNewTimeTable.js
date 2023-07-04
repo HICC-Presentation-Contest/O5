@@ -144,6 +144,10 @@ function addClassToTimeTable(TimeTableClass) {
     timeTableRemover()
     // 수업이름
     let className = '';
+    //  강의실 정보
+    let lectureRoom = '';
+    // 교수님
+    let professorName = '';
     // 시간 정보
     let timeList = '';
     // 수업의 요일
@@ -157,6 +161,10 @@ function addClassToTimeTable(TimeTableClass) {
         className = TimeTableClass[i][0];
         let classNameList = className.split(' ');
         className = classNameList[0];
+
+        lectureRoom = TimeTableClass[i][4];
+        professorName = TimeTableClass[i][3];
+
         timeList = TimeTableClass[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
         {
@@ -164,7 +172,10 @@ function addClassToTimeTable(TimeTableClass) {
             timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
             for (let k = 0; k < timeOfDay.length; k++) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-                $(id).text(className);
+                let text =
+                    className + '<br>'+ professorName +'<br>' + lectureRoom;
+                $(id).html(text);
+                // document.getElementById(id).innerHTML = text;
                 $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기
             }
 

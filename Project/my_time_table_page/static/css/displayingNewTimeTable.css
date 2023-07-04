@@ -111,6 +111,8 @@ table {
     border: solid 1px lightgray;
     overflow-x: hidden;
     position: relative;
+    margin-bottom: 1%;
+
 }
 
 /*div.left {*/

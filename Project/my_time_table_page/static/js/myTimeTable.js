@@ -160,6 +160,10 @@ function addClassToTimeTable(userTimeTable) {
     let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2'];
     // 수업이름
     let className = '';
+    //  강의실 정보
+    let lectureRoom = '';
+    // 교수님
+    let professorName = '';
     // 시간 정보
     let timeList = '';
     // 수업의 요일
@@ -173,6 +177,13 @@ function addClassToTimeTable(userTimeTable) {
     // console.log(userTimeTable);
     for (let i = 0; i < userTimeTable.length; i++) {
         className = userTimeTable[i][0];
+        
+        let classNameList = className.split(' ');
+        className = classNameList[0];
+        
+        lectureRoom = userTimeTable[i][4]; //강의실
+        professorName = userTimeTable[i][3]; //교수님 성함
+        
         timeList = userTimeTable[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
         identityNumber = userTimeTable[i][2];
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
@@ -181,8 +192,9 @@ function addClassToTimeTable(userTimeTable) {
             timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
             for (let k = 0; k < timeOfDay.length; k++) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
+
                 $(id).html('<button type="button" class="btn-close timeTableDeleteButton" aria-label="Close" onclick="deleteClass(this)"></button>'
-                    + className
+                    + className + '<br>'+ professorName +'<br>' + lectureRoom
                     + '<div class="classIdentityNumber" style="display:none">' + identityNumber + '</div>');
                 $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기
             }
@@ -324,27 +336,10 @@ function appendUserTimeTable(userTimeTable) {
 let userTimeTable =
     ['abc',
         {
-            '기본시간표1': [
-                ['스페인어', '월234', '1'],
-                ['컴퓨터구조', '화2,수2,목2', '2'],
-                ['컴퓨터네트워크', '수3,금23', '3'],
-                ['알고리즘분석', '화5,수5,목5', '4'],
-                ['프로그래밍언어론', '화9,금56', '5']
-            ],
-            '기본시간표2': [
-                ['스페인어', '토234', '6'],
-                ['컴퓨터구조', '화2,수2,목2', '7'],
-                ['컴퓨터네트워크', '수3,금23', '8'],
-                ['알고리즘분석', '화5,수5,목5', '9'],
-                ['프로그래밍언어론', '화9,금56', '10']
-            ],
-            '기본시간표3': [
-                ['스페인어', '일234', '11'],
-                ['컴퓨터구조', '화2,수2,목2', '12'],
-                ['컴퓨터네트워크', '수3,금23', '13'],
-                ['알고리즘분석', '화5,수5,목5', '14'],
-                ['프로그래밍언어론', '화9,금56', '15']
-            ]
+
+            '기본시간표1': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월6,화6,목6', 1299, '박준철', 'T0702,T0702,T0702']],
+            '기본시간표2': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월7,화7,목7', 1300, '박준철', 'T0702,T0702,T0702']],
+            '기본시간표3': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월2,화2,수2', 1301, '박준상1', 'T0801,T0801,T0801']]
 
         }]
 
@@ -361,13 +356,11 @@ function sendingUserTimeTable() {
         },
         datatype: 'json',
         beforeSend: function (request) {
-            // Performed before calling Ajax
             $("#mySpinner").show();
 
         },
         success: function (data) {
             $("#mySpinner").hide();
-            // textList = data;
 
         },
 
@@ -394,8 +387,6 @@ function loadingUserTimeTable(){
         success: function (data) {
             $("#mySpinner").hide();
             userTimeTable = data;
-            // basicUserInformation(TimeTableClass);
-            // textList = data;
 
         },
 
@@ -719,6 +710,7 @@ var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과�
     ['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-2', '미술의이해\n(COMPREHENSION OF ART)', 'C807', '3', '10/20/30/40/50', '47', '20', '공학', '손수연', '화789', '미술대 수강불가 ', '공통교양\n(서울)', '예술과디자인']]
 
 function pushClassData(textData) {
+    console.log(textData);
     var a = document.createElement("div");
     // a.innerHTML = '<div class="result" onclick="classNameClick(this)">' +
     a.innerHTML = '<div class="result" >' +
@@ -726,7 +718,9 @@ function pushClassData(textData) {
         '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
         '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] +'</div>' +
         '<div class = "classIdentityNumber" style="display: none">' + textData[0] + '</div>' +
-        '<div class = "classTime" style="display: none">' + textData[15] + '</div>' + '</div>';
+        '<div class = "classTime" style="display: none">' + textData[15] + '</div>' +
+        '<div class = "lectureRoom" style="display: none">' + textData[8] + '</div>' +
+        '<div class = "professorName" style="display: none">' + textData[14] + '</div>' + '</div>';
     document.getElementById("resultBox").appendChild(a);
 }
 
@@ -737,7 +731,7 @@ function displayTextList() {
     for (var i = 0; i < textList.length; i++) {
         pushClassData(textList[i]);
     }
-    // 이부분은 hover나 클릭했을때 왼쪽시간표에 보여주는것
+    // 이부분은 hover나 클릭했을때 왼쪽시간표에 보여주는것            // basicUserInformation(TimeTableClass);
     $('.result').hover(function(){
          classNameClick(this);
     });
@@ -791,7 +785,12 @@ function shadingTimeTable(classTime) {
 
 //userTimeTable에 수업을 넣는 함수
 function  insertToUserTimeTable(event){
+    // 수업이름
     let className = '';
+    //  강의실 정보
+    let lectureRoom = '';
+    // 교수님
+    let professorName = '';
     // 시간 정보
     let timeList = '';
     // 수업의 요일
@@ -808,6 +807,12 @@ function  insertToUserTimeTable(event){
     className = $(event).children('.subject');
     className = $(className[0]).children();
     className = $(className[0]).html(); // 수업이름
+
+    lectureRoom = $(event).children('.lectureRoom');
+    lectureRoom = lectureRoom[0].innerHTML;
+
+    professorName = $(event).children('.professorName');
+    professorName = professorName[0].innerHTML;
 
     classIdentityNumber = $(event).children('.classIdentityNumber');
     classIdentityNumber = classIdentityNumber[0].innerHTML;
@@ -835,7 +840,7 @@ function  insertToUserTimeTable(event){
     //userTimeTable에 넣기
     let temporaryList = userTimeTable[1][$('#myTimeTableName').html()];
     // console.log(temporaryList);
-    temporaryList.push([classNameList[0], classTime[0].innerHTML, classIdentityNumber]);
+    temporaryList.push([classNameList[0], classTime[0].innerHTML, classIdentityNumber, professorName, lectureRoom]);
     userTimeTable[1][$('#myTimeTableName').html()] = temporaryList;
     console.log(temporaryList);
 
