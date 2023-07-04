@@ -372,36 +372,142 @@ const swiper = new Swiper('.swiper-container', {
 
 
 //오른쪽 리스트에 넣는 함수들
-//리스트 자료형 생성
+//리스트 자료형 생성 및 시간표 색상
+function makingTableList(TimeTableClassList) {
+    for (let i = 0; i < TimeTableClassList.length; i++){
+        swiper.appendSlide(
+            "<div class='swiper-slide' onclick='clickTimeTableListElement(this)'> " +
+                '<table class="timeTableListElement" id="timeTableListElement'+ i +'">'+
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_1\"></td>\n" +
+                    "                <td class=\"timeTable_tue_1\"></td>\n" +
+                    "                <td class=\"timeTable_wed_1\"></td>\n" +
+                    "                <td class=\"timeTable_thu_1\"></td>\n" +
+                    "                <td class=\"timeTable_fri_1\"></td>\n" +
+                    "                <td class=\"timeTable_sat_1\"></td>\n" +
+                    "                <td class=\"timeTable_sun_1\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_2\"></td>\n" +
+                    "                <td class=\"timeTable_tue_2\"></td>\n" +
+                    "                <td class=\"timeTable_wed_2\"></td>\n" +
+                    "                <td class=\"timeTable_thu_2\"></td>\n" +
+                    "                <td class=\"timeTable_fri_2\"></td>\n" +
+                    "                <td class=\"timeTable_sat_2\"></td>\n" +
+                    "                <td class=\"timeTable_sun_2\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_3\"></td>\n" +
+                    "                <td class=\"timeTable_tue_3\"></td>\n" +
+                    "                <td class=\"timeTable_wed_3\"></td>\n" +
+                    "                <td class=\"timeTable_thu_3\"></td>\n" +
+                    "                <td class=\"timeTable_fri_3\"></td>\n" +
+                    "                <td class=\"timeTable_sat_3\"></td>\n" +
+                    "                <td class=\"timeTable_sun_3\"></td>\n" +
+                    "            </tr>\n" +
+                    "\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_4\"></td>\n" +
+                    "                <td class=\"timeTable_tue_4\"></td>\n" +
+                    "                <td class=\"timeTable_wed_4\"></td>\n" +
+                    "                <td class=\"timeTable_thu_4\"></td>\n" +
+                    "                <td class=\"timeTable_fri_4\"></td>\n" +
+                    "                <td class=\"timeTable_sat_4\"></td>\n" +
+                    "                <td class=\"timeTable_sun_4\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_5\"></td>\n" +
+                    "                <td class=\"timeTable_tue_5\"></td>\n" +
+                    "                <td class=\"timeTable_wed_5\"></td>\n" +
+                    "                <td class=\"timeTable_thu_5\"></td>\n" +
+                    "                <td class=\"timeTable_fri_5\"></td>\n" +
+                    "                <td class=\"timeTable_sat_5\"></td>\n" +
+                    "                <td class=\"timeTable_sun_5\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_6\"></td>\n" +
+                    "                <td class=\"timeTable_tue_6\"></td>\n" +
+                    "                <td class=\"timeTable_wed_6\"></td>\n" +
+                    "                <td class=\"timeTable_thu_6\"></td>\n" +
+                    "                <td class=\"timeTable_fri_6\"></td>\n" +
+                    "                <td class=\"timeTable_sat_6\"></td>\n" +
+                    "                <td class=\"timeTable_sun_6\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_7\"></td>\n" +
+                    "                <td class=\"timeTable_tue_7\"></td>\n" +
+                    "                <td class=\"timeTable_wed_7\"></td>\n" +
+                    "                <td class=\"timeTable_thu_7\"></td>\n" +
+                    "                <td class=\"timeTable_fri_7\"></td>\n" +
+                    "                <td class=\"timeTable_sat_7\"></td>\n" +
+                    "                <td class=\"timeTable_sun_7\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_8\"></td>\n" +
+                    "                <td class=\"timeTable_tue_8\"></td>\n" +
+                    "                <td class=\"timeTable_wed_8\"></td>\n" +
+                    "                <td class=\"timeTable_thu_8\"></td>\n" +
+                    "                <td class=\"timeTable_fri_8\"></td>\n" +
+                    "                <td class=\"timeTable_sat_8\"></td>\n" +
+                    "                <td class=\"timeTable_sun_8\"></td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td class=\"timeTable_mon_9\"></td>\n" +
+                    "                <td class=\"timeTable_tue_9\"></td>\n" +
+                    "                <td class=\"timeTable_wed_9\"></td>\n" +
+                    "                <td class=\"timeTable_thu_9\"></td>\n" +
+                    "                <td class=\"timeTable_fri_9\"></td>\n" +
+                    "                <td class=\"timeTable_sat_9\"></td>\n" +
+                    "                <td class=\"timeTable_sun_9\"></td>\n" +
+                    "            </tr>" +
 
-function makingTable() {
-    // let my_div = document.createElement('div');
-    // my_div.innerHTML =
+                "</table>" +
+            "</div>");
+
+        // 시간표 넣기
+
+        //수업 이름
+        let className = '';
+        // 시간 정보
+        let timeList = '';
+        // 수업의 요일
+        let day = '';
+        // 수업의 요일의 시간
+        let timeOfDay = '';
+        // html에 넣을 id
+        let myClass = '';
+        // 이부분이 시간표 색상 설정!, 순서대로 색깔이 지정 된다.
+        let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2']
+        // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
+        for (let l = 0; l < TimeTableClassList[i].length; l++) {
+            className = TimeTableClassList[i][l][0];
+            timeList = TimeTableClassList[i][l][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
+            for (let j = 0; j < timeList.length; j++) // 월234는 한번.
+            {
+                day = KorToEngOfDay(timeList[j].substr(0, 1)); // 월234에서 월 가져온다.
+                timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
+                for (let k = 0; k < timeOfDay.length; k++) {
+                    myClass = ".timeTable_" + day + "_" + timeOfDay.substr(k, 1);
+                    $("#timeTableListElement" + i + '> tbody > tr > ' +myClass).css('background-color', timeTableBackgroundColorList[l]); // 색주기
+                }
+
+            }
+
+        }
+    }
+    // swiper.appendSlide(
     //     "<div class='swiper-slide' > " +
-    //         '<table id="TimeTableListElement">'+
-    //     // "<tr>\n" +
-    //     // "                <td scope=\"col\" ;></td>\n" +
-    //     // "                <td scope=\"col\" ;>월</td>\n" +
-    //     // "                <td scope=\"col\" ;>화</td>\n" +
-    //     // "                <td scope=\"col\" ;>수</td>\n" +
-    //     // "                <td scope=\"col\" ;>목</td>\n" +
-    //     // "                <td scope=\"col\" ;>금</td>\n" +
-    //     // "                <td scope=\"col\" ;>토</td>\n" +
-    //     // "                <td scope=\"col\" ;>일</td>\n" +
-    //     // "            </tr>\n" +
-    //     // "            <!-- 1교시 -->\n" +
+    //         '<table class="timeTableListElement">'+
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">9:00 - 10:00</td>\n" +
-    //     "                <td id=\"timeTable_mon_1\"></td>\n" +
-    //     "                <td id=\"timeTable_tue_1\"></td>\n" +
-    //     "                <td id=\"timeTable_wed_1\"></td>\n" +
-    //     "                <td id=\"timeTable_thu_1\"></td>\n" +
-    //     "                <td id=\"timeTable_fri_1\"></td>\n" +
+    //     "                <td class=\"timeTable_mon_1\"></td>\n" +
+    //     "                <td class=\"timeTable_tue_1\"></td>\n" +
+    //     "                <td class=\"timeTable_wed_1\"></td>\n" +
+    //     "                <td class=\"timeTable_thu_1\"></td>\n" +
+    //     "                <td =\"timeTable_fri_1\"></td>\n" +
     //     "                <td id=\"timeTable_sat_1\"></td>\n" +
     //     "                <td id=\"timeTable_sun_1\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">10:00 - 11:00</td>\n" +
     //     "                <td id=\"timeTable_mon_2\"></td>\n" +
     //     "                <td id=\"timeTable_tue_2\"></td>\n" +
     //     "                <td id=\"timeTable_wed_2\"></td>\n" +
@@ -411,7 +517,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_2\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">11:00 - 12:00</td>\n" +
     //     "                <td id=\"timeTable_mon_3\"></td>\n" +
     //     "                <td id=\"timeTable_tue_3\"></td>\n" +
     //     "                <td id=\"timeTable_wed_3\"></td>\n" +
@@ -422,7 +527,6 @@ function makingTable() {
     //     "            </tr>\n" +
     //     "\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">12:00 - 13:00</td>\n" +
     //     "                <td id=\"timeTable_mon_4\"></td>\n" +
     //     "                <td id=\"timeTable_tue_4\"></td>\n" +
     //     "                <td id=\"timeTable_wed_4\"></td>\n" +
@@ -432,7 +536,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_4\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">13:00 - 14:00</td>\n" +
     //     "                <td id=\"timeTable_mon_5\"></td>\n" +
     //     "                <td id=\"timeTable_tue_5\"></td>\n" +
     //     "                <td id=\"timeTable_wed_5\"></td>\n" +
@@ -442,7 +545,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_5\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">14:00 - 15:00</td>\n" +
     //     "                <td id=\"timeTable_mon_6\"></td>\n" +
     //     "                <td id=\"timeTable_tue_6\"></td>\n" +
     //     "                <td id=\"timeTable_wed_6\"></td>\n" +
@@ -452,7 +554,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_6\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">15:00 - 16:00</td>\n" +
     //     "                <td id=\"timeTable_mon_7\"></td>\n" +
     //     "                <td id=\"timeTable_tue_7\"></td>\n" +
     //     "                <td id=\"timeTable_wed_7\"></td>\n" +
@@ -462,7 +563,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_7\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">16:00 - 17:00</td>\n" +
     //     "                <td id=\"timeTable_mon_8\"></td>\n" +
     //     "                <td id=\"timeTable_tue_8\"></td>\n" +
     //     "                <td id=\"timeTable_wed_8\"></td>\n" +
@@ -472,7 +572,6 @@ function makingTable() {
     //     "                <td id=\"timeTable_sun_8\"></td>\n" +
     //     "            </tr>\n" +
     //     "            <tr>\n" +
-    //     "                <td class=\"myTimeTable_time display-5\">17:00 - 18:00</td>\n" +
     //     "                <td id=\"timeTable_mon_9\"></td>\n" +
     //     "                <td id=\"timeTable_tue_9\"></td>\n" +
     //     "                <td id=\"timeTable_wed_9\"></td>\n" +
@@ -483,108 +582,12 @@ function makingTable() {
     //     "            </tr>" +
     //
     //         "</table>" +
-    //     "</div>"
-    // swiper.appendSlide('<div class="swiper-slide">동적 슬라이드</div>');
+    //     "</div>");
 
-    // $('#resultTimeTableListBox').append(my_div);
 
-    swiper.appendSlide(
-        "<div class='swiper-slide' > " +
-            '<table class="timeTableListElement">'+
-        // "<tr>\n" +
-        // "                <td scope=\"col\" ;></td>\n" +
-        // "                <td scope=\"col\" ;>월</td>\n" +
-        // "                <td scope=\"col\" ;>화</td>\n" +
-        // "                <td scope=\"col\" ;>수</td>\n" +
-        // "                <td scope=\"col\" ;>목</td>\n" +
-        // "                <td scope=\"col\" ;>금</td>\n" +
-        // "                <td scope=\"col\" ;>토</td>\n" +
-        // "                <td scope=\"col\" ;>일</td>\n" +
-        // "            </tr>\n" +
-        // "            <!-- 1교시 -->\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_1\"></td>\n" +
-        "                <td id=\"timeTable_tue_1\"></td>\n" +
-        "                <td id=\"timeTable_wed_1\"></td>\n" +
-        "                <td id=\"timeTable_thu_1\"></td>\n" +
-        "                <td id=\"timeTable_fri_1\"></td>\n" +
-        "                <td id=\"timeTable_sat_1\"></td>\n" +
-        "                <td id=\"timeTable_sun_1\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_2\"></td>\n" +
-        "                <td id=\"timeTable_tue_2\"></td>\n" +
-        "                <td id=\"timeTable_wed_2\"></td>\n" +
-        "                <td id=\"timeTable_thu_2\"></td>\n" +
-        "                <td id=\"timeTable_fri_2\"></td>\n" +
-        "                <td id=\"timeTable_sat_2\"></td>\n" +
-        "                <td id=\"timeTable_sun_2\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_3\"></td>\n" +
-        "                <td id=\"timeTable_tue_3\"></td>\n" +
-        "                <td id=\"timeTable_wed_3\"></td>\n" +
-        "                <td id=\"timeTable_thu_3\"></td>\n" +
-        "                <td id=\"timeTable_fri_3\"></td>\n" +
-        "                <td id=\"timeTable_sat_3\"></td>\n" +
-        "                <td id=\"timeTable_sun_3\"></td>\n" +
-        "            </tr>\n" +
-        "\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_4\"></td>\n" +
-        "                <td id=\"timeTable_tue_4\"></td>\n" +
-        "                <td id=\"timeTable_wed_4\"></td>\n" +
-        "                <td id=\"timeTable_thu_4\"></td>\n" +
-        "                <td id=\"timeTable_fri_4\"></td>\n" +
-        "                <td id=\"timeTable_sat_4\"></td>\n" +
-        "                <td id=\"timeTable_sun_4\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_5\"></td>\n" +
-        "                <td id=\"timeTable_tue_5\"></td>\n" +
-        "                <td id=\"timeTable_wed_5\"></td>\n" +
-        "                <td id=\"timeTable_thu_5\"></td>\n" +
-        "                <td id=\"timeTable_fri_5\"></td>\n" +
-        "                <td id=\"timeTable_sat_5\"></td>\n" +
-        "                <td id=\"timeTable_sun_5\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_6\"></td>\n" +
-        "                <td id=\"timeTable_tue_6\"></td>\n" +
-        "                <td id=\"timeTable_wed_6\"></td>\n" +
-        "                <td id=\"timeTable_thu_6\"></td>\n" +
-        "                <td id=\"timeTable_fri_6\"></td>\n" +
-        "                <td id=\"timeTable_sat_6\"></td>\n" +
-        "                <td id=\"timeTable_sun_6\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_7\"></td>\n" +
-        "                <td id=\"timeTable_tue_7\"></td>\n" +
-        "                <td id=\"timeTable_wed_7\"></td>\n" +
-        "                <td id=\"timeTable_thu_7\"></td>\n" +
-        "                <td id=\"timeTable_fri_7\"></td>\n" +
-        "                <td id=\"timeTable_sat_7\"></td>\n" +
-        "                <td id=\"timeTable_sun_7\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_8\"></td>\n" +
-        "                <td id=\"timeTable_tue_8\"></td>\n" +
-        "                <td id=\"timeTable_wed_8\"></td>\n" +
-        "                <td id=\"timeTable_thu_8\"></td>\n" +
-        "                <td id=\"timeTable_fri_8\"></td>\n" +
-        "                <td id=\"timeTable_sat_8\"></td>\n" +
-        "                <td id=\"timeTable_sun_8\"></td>\n" +
-        "            </tr>\n" +
-        "            <tr>\n" +
-        "                <td id=\"timeTable_mon_9\"></td>\n" +
-        "                <td id=\"timeTable_tue_9\"></td>\n" +
-        "                <td id=\"timeTable_wed_9\"></td>\n" +
-        "                <td id=\"timeTable_thu_9\"></td>\n" +
-        "                <td id=\"timeTable_fri_9\"></td>\n" +
-        "                <td id=\"timeTable_sat_9\"></td>\n" +
-        "                <td id=\"timeTable_sun_9\"></td>\n" +
-        "            </tr>" +
 
-            "</table>" +
-        "</div>");
+}
+
+function clickTimeTableListElement(event){
+
 }

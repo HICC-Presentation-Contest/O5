@@ -155,6 +155,9 @@ function timeTableRemover(){
 
 function addClassToTimeTable(userTimeTable) {
     timeTableRemover()
+
+    // 이부분이 시간표 색상 설정!, 순서대로 색깔이 지정 된다.
+    let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2'];
     // 수업이름
     let className = '';
     // 시간 정보
@@ -181,6 +184,7 @@ function addClassToTimeTable(userTimeTable) {
                 $(id).html('<button type="button" class="btn-close timeTableDeleteButton" aria-label="Close" onclick="deleteClass(this)"></button>'
                     + className
                     + '<div class="classIdentityNumber" style="display:none">' + identityNumber + '</div>');
+                $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기
             }
 
         }
@@ -429,7 +433,7 @@ function appendClassToNowTimeTable(){
 }
 
 window.onload = function () {
-    loadingUserTimeTable();
+    // loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
 }
 
