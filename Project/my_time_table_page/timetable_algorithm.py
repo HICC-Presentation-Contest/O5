@@ -9,15 +9,17 @@ def sort_groups(all_groups):
 
     sort_all_groups = []
     for i in all_groups:
+        print(i)
         tmp = []
-        for j in i:
-            tmp.append(j[7])
-            tmp.append(j[15])
-            tmp.append(j[0])
-            tmp.append(j[14])
-            tmp.append(j[8])
+        tmp.append(i[0][0][7])  # 대학수학(1)의 위치
+        tmp.append(i[0][0][15])  # 화7,수5,수6의 위치
+        tmp.append(i[0][0][0])  # 1001의 위치
+        tmp.append(i[0][0][14])  # 전체의 위치
+        tmp.append(i[0][0][8])  # 자연계열의 위치
         sort_all_groups.append(tmp)
+        print(sort_all_groups)
     return sort_all_groups
+
 
 
 def generate_possible_combinations(sort_all_groups):

@@ -83,9 +83,9 @@ def send_group_list(request):
     all_groups = []
     sort_all_groups=[]
     for i in range(len(data)):
-        tmp = []
         for j in range(len(data[i])):
-            tmp.append(testdb.search("-1", data[i][j], "-1", "-1", "-1", "-1"))
+            tmp =[(testdb.search("-1", data[i][j], "-1", "-1", "-1", "-1"))]
+            print(tmp)
         all_groups.append(tmp)
     sort_all_groups.append(timetable_algorithm.sort_groups(all_groups))
     result_time_table = timetable_algorithm.generate_possible_combinations(sort_all_groups)
