@@ -536,7 +536,7 @@ function appendingGroupList(){
 function sendGroupListToBack(sendingGroupList){
     // sendingGroupList = [[1,2],[3,4]];
     // sendingGroupList = {'아기': '돼지', '삼': '형제'};
-    sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
+    // sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
     if (sendingGroupList.length == 0){
         alert('그룹이 비었습니다.');
         return;

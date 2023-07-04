@@ -9,15 +9,16 @@ def sort_groups(all_groups):
 
     sort_all_groups = []
     for i in all_groups:
-        # print(i)
-        tmp = []
-        tmp.append(i[0][0][7])  # 대학수학(1)의 위치
-        tmp.append(i[0][0][15])  # 화7,수5,수6의 위치
-        tmp.append(i[0][0][0])  # 1001의 위치
-        tmp.append(i[0][0][14])  # 전체의 위치
-        tmp.append(i[0][0][8])  # 자연계열의 위치
-        sort_all_groups.append(tmp)
-        # print(sort_all_groups)
+        tmp_group=[]
+        for j in i:
+            tmp = []
+            tmp.append(j[0][0][7])  # 대학수학(1)의 위치
+            tmp.append(j[0][0][15])  # 화7,수5,수6의 위치
+            tmp.append(j[0][0][0])  # 1001의 위치
+            tmp.append(j[0][0][14])  # 전체의 위치
+            tmp.append(j[0][0][8])  # 자연계열의 위치
+            tmp_group.append(tmp)
+        sort_all_groups.append(tmp_group)
     return sort_all_groups
 
 
@@ -27,7 +28,6 @@ def generate_possible_combinations(sort_all_groups):
         return []  # sort_all_groups가 비어있을 경우 빈 리스트 반환
 
     possible_combinations = []
-
     # 모든 그룹의 조합을 생성
     for combination in itertools.product(*sort_all_groups):
         timetable = [[''] * 12 for _ in range(7)]  # 시간표, 초기값은 빈 문자열로 설정
@@ -35,9 +35,8 @@ def generate_possible_combinations(sort_all_groups):
 
         # 각 그룹의 과목과 시간표 확인
         for group in combination:
-            course = group[0][0]
-            schedule = group[0][1]
-
+            course = group[0]
+            schedule = group[1]
             if schedule == '':
                 valid = False
                 break
@@ -77,4 +76,3 @@ def generate_possible_combinations(sort_all_groups):
         possible_combinations_result_list.append(combination)
 
     return possible_combinations_result_list
-
