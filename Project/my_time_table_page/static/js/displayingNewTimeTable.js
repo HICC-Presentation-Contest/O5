@@ -172,122 +172,8 @@ function addClassToTimeTable(TimeTableClass) {
 }
 
 
-
-
-//userTimeTable에 수업을 넣는 함수
-function  insertToUserTimeTable(resultTimeTableList){
-    for(let i = 0; i < resultTimeTableList.length; i++){
-        let textData = resultTimeTableList[i];
-        let temporaryList = [];
-            temporaryList = [textData[7], textData[15],textData[0]];
-        // let my_div = document.createElement("div");
-        // my_div.innerHTML = '<div class="result" >' +
-        //     '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
-        //     '<div class="nameTime">' + textData[14] + ' ' + textData[15] + '</div> ' +
-        //     '<div class="detail">' + textData[1] + '학년 ' + textData[4] + ' ' + textData[9] + '학점 ' + textData[6] +'</div>' +
-        //     '<div class = "classIdentityNumber" style="display: none">' + textData[0] + '</div>' +
-        //     '<div class = "classTime" style="display: none">' + textData[15] + '</div>' + '</div>';
-        // document.getElementById("resultBox").appendChild(my_div);
-    }
-
-
-    let className = '';
-    // 시간 정보
-    let timeList = '';
-    // 수업의 요일
-    let day = '';
-    // 수업의 요일의 시간
-    let timeOfDay = '';
-    // html에 넣을 id
-    let id = '';
-    //  고유번호
-    let classIdentityNumber = '';
-    // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
-    // console.log(userTimeTable);
-
-    className = $(event).children('.subject');
-    className = $(className[0]).children();
-    className = $(className[0]).html(); // 수업이름
-
-    classIdentityNumber = $(event).children('.classIdentityNumber');
-    classIdentityNumber = classIdentityNumber[0].innerHTML;
-
-    let classTime = $(event).children('.classTime'); // 수업 시간
-
-    timeList = $(classTime[0]).html().split(","); // 월2 화2 수2 이렇게 쪼개진다.
-    for (let j = 0; j < timeList.length; j++) // 월234는 한번.
-    {
-        day = KorToEngOfDay(timeList[j].substr(0, 1)); // 월234에서 월 가져온다.
-        timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
-
-        //for문을 들리면서 만약 기존시간표에 겹친다면 경고창 띄우고 리턴.
-        for (let k = 0; k < timeOfDay.length; k++) {
-            id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-            if ($(id).text() != ''){
-                alert('강의가 겹칩니다');
-                return
-            }
-        }
-
-    }
-    //클래스네임 영어 제거
-    let classNameList = className.split(' ');
-    //userTimeTable에 넣기
-    let temporaryList = userTimeTable[1][$('#myTimeTableName').html()];
-    // console.log(temporaryList);
-    temporaryList.push([classNameList[0], classTime[0].innerHTML, classIdentityNumber]);
-    userTimeTable[1][$('#myTimeTableName').html()] = temporaryList;
-    console.log(temporaryList);
-
-}
-
-// // 딕셔너리를 받아서 개인 시간표 세팅하기 안의 함수
-// function basicUserInformation(basicTimeTableName)
-// {
-//
-//  $('#myTimeTableName').html(basicTimeTableName);
-//  innerList = document.createElement('button');
-//  $(innerList).addClass( "list-group-item list-group-item-action" );
-//  $(innerList).text(basicTimeTableName);
-//  $('#timeTableNameList').append(innerList);
-// }
-
-
-// 딕셔너리를 받아서 개인 시간표 세팅하기
-function basicUserInformation(TimeTableClass) {
-    $('#timeTableNameList').empty(); // 기존 리스트 지우기
-    let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
-    //키값에 맞게 타임테이블이름 리스트에 추가해준다.
-    for (let i = 0; i < timeTableNameList.length; i++) {
-        $('#myTimeTableName').html(timeTableNameList[i]);
-        let innerList = document.createElement('button');
-        $(innerList).addClass("list-group-item list-group-item-action");
-        $(innerList).text(timeTableNameList[i]);
-        // $(innerList).click(addClassToTimeTable(this.text()))
-        $(innerList).attr('onclick', 'timeTableNameClick(this)');
-        $(innerList).css('text-align', 'center');
-        $('#timeTableNameList').append(innerList);
-    }
-    // + 버튼 추가
-    let innerList = document.createElement('button');
-    $(innerList).addClass("list-group-item list-group-item-action");
-    $(innerList).text('+');
-    $(innerList).attr('onclick', 'location.href="makingNewTimeTable";');
-    $(innerList).css('text-align', 'center');
-    $('#timeTableNameList').append(innerList);
-
-    addClassToTimeTable(TimeTableClass[timeTableNameList[0]]);
-
-}
-
-function timeTableNameClick(event) {
-    let myTimeTable = TimeTableClass[event.innerHTML];
-    $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
-    addClassToTimeTable(myTimeTable)
-}
-
-
-let fixedResultTimeTableList =
+// 결과 시간리스트
+let ResultTimeTableList =
     [
         [
             ['스페인어', '월234', '1'],
@@ -315,14 +201,14 @@ let fixedResultTimeTableList =
 
 
 window.onload = function () {
-    // basicUserInformation(TimeTableClass);
 
-    // if(localStorage.getItem('resultTimeTable')){
-    //     fixedResultTimeTableList = localStorage.getItem('resultTimeTable');
-    // }
-    console.log(fixedResultTimeTableList[0]);
+
+    if(localStorage.getItem('resultTimeTable')){
+        ResultTimeTableList = localStorage.getItem('resultTimeTable');
+    }
+    console.log(ResultTimeTableList[1]);
     // 시작할 때 왼쪽페이지에 넣어준다
-    addClassToTimeTable(fixedResultTimeTableList[0]);
+    addClassToTimeTable(ResultTimeTableList[0]);
 }
 
 
@@ -587,7 +473,7 @@ function makingTableList(TimeTableClassList) {
 
 
 }
-
-function clickTimeTableListElement(event){
-
-}
+//
+// function clickTimeTableListElement(event){
+//
+// }

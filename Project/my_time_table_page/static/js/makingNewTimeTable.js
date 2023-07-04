@@ -532,15 +532,17 @@ function appendingGroupList(){
     sendGroupListToBack(sendingGroupList);
 }
 // 백으로 그룹 리스트 넘기기
+//sendingGroupList는 보낼 그룹 리스트
 function sendGroupListToBack(sendingGroupList){
     // sendingGroupList = [[1,2],[3,4]];
     // sendingGroupList = {'아기': '돼지', '삼': '형제'};
+    sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
     if (sendingGroupList.length == 0){
         alert('그룹이 비었습니다.');
         return;
     }
-    // sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
-    console.log(sendingGroupList);
+
+    // console.log(sendingGroupList);
     $.ajax({
         url: 'sendGroupList',
         type: 'POST',
@@ -558,11 +560,12 @@ function sendGroupListToBack(sendingGroupList){
         },
         success: function (data) {
             let resultTimeTable = data.resultTimeTable;
+            console.log(resultTimeTable);
             // console.log('알고리즘결과');
             // console.log(resultTimeTable);
             $("#mySpinner").hide();
             localStorage.setItem('resultTimeTable', resultTimeTable);
-            location.replace('displayingNewTimeTable');
+            // location.replace('displayingNewTimeTable');
         },
 
     });

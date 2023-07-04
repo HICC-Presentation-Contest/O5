@@ -79,20 +79,21 @@ def send_group_list(request):
     if request.method == 'POST':
         # data는 2차원 리스트이며 각 안쪽 리스트는 각각의 그룹을 의미하며, 그 리스트 안에는 각 수업의 고유번호(db key값)이 들어있다
         data = json.loads(request.POST['group_list'])
-        print(data)
+        print("GroupList:",data) # 들어온 그룹 리스트
     all_groups = []
     sort_all_groups=[]
     for i in range(len(data)):
         for j in range(len(data[i])):
             tmp =[(testdb.search("-1", data[i][j], "-1", "-1", "-1", "-1"))]
-            print(tmp)
+            # print(tmp)
         all_groups.append(tmp)
     sort_all_groups.append(timetable_algorithm.sort_groups(all_groups))
     result_time_table = timetable_algorithm.generate_possible_combinations(sort_all_groups)
+    # print(result_time_table)
     for i in result_time_table:
         print(i)
     answer = {
-        'result_time_table': result_time_table,
+        'resulTimeTable': result_time_table,
     }
 
     return JsonResponse(answer)

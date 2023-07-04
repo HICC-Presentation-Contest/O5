@@ -9,7 +9,7 @@ def sort_groups(all_groups):
 
     sort_all_groups = []
     for i in all_groups:
-        print(i)
+        # print(i)
         tmp = []
         tmp.append(i[0][0][7])  # 대학수학(1)의 위치
         tmp.append(i[0][0][15])  # 화7,수5,수6의 위치
@@ -17,7 +17,7 @@ def sort_groups(all_groups):
         tmp.append(i[0][0][14])  # 전체의 위치
         tmp.append(i[0][0][8])  # 자연계열의 위치
         sort_all_groups.append(tmp)
-        print(sort_all_groups)
+        # print(sort_all_groups)
     return sort_all_groups
 
 
