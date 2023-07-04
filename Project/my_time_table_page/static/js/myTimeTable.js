@@ -372,6 +372,8 @@ function sendingUserTimeTable() {
 
 function loadingUserTimeTable(){
         let userID = $('#userID').html();
+        //임시 id
+        userID ='abc';
         $.ajax({
         url: 'loadingUserTimeTable',
         type: 'POST',
@@ -406,6 +408,11 @@ function clickReviseButton() {
 
 function clickRevise() {
     let textPrompt = prompt('어떻게 수정하시겠습니까?');
+    if (textPrompt == ''){
+        alert('한글자 이상 입력해주세요');
+        return
+    }
+
     let name = document.getElementById('selectedTimeTableName').innerHTML;
     userTimeTable[1][textPrompt] = userTimeTable[1][name];
     delete userTimeTable[1][name];
@@ -422,9 +429,8 @@ function appendClassToNowTimeTable(){
 }
 
 window.onload = function () {
-    // loadingUserTimeTable()
+    loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
-
 }
 
 

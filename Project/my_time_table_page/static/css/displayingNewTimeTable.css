@@ -7,17 +7,7 @@
     font-weight: normal;
     font-style: normal;
 }
-* {
-    font-family: 'S-CoreDream-3Light';
-    background: white;
-}
 
-/*div {*/
-/*    color: black;*/
-/*    !*font-size: 50px;*!*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*}*/
 
 a {
     color: rgb(243, 233, 170);
@@ -63,19 +53,45 @@ table {
 }
 
 /*이중선 제거*/
-th, td {
-    width: 90px;
-    height: 53px;
-    text-align: center;
-    border: 1px solid rgb(243, 233, 170);
+/*th, td {*/
+/*    width: 90px;*/
+/*    height: 53px;*/
+/*    text-align: center;*/
+/*    */
 
-    vertical-align: top; /* 위 */
-    vertical-align: bottom; /* 아래 */
-    vertical-align: middle; /* 가운데 */
+/*    vertical-align: top; !* 위 *!*/
+/*    vertical-align: bottom; !* 아래 *!*/
+/*    vertical-align: middle; !* 가운데 *!*/
+/*}*/
+
+#myTimeTable{
+    background-color: white;
+}
+
+#myTimeTable > tr > th, td{
+     width: 12.5%;
+     height: 50px;
+     /*text-align: center;*/
+     border: 1px solid rgb(243, 233, 170);
+    font-size: smaller;
+    position: relative;
 }
 
 #myTimeTable > tr > th {
     font-size: 25px
+}
+
+.timeTableListElement > tr > th, td{
+    width: 12.5%;
+     height: 11%;
+     /*text-align: center;*/
+     border: 1px solid rgb(243, 233, 170);
+    font-size: smaller;
+    position: relative;
+}
+.timeTableListElement{
+    width: 100%;
+    height: 100%;
 }
 
 .myTimeTable_time {
@@ -91,8 +107,10 @@ th, td {
     border: 1px solid rgb(243, 233, 170);
     text-align: left;
     float: left;
-    height: 20%;
+    height: 40%;
     border: solid 1px lightgray;
+    overflow-x: hidden;
+    position: relative;
 }
 
 /*div.left {*/
@@ -189,10 +207,7 @@ list{list-style:none;}
     transform:translateY(-50%);
 }
 
-#possibleTimeTable{
-    overflow-x: hidden;
-    position: relative;
-}
+
 
      /*body {*/
      /*       background: #eee;*/
@@ -204,7 +219,7 @@ list{list-style:none;}
      /*   }*/
 .swiper-container {
   width: 100%;
-  height: 50;
+  height: 100%;
 }
 .swiper-slide {
   text-align: center;
@@ -224,6 +239,13 @@ list{list-style:none;}
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+
+element.style {
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom : 0px;
 }
 
 
