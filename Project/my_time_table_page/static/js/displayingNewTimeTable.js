@@ -8,8 +8,8 @@
 3. html파일에서 시간표를 누르면 왼쪽화면에다가 시간표 띄워주기
 */
 
-
-// 크롤링 에시
+//시간표 색
+let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2']
 
 
 // 요일 한국어에서 영어로 변환
@@ -155,6 +155,8 @@ function addClassToTimeTable(TimeTableClass) {
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
     for (let i = 0; i < TimeTableClass.length; i++) {
         className = TimeTableClass[i][0];
+        let classNameList = className.split(' ');
+        className = classNameList[0];
         timeList = TimeTableClass[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
         {
@@ -163,6 +165,7 @@ function addClassToTimeTable(TimeTableClass) {
             for (let k = 0; k < timeOfDay.length; k++) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
                 $(id).text(className);
+                $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기
             }
 
         }
@@ -354,7 +357,6 @@ function makingTableList(TimeTableClassList) {
         // html에 넣을 id
         let myClass = '';
         // 이부분이 시간표 색상 설정!, 순서대로 색깔이 지정 된다.
-        let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2']
         // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
         for (let l = 0; l < TimeTableClassList[i].length; l++) {
             className = TimeTableClassList[i][l][0];
