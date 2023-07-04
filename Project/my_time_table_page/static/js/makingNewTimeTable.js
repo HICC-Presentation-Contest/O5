@@ -453,7 +453,7 @@ function passOverData(event){ // event는 클릭한 객체
 }
 
 function deleteClass(event){
-    $(event.parentNode).empty();
+    $(event.parentNode).remove();
 }
 
 
