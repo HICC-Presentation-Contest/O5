@@ -386,12 +386,13 @@ function clickTimeTableListElement(event){
 
 
 window.onload = function () {
-
+    let objString = '';
     // 전페이지에서 결과 시간표 가져오기
-    // if(localStorage.getItem('resultTimeTable')){
-    //     ResultTimeTableList = localStorage.getItem('resultTimeTable');
-    // }
-    // console.log(ResultTimeTableList[1]);
+    if(localStorage.getItem('resultTimeTable')){
+        objString= localStorage.getItem('resultTimeTable');
+    }
+     ResultTimeTableList = JSON.parse(objString);
+    console.log(ResultTimeTableList);
     // 시작할 때 왼쪽페이지에 넣어준다
     addClassToTimeTable(ResultTimeTableList[0]);
 }
