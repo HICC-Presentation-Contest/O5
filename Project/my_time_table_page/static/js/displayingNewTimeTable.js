@@ -170,6 +170,7 @@ function addClassToTimeTable(TimeTableClass) {
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
     for (let i = 0; i < TimeTableClass.length; i++) {
         className = TimeTableClass[i][0];
+        console.log(className);
         let classNameList = className.split(' ');
         className = classNameList[0];
 
@@ -466,3 +467,4 @@ window.onload = function () {
         makingTableList(ResultTimeTableList);
     }
 }
+
