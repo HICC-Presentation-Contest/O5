@@ -1,12 +1,23 @@
-// JavaScript source code
 
-/*
-1. makingNewTimeTable페이지에서 만들어진 새로운 시간표를
-왼쪽의 생성된 시간표 페이지에 띄워주기 (크롤링된 내용을 띄워주는 걸로 일단 대신)
-(되면 과목별로 색깔 다르게)
-2. 그 표를 '기본시간표x'면 x개 만큼 만들어서 차례대로 html페이지에 띄우기
-3. html파일에서 시간표를 누르면 왼쪽화면에다가 시간표 띄워주기
-*/
+//csrf token 건들지 말것
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
 
 //시간표 색
 let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2']
@@ -402,9 +413,9 @@ function clickTimeTableListElement(event){
 function sendingSortValue(){
 
     // name이 같은 체크박스의 값들을 배열에 담는다.
-    var checkboxValues = [];
+    var sendingGroupList = [];
     $("input[name='hobby']:checked").each(function(i) {
-        checkboxValues.push($(this).val());
+        sendingGroupList.push($(this).val());
     });
      
     $.ajax({
@@ -426,9 +437,12 @@ function sendingSortValue(){
             $("#mySpinner").hide();
             ResultTimeTableList = data.resultTimeTable;
                 // 시작할 때 왼쪽페이지에 넣어준다
-            addClassToTimeTable(ResultTimeTableList[0]);
-            //결과리스트 출력
-            makingTableList(ResultTimeTableList);
+            if(ResultTimeTableList != []){
+                addClassToTimeTable(ResultTimeTableList[0]);
+                //결과리스트 출력
+                makingTableList(ResultTimeTableList);
+            }
+
         },
 
     });
@@ -445,7 +459,9 @@ window.onload = function () {
      ResultTimeTableList = JSON.parse(objString);
     console.log(ResultTimeTableList);
     // 시작할 때 왼쪽페이지에 넣어준다
-    addClassToTimeTable(ResultTimeTableList[0]);
-    //결과리스트 출력
-    makingTableList(ResultTimeTableList);
+    if(ResultTimeTableList != []) {
+        addClassToTimeTable(ResultTimeTableList[0]);
+        //결과리스트 출력
+        makingTableList(ResultTimeTableList);
+    }
 }
