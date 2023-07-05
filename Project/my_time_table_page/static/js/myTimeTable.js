@@ -405,8 +405,8 @@ function clickReviseButton() {
 
 function clickRevise() {
     let textPrompt = prompt('어떻게 수정하시겠습니까?');
-    if (textPrompt == ''){
-        alert('한글자 이상 입력해주세요');
+    if (textPrompt == /\s+/g || textPrompt == ''){
+        alert('문자를 입력해주세요');
         return
     }
 
@@ -740,6 +740,8 @@ function displayTextList() {
     // 이부분은 마우스 나왔을때 왼쪽시간표에 보여주는것
         $('.result').mouseout(function(){
         $('.result').css('background-color', 'white'); // 전체 색 하얀색으로
+        $('.tableTd').css('filter', 'brightness(100%)');
+
     });
     // 이부분은 클릭했을때 왼쪽시간표에 보여주는것
     $('.result').click(function() {
