@@ -110,8 +110,20 @@ def send_sort_value(request):
     if request.method == 'POST':
         sort_value_list = json.loads(request.POST['sortValueList'])
         result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
+
+    print(result_time_table_list)
+
+    for i in sort_value_list:
+        if i == 'lunchTime':
+            tmp = sort_lunch_time.sort_free_list(result_time_table_list)
+        elif i == 'emptyDay':
+            tmp = sort_empty_day.empty_Day(result_time_table_list)
+    for empty_slots, combination in tmp:
+        result_time_table.append(combination)
+    print(result_time_table)
     answer = {
         'resultTimeTable': result_time_table,
         'resultTimeTableList': result_time_table_list,
     }
     return JsonResponse(answer)
+
