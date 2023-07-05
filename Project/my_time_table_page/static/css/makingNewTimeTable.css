@@ -173,3 +173,27 @@ background-color: #A1C2F1;
 .classInOriginal{
     position: relative;
 }
+
+
+/*정렬기능구현*/
+nav ul ul{
+/*    position: absolute;*/
+/*    width: 500px;*/
+/*    margin-left: 80px;*/
+/*    margin-top: -30px;*/
+    display:none;
+    list-style-type: none;
+
+/*    */
+}
+
+nav ul .Dropdown{
+    position: relative;
+    right: 30px;
+
+}
+
+nav ul .Dropdown:hover ul{
+    display: initial;
+
+}

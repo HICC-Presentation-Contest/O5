@@ -19,62 +19,72 @@
 <body>
 <!--{% if user.is_authenticated %}-->
     <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-        <strong><a class="navbar-brand" >시간표 만들기</a></strong>
+        <strong><a class="navbar-brand" href="myTimeTable.demo">시간표 만들기</a></strong>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:logout'%}">로그아웃</a>
+                <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{  user.username}}님</a>
+                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+                    <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+                </ul>
             </li>
         </ul>
     </nav>
     <div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
-         data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2"
+         data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+         class="scrollspy-example bg-light p-3 rounded-2"
          tabindex="0">
         <div id="leftBox" class="w-50">
-
 
 
             <!-- 박스 추가되는 영역 -->
             <div id="boxWrap">
                 <div id="field">
                     <!-- 초기 그룹 맨 처음 화면에 뜨는 초기 그룹은 두개임 -->
-                    <div class="original" data-group="1" id="original1" onclick="add_item(this)" style="background-color :lightgray">
-{#                        <div class="preset" style="display:none">#}
-{#                            <input type="text" name="test1" value="" style="width:100px">#}
-{#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
-{#                            </button>#}
-{#                        </div>#}
+                    <div class="original" data-group="1" id="original1" onclick="add_item(this)"
+                         style="background-color :lightgray">
+                        {#                        <div class="preset" style="display:none">#}
+                        {#                            <input type="text" name="test1" value="" style="width:100px">#}
+                        {#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
+                        {#                            </button>#}
+                        {#                        </div>#}
                         <!-- 그룹 행 -->
                         <div class="groupRow">
                             <p>그룹1</p>
-{#                            <button type="button" id="btn" class="btn btn-dark"#}
-{#                                    onclick="add_item(this.parentNode.parentNode)">과목추가</과목추가>#}
-{#                            </button>#}
+                            {#                            <button type="button" id="btn" class="btn btn-dark"#}
+                            {#                                    onclick="add_item(this.parentNode.parentNode)">과목추가</과목추가>#}
+                            {#                            </button>#}
                             <button type="button" id="btn" class="btn btn-dark"
                                     onclick="remove_group(this.parentNode.parentNode)">그룹삭제
                             </button>
                         </div>
                     </div>
-                    <div class="original" data-group="2" id = 'original2' onclick="add_item(this)">
-{#                        <div class="preset" style="display:none">#}
-{#                            <input type="text" name="test2" value="" style="width:100px">#}
-{#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
-{#                            </button>#}
-{#                        </div>#}
+                    <div class="original" data-group="2" id='original2' onclick="add_item(this)">
+                        {#                        <div class="preset" style="display:none">#}
+                        {#                            <input type="text" name="test2" value="" style="width:100px">#}
+                        {#                            <button type="button" id="btn" class="btn btn-dark btn-sm" onclick="remove_item(this)">X#}
+                        {#                            </button>#}
+                        {#                        </div>#}
                         <!-- 그룹 행 -->
                         <div class="groupRow">
                             <p>그룹2</p>
-{#                            <button type="button" id="btn" class="btn btn-dark"#}
-{#                                    onclick="add_item(this.parentNode.parentNode)">과목추가#}
-{#                            </button>#}
+                            {#                            <button type="button" id="btn" class="btn btn-dark"#}
+                            {#                                    onclick="add_item(this.parentNode.parentNode)">과목추가#}
+                            {#                            </button>#}
                             <button type="button" id="btn" class="btn btn-dark"
                                     onclick="remove_group(this.parentNode.parentNode)">그룹삭제
                             </button>
@@ -120,7 +130,25 @@
                 </tr>
             </table>
             <div id="resultBox" class="p-1 w-100">
+                <div class="d-flex flex-row" data-bs-root-margin="0px 0px -40px">
+                    <nav>
+                        <ul>
+                            <li class="Dropdown" style="list-style-type:none"><a href="#"><button class="btn btn-dark">공과대학</button></a>
+                                <ul>
+                                    <li><a href="#">컴퓨터공학과</a></li>
+                                    <li><a href="#">전기전자공학부</a></li>
+                                    <li><a href="#">기계시스템공학과</a></li>
+                                    <li><a href="#">신소재공학과</a></li>
+                                    <li><a href="#">화학공학과</a></li>
+                                </ul>
+                            </li>
+                            <li class="Dropdown" style="list-style-type:none"><a href="#"><button class="btn btn-dark">경영대학</button></a></li>
+                            <li class="Dropdown" style="list-style-type:none"><a href="#"><button class="btn btn-dark">사범대학</button></a></li>
+                            <li class="Dropdown" style="list-style-type:none"><a href="#"><button class="btn btn-dark">문과대학</button></a></li>
 
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="p-1 w-100 d-flex justify-content-end">
                 <button type="button" class="btn searchButton" onclick='appendingGroupList()'>시간표 검색하기
@@ -129,26 +157,34 @@
             </div>
         </div>
     </div>
-<!--{% else %}-->
+    <!--{% else %}-->
     <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-        <strong><a class="navbar-brand">시간표 고르기</a></strong>
+        <strong><a class="navbar-brand" href="myTimeTable.demo">시간표 고르기</a></strong>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:login'%}">로그인</a>
+                <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{  user.username}}님</a>
+                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+                    <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+                </ul>
             </li>
         </ul>
     </nav>
-<!--{% endif %}-->
+    <!--{% endif %}-->
 <script src="../../static/js/makingNewTimeTable.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
