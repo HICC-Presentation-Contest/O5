@@ -1,4 +1,3 @@
-
 //csrf token 건들지 말것
 function getCookie(name) {
     var cookieValue = null;
@@ -170,7 +169,6 @@ function addClassToTimeTable(TimeTableClass) {
     // timeTableClass 각 수업마다, 이름, 시간으로 쪼갠다.
     for (let i = 0; i < TimeTableClass.length; i++) {
         className = TimeTableClass[i][0];
-        console.log(className);
         let classNameList = className.split(' ');
         className = classNameList[0];
 
@@ -405,7 +403,7 @@ function clickTimeTableListElement(event){
     let idNameList = idName.split('_');
     let listNumber = idNameList[1]; //timeTableList_1 이면 1만 가져오기
     addClassToTimeTable(ResultTimeTableList[listNumber]) // 결과리스트의 listNumber째의 리스트를 왼쪽 myTimeTable에 출력
-     
+
 
 }
 
@@ -415,16 +413,17 @@ function sendingSortValue(){
 
     // name이 같은 체크박스의 값들을 배열에 담는다.
     var sendingGroupList = [];
-    $("input[name='hobby']:checked").each(function(i) {
+    $("input[name='sortValue']:checked").each(function(i) {
         sendingGroupList.push($(this).val());
     });
-     
+
     $.ajax({
         url: 'sendSortValue',
         type: 'POST',
         // data부분은 딕셔너리로 넘겨준다
         // traditional: true, // 배열전달하기위한 조건
         data: {
+            'resultTimeTableWithTF' : resultTimeTableWithTF,
             'sortValueList': JSON.stringify(sendingGroupList),
             'csrfmiddlewaretoken': csrftoken,
         },
@@ -451,14 +450,18 @@ function sendingSortValue(){
 }
 
 
-
+let resultTimeTableWithTF = []
 window.onload = function () {
     let objString = '';
     // 전페이지에서 결과 시간표 가져오기
     if(localStorage.getItem('resultTimeTable')){
         objString= localStorage.getItem('resultTimeTable');
     }
-     ResultTimeTableList = JSON.parse(objString);
+    if(localStorage.getItem('resultTimeTableList')){
+        resultTimeTableWithTF = localStorage.getItem('resultTimeTableList');
+    }
+    ResultTimeTableList = JSON.parse(objString);
+    // resultTimeTableWithTF = JSON.parse(resultTimeTableWithTF);
     console.log(ResultTimeTableList);
     // 시작할 때 왼쪽페이지에 넣어준다
     if(ResultTimeTableList != []) {
@@ -468,3 +471,12 @@ window.onload = function () {
     }
 }
 
+ var weekdays = document.getElementById("weekdays");
+
+ function toggleWeekdays(){
+            if($("input:checkbox[id='savingFreeDay']").is(":checked") == true){
+                weekdays.style.display = "block";
+            } else {
+                weekdays.style.display = "none";
+            }
+        }

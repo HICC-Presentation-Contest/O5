@@ -1,5 +1,5 @@
 /*
-폰트 설정
+폰트 설정 #css
 */
 @font-face {
     font-family: 'S-CoreDream-3Light';
@@ -218,5 +218,6 @@ a {
     height: 0.5em;
     z-index: 2; /* 음수 값으로 우선순위를 낮출 수 있음 */
 }
+
 
 

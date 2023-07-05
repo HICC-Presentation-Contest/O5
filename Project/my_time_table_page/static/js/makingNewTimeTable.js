@@ -1,4 +1,4 @@
-//csrf token 건들지 말것
+//csrf token 건들지 말것 #makingNewTimeTable js
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -536,7 +536,7 @@ function appendingGroupList(){
 function sendGroupListToBack(sendingGroupList){
     // 예시
     // sendingGroupList = [['27', '28', '29', '30'], ['945', '946', '947', '948'], ['1305', '1306', '1307', '1308']];
-    
+
     //그룹이 비었을때 종료
     if (sendingGroupList.length == 0){
         alert('그룹이 비었습니다.');
@@ -578,4 +578,5 @@ function sendGroupListToBack(sendingGroupList){
 function groupCheck() {
     document.getElementById("searchButton").disabled = true;
 }
+
 

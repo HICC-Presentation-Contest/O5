@@ -1,6 +1,4 @@
 //csrf token 건들지 말것
-
-
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -177,13 +175,13 @@ function addClassToTimeTable(userTimeTable) {
     // console.log(userTimeTable);
     for (let i = 0; i < userTimeTable.length; i++) {
         className = userTimeTable[i][0];
-        
+
         let classNameList = className.split(' ');
         className = classNameList[0];
-        
+
         lectureRoom = userTimeTable[i][4]; //강의실
         professorName = userTimeTable[i][3]; //교수님 성함
-        
+
         timeList = userTimeTable[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
         identityNumber = userTimeTable[i][2];
         for (let j = 0; j < timeList.length; j++) // 월234는 한번.
@@ -859,4 +857,5 @@ function  insertToUserTimeTable(event){
 function saveCheck() {
 
 }
+
 
