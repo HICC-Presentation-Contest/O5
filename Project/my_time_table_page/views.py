@@ -32,7 +32,22 @@ def sending_user_time_table(request):
     if request.method == 'POST':
         # data는 2차원 리스트이며 각 안쪽 리스트는 각각의 그룹을 의미하며, 그 리스트 안에는 각 수업의 고유번호(db key값)이 들어있다
         data = json.loads(request.POST['user_time_table'])
+    user_id = data[0]  # inserted_data는 DB에 넣기위해 정제된 데이터
     print(data)
+    testdb.drop_group_table(user_id)
+    for i in data[1]:
+        for j in range(len(data[1][i])):
+            inserted_data = []
+            inserted_data.append(user_id)
+            inserted_data.append(i)
+            inserted_data.append(data[1][i][j][2])
+            if i == data[2]:
+                inserted_data.append(True)
+            else:
+                inserted_data.append(False)
+            testdb.insert_into_group_table(inserted_data[0], inserted_data[1], inserted_data[2], inserted_data[3])
+            # inserted_data는 [id, 시간표 이름, 과목 index, 기본시간표인지 여부]
+
     answer = {
         'none': []
     }
@@ -41,12 +56,15 @@ def sending_user_time_table(request):
 
 
 def loading_user_time_table(request):
-    userID= request.POST('userID')
-    userList =[]
+    userID = request.POST['userID']
+    data_list = testdb.search_group_table(userID)  # db에서 유저 id에 따른 data 추출
+
+    userList = []
 
     answer = {
-        'none': userList
+        'none': data_list
     }
+    print(answer)
 
     return JsonResponse(answer)
 
