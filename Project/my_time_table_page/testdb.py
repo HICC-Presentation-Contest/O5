@@ -63,8 +63,10 @@ def cutting_subject_name(name):  # 과목이름 중 영문 명 삭제
 
 
 # 데이터베이스에 데이터 삽입
-def insert(index, grade, department1, department2, completion, field1, id, name, classroom, credit, limit_student,
-           sugang_student, close_student, sugang_division, professor, time, note, major, field2):  # 데이터베이스에 정보를 추가
+def insert_into_subject(index, grade, department1, department2, completion, field1, id, name, classroom, credit,
+                        limit_student,
+                        sugang_student, close_student, sugang_division, professor, time, note, major,
+                        field2):  # 데이터베이스에 정보를 추가
     conn = pymysql.connect(host='localhost', user='root',
                            password=db_password, db='test1', charset='utf8')
     curs = conn.cursor()
@@ -80,7 +82,7 @@ def insert(index, grade, department1, department2, completion, field1, id, name,
 
 
 # DB에서 검색
-def search(search_word, index, time, grade, credit, completion):  # 검색어, 인덱스(기본키), 학년, 학점, 이수구분을 이용한 검색기능
+def search_subject(search_word, index, time, grade, credit, completion):  # 검색어, 인덱스(기본키), 학년, 학점, 이수구분을 이용한 검색기능
     conn = pymysql.connect(host='localhost', user='root',
                            password=db_password, db='test1', charset='utf8')
     curs = conn.cursor()
@@ -123,7 +125,7 @@ def search(search_word, index, time, grade, credit, completion):  # 검색어, �
 
 
 # 자동완성 검색, 과목 이름은 index 7 search 함수로 해당 과목 검색 후 중복 제거
-def search_predictive(search_word):
+def search_subject_predictive(search_word):
     search_list = list(search(search_word, -1, "-1", "-1", "-1", "-1"))
     result_list = []
     if not search_list:
@@ -192,15 +194,83 @@ def create_group_table():
                            password=db_password, db='test1', charset='utf8')
     curs = conn.cursor()
     curs.execute("use test1;")
-    curs.execute("""create table group(
-            group_index int,
-            id varchar(30),
-            subject_index int,
-            primary key(group_index),
-            foreign key (id) references user(id),
-            foreign key (subject_index) references subject(num));""")
+    curs.execute("drop table if exists group_table")
+    curs.execute("""create table group_table(
+                    group_index int,
+                    user_id varchar(30),
+                    group_name varchar(50),
+                    subject_index int,
+                    default_table varchar(10),
+                    primary key(group_index),
+                    foreign key (subject_index) references subject(num));""")
     conn.commit()
     conn.close()
+
+
+group_index = 0
+
+
+def insert_into_group_table(user_id, table_name, subject_index, default_table):
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    global group_index
+    curs.execute("use test1;")
+    curs.execute("""insert into group_table values("{0}","{1}","{2}","{3}","{4}");""".format \
+                     (group_index, user_id, table_name, subject_index,
+                      default_table))
+    conn.commit()
+    conn.close()
+    group_index += 1
+
+
+def drop_group_table(user_id):
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    curs.execute("use test1;")
+    curs.execute("""delete from group_table where user_id = "{0}";""".format(user_id))
+    conn.commit()
+    conn.close()
+
+
+def search_group_table(user_id):
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    data = []
+    curs.execute("use test1;")
+    curs.execute("""select subject.name, subject.time , subject.num, subject.professor, subject.classroom\
+     ,group_table.group_name, group_table.default_table from subject, group_table where group_table.user_id = "{0}" and\
+      subject.num = group_table.subject_index;\
+      """.format(
+        user_id))
+    rows = curs.fetchall()
+    data.append(user_id)
+
+    group_data = {}
+    for i in rows:
+        subject_data = []
+        group_name = i[5]
+        if not group_name in group_data:
+            group_data[group_name] = []
+        for j in range(5):
+            subject_data.append(i[j])
+        group_data[group_name].append(subject_data)
+
+    data.append(group_data)
+
+
+
+    for i in rows:
+        if i[6] == "True":
+            data.append(i[5])
+            break
+
+    conn.commit()
+    conn.close()
+    return data
+
 
 
 def insert_data():
@@ -210,23 +280,28 @@ def insert_data():
         for j in range(len(i)):
             i[j].replace("\n", "")
         if len(i) == 16:  # 영역 , 강의식이 없는 경우(싸강)
-            insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], "None_classroom", i[5], i[6], i[7], i[8], i[9],
-                   i[10],
-                   i[11], i[12], i[13], i[14], i[15])
+            insert_into_subject(index, i[0], i[1], i[2], i[3], "None_field", i[4], "None_classroom", i[5], i[6], i[7],
+                                i[8], i[9],
+                                i[10],
+                                i[11], i[12], i[13], i[14], i[15])
         elif len(i) == 17:  # 영역이 없는 경우
-            insert(index, i[0], i[1], i[2], i[3], "None_field", i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12],
-                   i[13], i[14], i[15], i[16])
+            insert_into_subject(index, i[0], i[1], i[2], i[3], "None_field", i[4], i[5], i[6], i[7], i[8], i[9], i[10],
+                                i[11], i[12],
+                                i[13], i[14], i[15], i[16])
         else:
-            insert(index, i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14],
-                   i[15], i[16], i[17])
+            insert_into_subject(index, i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12],
+                                i[13], i[14],
+                                i[15], i[16], i[17])
         index += 1
 
 
-# DB 테스트 출력
-# sql = ("select * from subject")
-# curs.execute(sql)
+# conn = pymysql.connect(host='localhost', user='root',
+#                            password=db_password, db='test1', charset='utf8')
+# curs = conn.cursor()
+#
+# curs.execute("""select * from group_table;""")
 # rows = curs.fetchall()
-# for cur_row in rows:
-#     for i in cur_row:
-#         print(i, end=",")
-#     print()
+# for i in rows:
+#     print(i)
+# conn.commit()
+# conn.close()
