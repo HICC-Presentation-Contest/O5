@@ -41,7 +41,8 @@ def sending_user_time_table(request):
 
 
 def loading_user_time_table(request):
-    userList = []
+    userID= request.POST('userID')
+    userList =[]
 
     answer = {
         'none': userList
@@ -95,7 +96,7 @@ def send_group_list(request):
     print(result_time_table)
     answer = {
         'resultTimeTable': result_time_table,
-
+        'resultTimeTableList': result_time_table_list,
     }
     return JsonResponse(answer)
 
@@ -103,10 +104,14 @@ def send_group_list(request):
 def send_sort_value(request):
     # 정렬값, 리스트 형식으로 ['lunchTime', 'emptyDay', 'morningLectureMain', 'afternoonLectureMain'] 중 체크된것만 들어있다.
     sort_value_list = []
+    result_time_table_list = []
+    result_time_table = []
+
     if request.method == 'POST':
         sort_value_list = json.loads(request.POST['sortValueList'])
-    result_time_table = []
+        result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
     answer = {
-        'resultTimeTable': result_time_table
+        'resultTimeTable': result_time_table,
+        'resultTimeTableList': result_time_table_list,
     }
     return JsonResponse(answer)
