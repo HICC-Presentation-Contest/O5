@@ -75,4 +75,5 @@ def generate_possible_combinations(sort_all_groups):
     for empty_slots, combination in possible_combinations:
         possible_combinations_result_list.append(combination)
 
-    return possible_combinations_result_list
+    return possible_combinations_result_list, possible_combinations
+
