@@ -289,6 +289,22 @@ function timeTableNameClick(event){
     }
 }
 
+function crownTimeTable(event){
+    if(document.getElementById('basicTimeTable')){
+        document.getElementById('basicTimeTable').remove();
+
+    }
+    let name = document.getElementById('selectedTimeTableName').innerHTML;
+    let button = document.getElementById(name);
+    let buttonName= document.getElementById(name).innerHTML;
+
+        let innerList = document.createElement('i');
+        innerList.className = 'fas fa-crown';
+        innerList.id = 'basicTimeTable';
+        button.appendChild(innerList);
+}
+
+
 // // 초기 실행
 // function remakeTimeTableNameList() {
 //     appendUserTimeTable(userTimeTable[1]);
