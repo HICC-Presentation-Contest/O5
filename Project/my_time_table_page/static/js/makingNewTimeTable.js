@@ -561,9 +561,12 @@ function sendGroupListToBack(sendingGroupList){
         },
         success: function (data) {
             let resultTimeTable = data.resultTimeTable;
+            let resultTimeTableList = data.resultTimeTableList;
             console.log(resultTimeTable);
-            let objString = JSON.stringify(resultTimeTable);
-            localStorage.setItem('resultTimeTable', objString);
+            resultTimeTable = JSON.stringify(resultTimeTable);
+            resultTimeTableList = JSON.stringify(resultTimeTableList);
+            localStorage.setItem('resultTimeTable', resultTimeTable);
+            localStorage.setItem('resultTimeTableList', resultTimeTableList);
             $("#mySpinner").hide();
             location.replace('displayingNewTimeTable'); //다음페이지로 넘어가기
         },
