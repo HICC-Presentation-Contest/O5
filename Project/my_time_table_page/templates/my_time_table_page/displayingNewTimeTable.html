@@ -225,16 +225,14 @@
             <p><strong>[시간표 정렬기능]</strong></p>
 
 
-                <label><input type="checkbox" name="function" value="savingLunchTime" checked>점심시간 확보(11~14시)</label>
+                <label><input type="checkbox" name="sortValue" value="lunchTime" checked>점심시간 확보(11~14시)</label>
                 <br>
-                <label><input type="checkbox" name="function" value="savingFreeDay">공강일 있는 거만 보기</label>
+                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>
                 <br>
-                <label><input type="checkbox" name="function" value="savingAllClear">올클 위주로 보기</label>
+                <label><input type="checkbox" name="sortValue" value="morningLectureMain">오전 강의 위주로</label>
                 <br>
-                <label><input type="checkbox" name="function" value="savingMorningClass">오전 강의 위주로</label>
-                <br>
-                <label><input type="checkbox" name="function" value="savingAfternoonClass">오후 강의 위주로 </label>
-                <button type="submit" class="btn searchButton text-white" style="background-color: #0A6EBD;">정렬</button>
+                <label><input type="checkbox" name="sortValue" value="afternoonLectureMain">오후 강의 위주로 </label>
+                <button type="submit" class="btn searchButton text-white" style="background-color: #0A6EBD;" onclick="sendingSortValue()">정렬</button>
 
 
 

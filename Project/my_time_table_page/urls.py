@@ -14,4 +14,5 @@ urlpatterns = [
     path('loadingUserTimeTable', views.loading_user_time_table, name='loading_user_time_table'),
     path('accounts/', include("accounts.urls")),
     path('sendGroupList', views.send_group_list, name='send_group_list'),
+    path('sendSortValue', views.send_sort_value, name='send_sort_value'),
 ]

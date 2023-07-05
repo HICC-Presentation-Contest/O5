@@ -90,9 +90,21 @@ def send_group_list(request):
         all_groups.append(tmp_list)
     sort_all_groups+=(timetable_algorithm.sort_groups(all_groups))
     result_time_table = timetable_algorithm.generate_possible_combinations(sort_all_groups)
-    for i in result_time_table:
-        print(i)
+    # for i in result_time_table:
+    #     print(i)
     answer = {
-        'result_time_table': result_time_table,
+        'resultTimeTable': result_time_table
+    }
+    return JsonResponse(answer)
+
+
+def send_sort_value(request):
+    # 정렬값, 리스트 형식으로 ['lunchTime', 'emptyDay', 'morningLectureMain', 'afternoonLectureMain'] 중 체크된것만 들어있다.
+    sort_value_list = []
+    if request.method == 'POST':
+        sort_value_list = json.loads(request.POST['sortValueList'])
+    result_time_table = []
+    answer = {
+        'resultTimeTable': result_time_table
     }
     return JsonResponse(answer)

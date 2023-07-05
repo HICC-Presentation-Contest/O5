@@ -398,6 +398,44 @@ function clickTimeTableListElement(event){
 }
 
 
+// 체크박스 값 넘기기
+function sendingSortValue(){
+
+    // name이 같은 체크박스의 값들을 배열에 담는다.
+    var checkboxValues = [];
+    $("input[name='hobby']:checked").each(function(i) {
+        checkboxValues.push($(this).val());
+    });
+     
+    $.ajax({
+        url: 'sendSortValue',
+        type: 'POST',
+        // data부분은 딕셔너리로 넘겨준다
+        // traditional: true, // 배열전달하기위한 조건
+        data: {
+            'sortValueList': JSON.stringify(sendingGroupList),
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        datatype: 'json',
+        beforeSend: function (request) {
+            // Performed before calling Ajax
+            $("#mySpinner").show();
+
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+            ResultTimeTableList = data.resultTimeTable;
+                // 시작할 때 왼쪽페이지에 넣어준다
+            addClassToTimeTable(ResultTimeTableList[0]);
+            //결과리스트 출력
+            makingTableList(ResultTimeTableList);
+        },
+
+    });
+}
+
+
+
 window.onload = function () {
     let objString = '';
     // 전페이지에서 결과 시간표 가져오기
