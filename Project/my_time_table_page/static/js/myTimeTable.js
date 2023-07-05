@@ -341,7 +341,9 @@ let userTimeTable =
             '기본시간표2': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월7,화7,목7', 1300, '박준철', 'T0702,T0702,T0702']],
             '기본시간표3': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월2,화2,수2', 1301, '박준상1', 'T0801,T0801,T0801']]
 
-        }]
+        },
+        '기본시간표1'
+]
 
 
 
@@ -750,9 +752,9 @@ function displayTextList() {
 
 // 음영처리하는 함수
 function classNameClick(event){
-    $('.tableTd').css('background-color', 'white');
-    $('.result').css('background-color', 'white'); // 전체 색 하얀색으로
-    $(event).css('background-color', 'lightgray'); // 클릭한것만 음영효과
+    $('.tableTd').css('opacity', '1');
+    $('.result').css('opacity', '1'); // 전체 색 하얀색으로
+    $(event).css('opacity', '0.5'); // 클릭한것만 음영효과
     let classTime = $(event).children('.classTime');
     if (classTime.length != 0){
         shadingTimeTable(classTime[0].innerHTML);
@@ -776,7 +778,7 @@ function shadingTimeTable(classTime) {
         timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
         for (let k = 0; k < timeOfDay.length; k++) {
             id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-            $(id).css('background-color', 'lightgray');
+            $(id).css('opacity', '0.5');
         }
 
     }
