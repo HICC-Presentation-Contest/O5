@@ -471,3 +471,13 @@ window.onload = function () {
         makingTableList(ResultTimeTableList);
     }
 }
+
+ var weekdays = document.getElementById("weekdays");
+
+ function toggleWeekdays(){
+            if($("input:checkbox[id='savingFreeDay']").is(":checked") == true){
+                weekdays.style.display = "block";
+            } else {
+                weekdays.style.display = "none";
+            }
+        }
