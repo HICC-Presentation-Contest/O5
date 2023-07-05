@@ -93,7 +93,6 @@ def send_group_list(request):
         all_groups.append(tmp_list)
     sort_all_groups+=(timetable_algorithm.sort_groups(all_groups))
     result_time_table, result_time_table_list = timetable_algorithm.generate_possible_combinations(sort_all_groups)
-    print(result_time_table)
     answer = {
         'resultTimeTable': result_time_table,
         'resultTimeTableList': result_time_table_list,
@@ -116,8 +115,9 @@ def send_sort_value(request):
     for i in sort_value_list:
         if i == 'lunchTime':
             tmp = sort_lunch_time.sort_free_list(result_time_table_list)
-        elif i == 'emptyDay':
+        if i == 'emptyDay':
             tmp = sort_empty_day.empty_Day(result_time_table_list)
+
     for empty_slots, combination in tmp:
         result_time_table.append(combination)
     print(result_time_table)
@@ -126,5 +126,3 @@ def send_sort_value(request):
         'resultTimeTableList': result_time_table_list,
     }
     return JsonResponse(answer)
-
-

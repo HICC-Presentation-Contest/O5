@@ -15,6 +15,5 @@ def sort_free_list(result_time_table):
         return []  # 가능한 조합이 없는 경우 빈 리스트 반환
 
     result_time_table.sort(key=count_free_days, reverse=True)
-    combinations = [combination for empty_slots, combination in result_time_table]
-    return combinations
+    return result_time_table
 
