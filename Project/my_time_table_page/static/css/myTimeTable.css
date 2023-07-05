@@ -153,6 +153,8 @@ background-color: #A1C2F1;
      border: 1px solid #439771;
     font-size: smaller;
     position: relative;
+    /*이 색은 배경색이 투명해서 brightness가 적용안되기에 넣어줌*/
+    background-color: white;
 }
 
 /*왼쪼시간표 th 요소들*/

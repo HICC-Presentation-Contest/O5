@@ -332,7 +332,7 @@ function appendUserTimeTable(userTimeTable) {
 
 
 
-
+// 첫번째인자: 유저id, 두번째인자:시간표리스트, 세번째인지: 기본시간표 이름
 let userTimeTable =
     ['abc',
         {
@@ -733,10 +733,15 @@ function displayTextList() {
     for (var i = 0; i < textList.length; i++) {
         pushClassData(textList[i]);
     }
-    // 이부분은 hover나 클릭했을때 왼쪽시간표에 보여주는것            // basicUserInformation(TimeTableClass);
-    $('.result').hover(function(){
+    // 이부분은 마우스 갖다댔을때 왼쪽시간표에 보여주는것            // basicUserInformation(TimeTableClass);
+    $('.result').mouseover(function(){
          classNameClick(this);
     });
+    // 이부분은 마우스 나왔을때 왼쪽시간표에 보여주는것
+        $('.result').mouseout(function(){
+        $('.result').css('background-color', 'white'); // 전체 색 하얀색으로
+    });
+    // 이부분은 클릭했을때 왼쪽시간표에 보여주는것
     $('.result').click(function() {
         // 강의를 usertimeTable에 추가, 단 겹치면 추가안한다.
         insertToUserTimeTable(this);
@@ -752,9 +757,9 @@ function displayTextList() {
 
 // 음영처리하는 함수
 function classNameClick(event){
-    $('.tableTd').css('opacity', '1');
-    $('.result').css('opacity', '1'); // 전체 색 하얀색으로
-    $(event).css('opacity', '0.5'); // 클릭한것만 음영효과
+    $('.tableTd').css('filter', 'brightness(100%)');
+    $('.result').css('background-color', 'white'); // 전체 색 하얀색으로
+    $(event).css('background-color', 'lightgray'); // 클릭한것만 음영효과
     let classTime = $(event).children('.classTime');
     if (classTime.length != 0){
         shadingTimeTable(classTime[0].innerHTML);
@@ -778,7 +783,7 @@ function shadingTimeTable(classTime) {
         timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
         for (let k = 0; k < timeOfDay.length; k++) {
             id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-            $(id).css('opacity', '0.5');
+            $(id).css('filter', 'brightness(70%)');
         }
 
     }
