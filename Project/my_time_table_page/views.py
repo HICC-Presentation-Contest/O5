@@ -3,6 +3,8 @@ from django.views.decorators.csrf import csrf_exempt  # ajax POST 응답하기 �
 from django.http import JsonResponse
 from . import testdb
 from . import timetable_algorithm
+from . import sort_empty_day
+from . import sort_lunch_time
 import json
 
 
@@ -80,7 +82,7 @@ def send_group_list(request):
         # data는 2차원 리스트이며 각 안쪽 리스트는 각각의 그룹을 의미하며, 그 리스트 안에는 각 수업의 고유번호(db key값)이 들어있다
         data = json.loads(request.POST['group_list'])
         print(data)
-        all_groups = []
+    all_groups = []
     sort_all_groups=[]
     for i in range(len(data)):
         tmp_list=[]
@@ -89,11 +91,11 @@ def send_group_list(request):
             tmp_list.append(tmp)
         all_groups.append(tmp_list)
     sort_all_groups+=(timetable_algorithm.sort_groups(all_groups))
-    result_time_table = timetable_algorithm.generate_possible_combinations(sort_all_groups)
-    # for i in result_time_table:
-    #     print(i)
+    result_time_table, result_time_table_list = timetable_algorithm.generate_possible_combinations(sort_all_groups)
+    print(result_time_table)
     answer = {
-        'resultTimeTable': result_time_table
+        'resultTimeTable': result_time_table,
+
     }
     return JsonResponse(answer)
 
