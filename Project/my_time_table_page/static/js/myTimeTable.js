@@ -404,7 +404,7 @@ function clickReviseButton() {
 function clickRevise() {
     let textPrompt = prompt('어떻게 수정하시겠습니까?');
     console.log(textPrompt);
-    if (textPrompt == /\s+/g || textPrompt == '' || textPrompt == null){
+    if (textPrompt == /\s+/g || textPrompt == '' ){
         alert('문자를 입력해주세요');
         return
     }
