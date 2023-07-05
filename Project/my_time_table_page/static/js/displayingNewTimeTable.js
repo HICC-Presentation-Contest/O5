@@ -424,7 +424,7 @@ function sendingSortValue(){
         // data부분은 딕셔너리로 넘겨준다
         // traditional: true, // 배열전달하기위한 조건
         data: {
-            'resultTimeTableWithTF' : JSON.stringify(resultTimeTableWithTF),
+            'resultTimeTableWithTF' : resultTimeTableWithTF,
             'sortValueList': JSON.stringify(sendingGroupList),
             'csrfmiddlewaretoken': csrftoken,
         },
@@ -459,11 +459,10 @@ window.onload = function () {
         objString= localStorage.getItem('resultTimeTable');
     }
     if(localStorage.getItem('resultTimeTableList')){
-                resultTimeTableWithTF = localStorage.getItem('resultTimeTableList');
-
+        resultTimeTableWithTF = localStorage.getItem('resultTimeTableList');
     }
-     ResultTimeTableList = JSON.parse(objString);
-    resultTimeTableWithTF = JSON.parse(resultTimeTableWithTF)
+    ResultTimeTableList = JSON.parse(objString);
+    // resultTimeTableWithTF = JSON.parse(resultTimeTableWithTF);
     console.log(ResultTimeTableList);
     // 시작할 때 왼쪽페이지에 넣어준다
     if(ResultTimeTableList != []) {

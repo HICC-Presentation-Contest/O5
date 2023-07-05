@@ -566,6 +566,7 @@ function sendGroupListToBack(sendingGroupList){
             resultTimeTable = JSON.stringify(resultTimeTable);
             resultTimeTableList = JSON.stringify(resultTimeTableList);
             localStorage.setItem('resultTimeTable', resultTimeTable);
+            localStorage.setItem('resultTimeTableList', resultTimeTableList);
             $("#mySpinner").hide();
             location.replace('displayingNewTimeTable'); //다음페이지로 넘어가기
         },
