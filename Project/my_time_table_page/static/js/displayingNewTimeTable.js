@@ -437,7 +437,8 @@ function sendingSortValue(){
             $("#mySpinner").hide();
             ResultTimeTableList = data.resultTimeTable;
                 // 시작할 때 왼쪽페이지에 넣어준다
-            if(ResultTimeTableList != []){
+            if(ResultTimeTableList.length != 0){
+
                 addClassToTimeTable(ResultTimeTableList[0]);
                 //결과리스트 출력
                 makingTableList(ResultTimeTableList);
