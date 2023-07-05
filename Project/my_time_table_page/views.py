@@ -74,7 +74,7 @@ def loading_user_time_table(request):
 def suggested_search_word(request):
     search_word = request.POST['search_word']
     if search_word != "":
-        suggested_search_word_list = testdb.search_predictive(search_word)
+        suggested_search_word_list = testdb.search_subject_predictive(search_word)
     else:
         suggested_search_word_list = []
     answer = {
@@ -87,7 +87,7 @@ def suggested_search_word(request):
 @csrf_exempt
 def search_word_submit(request):
     search_word = request.POST['search_word']
-    result_box_list = list(testdb.search(search_word, -1,"-1", "-1", "-1", "-1"))
+    result_box_list = list(testdb.search_subject(search_word, -1,"-1", "-1", "-1", "-1"))
 
     answer = {
         'result_box_list': result_box_list
