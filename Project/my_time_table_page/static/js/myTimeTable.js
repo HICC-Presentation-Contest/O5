@@ -783,7 +783,7 @@ function shadingTimeTable(classTime) {
         timeOfDay = timeList[j].substring(1); // 2,3,4 가져온다.
         for (let k = 0; k < timeOfDay.length; k++) {
             id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
-            $(id).css('filter', 'brightness(70%)');
+            $(id).css('filter', 'brightness(80%)');
         }
 
     }
