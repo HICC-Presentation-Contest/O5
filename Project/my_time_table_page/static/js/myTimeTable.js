@@ -17,6 +17,8 @@ function getCookie(name) {
 
 var csrftoken = getCookie('csrftoken');
 
+        let timeTableBackgroundColorList = ['#F5A7A7','#DDF3F5','#ABC2E8','#FFE3E1','#FFD4B2','#AAC4FF','#E5E0FF','#DDFFBB','#FDF7C3','#D1EAA3'];
+    // let timeTableBackgroundColorList = ['#E3F4F4','#DBDFEA','#DBDFEA','#FFE3E1','#FFD4B2','#AAC4FF','#E5E0FF','#DDFFBB','#','#E3F4F4'];
 
 
 
@@ -155,7 +157,6 @@ function addClassToTimeTable(userTimeTable) {
     timeTableRemover()
 
     // 이부분이 시간표 색상 설정!, 순서대로 색깔이 지정 된다.
-    let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2'];
     // 수업이름
     let className = '';
     //  강의실 정보
