@@ -395,7 +395,6 @@ function sendingUserTimeTable() {
 function loadingUserTimeTable(){
         let userID = $('#userID').html();
         //임시 id
-        userID ='abc';
         $.ajax({
         url: 'loadingUserTimeTable',
         type: 'POST',
@@ -412,7 +411,7 @@ function loadingUserTimeTable(){
         success: function (data) {
             $("#mySpinner").hide();
             userTimeTable = data;
-
+            console.log(userTimeTable);
         },
 
     });
@@ -453,9 +452,10 @@ function appendClassToNowTimeTable(){
 }
 
 window.onload = function () {
-    // loadingUserTimeTable();
+    loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
     givingCrownToTimeTable();
+    console.log(userTimeTable);
 }
 
 

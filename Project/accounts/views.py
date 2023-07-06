@@ -28,6 +28,7 @@ def signup_view(request):
     if request.method == "POST":
         username = request.POST['username']
         print(username)
+        userList = [username, {'기본시간표1' : []}, '기본시간표1'] # 이거 추가하고싶어
         password = request.POST['password']
         email = request.POST['email']
         user = User.objects.create_user(username, email, password)
