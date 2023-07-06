@@ -123,13 +123,13 @@ def send_sort_value(request):
     # 정렬값, 리스트 형식으로 ['lunchTime', 'emptyDay', 'morningLectureMain', 'afternoonLectureMain'] 중 체크된것만 들어있다.
     sort_value_list = []
     result_time_table_list = []
+    week_day_list = []
     result_time_table = []
 
     if request.method == 'POST':
         sort_value_list = json.loads(request.POST['sortValueList'])
         week_day_list = json.loads(request.POST['weekDayList']) # 공강일 ['월', '화'] 이렇게 들어온다. ,만약 공강일 설정 안되어있으면 빈리스트가 간다.
         result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
-
     for i in sort_value_list:
         if i == 'lunchTime':
             tmp = sort_lunch_time.sort_free_list(result_time_table_list)

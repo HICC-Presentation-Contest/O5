@@ -275,6 +275,7 @@ const swiper = new Swiper('.swiper-container', {
 //오른쪽 리스트에 넣는 함수들
 //리스트 자료형 생성 및 시간표 색상
 function makingTableList(TimeTableClassList) {
+    $('#resultTimeTableListBox').empty();
     for (let i = 0; i < TimeTableClassList.length; i++){
         swiper.appendSlide(
             "<div class='swiper-slide' onclick='clickTimeTableListElement(this)'> " +
@@ -449,6 +450,9 @@ function sendingSortValue(){
                 addClassToTimeTable(ResultTimeTableList[0]);
                 //결과리스트 출력
                 makingTableList(ResultTimeTableList);
+            }
+            else {
+                alert('검색된 시간표가 없습니다.');
             }
 
         },
