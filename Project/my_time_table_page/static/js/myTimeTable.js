@@ -208,8 +208,11 @@ function addClassToTimeTable(userTimeTable) {
 
 // 딕셔너리를 받아서 개인 시간표 세팅하기, 리스트, 왼쪽시간표
 function basicUserInformation(TimeTableClass) { // 매개변수는 usertimetable의 두번째 원소
+    console.log(TimeTableClass);
     $('#timeTableNameList').empty(); // 기존 리스트 지우기
-    let timeTableNameList = Object.keys(TimeTableClass)   // 리스트의 키값은 시간표이름
+    console.log(Object.keys(TimeTableClass));
+    let timeTableNameList = Object.keys(TimeTableClass);  // 리스트의 키값은 시간표이름
+
      //키값에 맞게 타임테이블이름 리스트에 추가해준다.
     for (let i = 0; i < timeTableNameList.length; i++) {
         let innerList = document.createElement('button');
@@ -263,6 +266,7 @@ function deleteClass(event){
 // 새 시간표를 HTML에 추가
 function remakeTimeTableNameList() {
     appendUserTimeTable(userTimeTable[1]);
+    sendingUserTimeTable(); //db저장
     basicUserInformation(userTimeTable[1]);
     givingCrownToTimeTable();
 }
@@ -276,8 +280,9 @@ function deleteTimeTableList() {
     return false;
   }
   let name = $('#selectedTimeTableName').html();
-    delete (userTimeTable[1])[name];
-    basicUserInformation(userTimeTable[1]);
+  delete (userTimeTable[1])[name];
+  sendingUserTimeTable();
+  basicUserInformation(userTimeTable[1]);
 }
 
 // 시간표 이름 클릭 시 동작
@@ -295,6 +300,7 @@ function timeTableNameClick(event){
 function changeBasicTimeTable(){
     let name = document.getElementById('selectedTimeTableName').innerHTML;
     userTimeTable[2] = name;
+    sendingUserTimeTable(); // db 저장
     givingCrownToTimeTable()
 }
 
@@ -358,22 +364,23 @@ function appendUserTimeTable(userTimeTable) {
 
 
 // 첫번째인자: 유저id, 두번째인자:시간표리스트, 세번째인지: 기본시간표 이름
-let userTimeTable =
-    ['abc',
-        {
-
-            '기본시간표1': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월6,화6,목6', 1299, '박준철', 'T0702,T0702,T0702']],
-            '기본시간표2': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월7,화7,목7', 1300, '박준철', 'T0702,T0702,T0702']],
-            '기본시간표3': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월2,화2,수2', 1301, '박준상1', 'T0801,T0801,T0801']]
-
-        },
-        '기본시간표1'
-]
-
+// let userTimeTable =
+//     ['abc',
+//         {
+//
+//             '기본시간표1': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월6,화6,목6', 1299, '박준철', 'T0702,T0702,T0702']],
+//             '기본시간표2': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월7,화7,목7', 1300, '박준철', 'T0702,T0702,T0702']],
+//             '기본시간표3': [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419'], ['컴퓨터네트워크 (COMPUTER NETWORK)', '월2,화2,수2', 1301, '박준상1', 'T0801,T0801,T0801']]
+//
+//         },
+//         '기본시간표1'
+// ]
+let userTimeTable = [];
 
 
 
 function sendingUserTimeTable() {
+    console.log(userTimeTable);
     $.ajax({
         url: 'sendingUserTimeTable',
         type: 'POST',
@@ -381,6 +388,7 @@ function sendingUserTimeTable() {
             'user_time_table': JSON.stringify(userTimeTable),
             'csrfmiddlewaretoken': csrftoken,
         },
+        async:false,
         datatype: 'json',
         beforeSend: function (request) {
             $("#mySpinner").show();
@@ -404,6 +412,7 @@ function loadingUserTimeTable(){
             'userID': userID,
             'csrfmiddlewaretoken': csrftoken,
         },
+        async:false,
         datatype: 'json',
         beforeSend: function (request) {
             // Performed before calling Ajax
@@ -412,8 +421,16 @@ function loadingUserTimeTable(){
         },
         success: function (data) {
             $("#mySpinner").hide();
-            userTimeTable = data;
-            console.log(userTimeTable);
+            let myData = data.userTimeTable; // 유저 시간표 리스트
+            if(myData == "-1"){ // 만약 정보가 없을때
+                userTimeTable = [userID, {
+                    '기본시간표1' : [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419']],
+                },'기본시간표1'];
+            }
+            else{ // 정보가 있을떄
+                userTimeTable = myData;
+
+            }
         },
 
     });
@@ -422,8 +439,8 @@ function loadingUserTimeTable(){
 //시간표 이름 수정하는 함수
 function clickReviseButton() {
     clickRevise();
-    console.log(userTimeTable[1]);
-
+    // console.log(userTimeTable[1]);
+    sendingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
 }
 
@@ -454,10 +471,10 @@ function appendClassToNowTimeTable(){
 }
 
 window.onload = function () {
-    // loadingUserTimeTable();
+    userTimeTable[0] = $('#userID').html() // userTimetable 세팅
+    loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
     givingCrownToTimeTable();
-    console.log(userTimeTable);
 }
 
 
