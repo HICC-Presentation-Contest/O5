@@ -30,7 +30,7 @@ a {
 
     height: 90vh;
     margin: 2%;
-    background-color: #E7CEA6;
+    background-color:  #F7DAD9;
 }
 
 #leftBox {
@@ -117,7 +117,7 @@ a {
 }
 
 .autocomplete-active {
-    background-color: DodgerBlue !important;
+    background-color: #A1C2F1 !important;
     color: #ffffff;
 }
 
@@ -129,7 +129,7 @@ a {
 }
 
 .searchButton {
-    background-color: #0A6EBD; /*버튼색*/
+    background-color: #A1C2F1; /*버튼색*/
     color: white;
 }
 
@@ -164,7 +164,7 @@ a {
     width: 12.5%;
     height: 50px;
     /*text-align: center;*/
-    border: 1px solid #439771;
+    border: 2.5px solid  #E0BAC9;
     font-size: smaller;
     position: relative;
     /*이 색은 배경색이 투명해서 brightness가 적용안되기에 넣어줌*/
@@ -176,7 +176,7 @@ a {
     width: 12.5%;
     height: 50px;
     text-align: center;
-    border: 1px solid #439771;
+    border: 2.5px solid #E0BAC9;
 }
 
 
@@ -219,5 +219,18 @@ a {
     z-index: 2; /* 음수 값으로 우선순위를 낮출 수 있음 */
 }
 
+
+#navbar-example2 {
+    background-color: rgba(255, 222, 242, 0.6);
+    height: 73px;
+}
+
+hr{
+    margin-top : -15.5px;
+    color: #A1C2F1;
+    border :0;
+    border-top : 25px solid;
+    opacity: .25;
+}
 
 
