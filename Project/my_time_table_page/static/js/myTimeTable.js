@@ -289,7 +289,15 @@ function timeTableNameClick(event){
     }
 }
 
-function crownTimeTable(event){
+
+function changeBasicTimeTable(){
+    let name = document.getElementById('selectedTimeTableName').innerHTML;
+    userTimeTable[2] = name;
+    givingCrownToTimeTable()
+}
+
+
+function givingCrownToTimeTable(){
     if(document.getElementById('basicTimeTable')){
         document.getElementById('basicTimeTable').remove();
 
@@ -302,6 +310,7 @@ function crownTimeTable(event){
         innerList.className = 'fas fa-crown';
         innerList.id = 'basicTimeTable';
         button.appendChild(innerList);
+        innerList.innerHTML = 'g';
 }
 
 
@@ -446,6 +455,7 @@ function appendClassToNowTimeTable(){
 window.onload = function () {
     // loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
+    givingCrownToTimeTable();
 }
 
 
