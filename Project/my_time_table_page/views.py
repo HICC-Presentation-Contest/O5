@@ -107,7 +107,7 @@ def send_group_list(request):
     for i in range(len(data)):
         tmp_list=[]
         for j in range(len(data[i])):
-            tmp =[(testdb.search("-1", data[i][j], "-1", "-1", "-1", "-1"))]
+            tmp =[(testdb.search_subject("-1", data[i][j], "-1", "-1", "-1", "-1"))]
             tmp_list.append(tmp)
         all_groups.append(tmp_list)
     sort_all_groups+=(timetable_algorithm.sort_groups(all_groups))
@@ -130,8 +130,6 @@ def send_sort_value(request):
         week_day_list = json.loads(request.POST['weekDayList']) # 공강일 ['월', '화'] 이렇게 들어온다. ,만약 공강일 설정 안되어있으면 빈리스트가 간다.
         result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
 
-    print(result_time_table_list)
-
     for i in sort_value_list:
         if i == 'lunchTime':
             tmp = sort_lunch_time.sort_free_list(result_time_table_list)
@@ -141,6 +139,8 @@ def send_sort_value(request):
             tmp, _ = fillter_timetable.filter_time_table(result_time_table_list)
         if i == 'afternoonLectureMain':
             _, tmp = fillter_timetable.filter_time_table(result_time_table_list)
+    if sort_value_list == []:
+        tmp = result_time_table_list
 
     for empty_slots, combination in tmp:
         result_time_table.append(combination)

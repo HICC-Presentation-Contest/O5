@@ -3,8 +3,7 @@ def day_to_index(day):
 
 # 원하는 날에 공강이 있는 시간표 재배치
 def empty_Day(result_time_table,week_day_list):
-    empty_days_input = week_day_list
-    empty_days = empty_days_input.split(',')
+    # empty_days = empty_days_input.split(',')
     empty_day_combinations = []
 
     # True,False 값 불러오기
@@ -13,7 +12,7 @@ def empty_Day(result_time_table,week_day_list):
         empty_days_result = []
 
         # 모두 공강인지 확인
-        for day in empty_days:
+        for day in week_day_list:
             day_index = day_to_index(day)
             day_slots = empty_slots[day_index]
             if all(slot == 'True' for slot in day_slots):
