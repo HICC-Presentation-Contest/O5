@@ -320,6 +320,3 @@ def insert_data():
 #     print(i)
 # conn.commit()
 # conn.close()
-data = search_subject("-1",-1,"-1","3","-1","-1","사범대학", "수학교육과")
-for i in data:
-    print(i)
