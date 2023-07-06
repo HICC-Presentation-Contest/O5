@@ -154,6 +154,7 @@ a {
     border-collapse: collapse;
     background-color: white;
     width: 100%;
+    table-layout: fixed;
 
 }
 
@@ -161,8 +162,8 @@ a {
 
 /*테이블 안에 th td 기본 속성지정*/
 #myTimeTable > tr > th, td {
-    width: 12.5%;
-    height: 50px;
+    width: 12%;
+    height: 60px;
     /*text-align: center;*/
     border: 2.5px solid  #E0BAC9;
     font-size: smaller;
@@ -173,15 +174,15 @@ a {
 
 /*왼쪼시간표 th 요소들*/
 #myTimeTable > th {
-    width: 12.5%;
-    height: 50px;
+    width: 12%;
+    height: 60px;
     text-align: center;
     border: 2.5px solid #E0BAC9;
 }
 
 
 .myTimeTable_time {
-    font-size: large;
+    font-size: smaller;
 }
 
 
