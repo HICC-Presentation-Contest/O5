@@ -5,6 +5,7 @@ from . import testdb
 from . import timetable_algorithm
 from . import sort_empty_day
 from . import sort_lunch_time
+from . import fillter_timetable
 import json
 
 
@@ -135,7 +136,11 @@ def send_sort_value(request):
         if i == 'lunchTime':
             tmp = sort_lunch_time.sort_free_list(result_time_table_list)
         if i == 'emptyDay':
-            tmp = sort_empty_day.empty_Day(result_time_table_list)
+            tmp = sort_empty_day.empty_Day(result_time_table_list,week_day_list)
+        if i == 'morningLectureMain':
+            tmp, _ = fillter_timetable.filter_time_table(result_time_table_list)
+        if i == 'afternoonLectureMain':
+            _, tmp = fillter_timetable.filter_time_table(result_time_table_list)
 
     for empty_slots, combination in tmp:
         result_time_table.append(combination)

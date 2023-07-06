@@ -2,8 +2,8 @@ def day_to_index(day):
     return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4, '토': 5, '일': 6}[day]
 
 # 원하는 날에 공강이 있는 시간표 재배치
-def empty_Day(result_time_table):
-    empty_days_input = input("원하는 날짜 입력: ")
+def empty_Day(result_time_table,week_day_list):
+    empty_days_input = week_day_list
     empty_days = empty_days_input.split(',')
     empty_day_combinations = []
 
