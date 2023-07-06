@@ -307,5 +307,3 @@ def insert_data():
 #     print(i)
 # conn.commit()
 # conn.close()
-if(search_group_table("aaa")[1]) == {}:
-    print(1)
