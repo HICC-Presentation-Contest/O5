@@ -65,7 +65,6 @@ def loading_user_time_table(request):
     answer = {
         'none': data_list
     }
-    print(answer)
 
     return JsonResponse(answer)
 

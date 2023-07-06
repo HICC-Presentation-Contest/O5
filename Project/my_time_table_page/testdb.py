@@ -269,6 +269,8 @@ def search_group_table(user_id):
 
     conn.commit()
     conn.close()
+    if data[1] == {}:
+        return -1
     return data
 
 
@@ -305,3 +307,5 @@ def insert_data():
 #     print(i)
 # conn.commit()
 # conn.close()
+if(search_group_table("aaa")[1]) == {}:
+    print(1)
