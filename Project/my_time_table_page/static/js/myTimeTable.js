@@ -903,8 +903,10 @@ function  insertToUserTimeTable(event){
 }
 
 
-function saveCheck() {
 
+function nextPage() {
+    let stringTimeTable = JSON.stringify(userTimeTable);
+    localStorage.setItem('userTimeTable', stringTimeTable);
+    location.replace('makingNewTimeTable'); //다음페이지로 넘어가기
 }
-
 

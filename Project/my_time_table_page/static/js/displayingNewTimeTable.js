@@ -150,8 +150,9 @@ function timeTableRemover() {
         "            </tr>"
 }
 
-function addClassToTimeTable(TimeTableClass) {
+function addClassToTimeTable(TimeTableClass, listNumber) {
     timeTableRemover()
+    $('#myTimeTable').attr('value', listNumber);
     // 수업이름
     let className = '';
     //  강의실 정보
@@ -403,7 +404,8 @@ function clickTimeTableListElement(event){
     // console.log('id:' + idName);
     let idNameList = idName.split('_');
     let listNumber = idNameList[1]; //timeTableList_1 이면 1만 가져오기
-    addClassToTimeTable(ResultTimeTableList[listNumber]) // 결과리스트의 listNumber째의 리스트를 왼쪽 myTimeTable에 출력
+
+    addClassToTimeTable(ResultTimeTableList[listNumber], listNumber) // 결과리스트의 listNumber째의 리스트를 왼쪽 myTimeTable에 출력
 
 
 }
@@ -447,7 +449,7 @@ function sendingSortValue(){
                 // 시작할 때 왼쪽페이지에 넣어준다
             if(ResultTimeTableList.length != 0){
 
-                addClassToTimeTable(ResultTimeTableList[0]);
+                addClassToTimeTable(ResultTimeTableList[0],0);
                 //결과리스트 출력
                 makingTableList(ResultTimeTableList);
             }
@@ -472,14 +474,22 @@ window.onload = function () {
         resultTimeTableWithTF = localStorage.getItem('resultTimeTableList');
     }
     ResultTimeTableList = JSON.parse(objString);
+    // 유저시간표
+    let stringUserTimeTable = '';
+    if(localStorage.getItem('userTimeTable')){
+        stringUserTimeTable = localStorage.getItem('userTimeTable');
+    }
+    userTimeTable = JSON.parse(stringUserTimeTable);
     // resultTimeTableWithTF = JSON.parse(resultTimeTableWithTF);
-    console.log(ResultTimeTableList);
+    // console.log(ResultTimeTableList);
     // 시작할 때 왼쪽페이지에 넣어준다
     if(ResultTimeTableList != []) {
-        addClassToTimeTable(ResultTimeTableList[0]);
+        addClassToTimeTable(ResultTimeTableList[0], 0);
         //결과리스트 출력
         makingTableList(ResultTimeTableList);
     }
+
+
 }
 
 var weekdays = document.getElementById("weekdays");
@@ -493,6 +503,71 @@ function toggleWeekdays(){
 }
 
 
+
+let userTimeTable = []; // 유저타임테이블
+
+
+// 시간표 저장
 function saveTimeTable(){
 
+    // console.log('기존시간표');
+    // console.log(userTimeTable);
+    let listNumber = $('#myTimeTable').attr('value');
+    appendUserTimeTable(ResultTimeTableList[listNumber]);
+    // console.log('바뀐시간표');
+    console.log(userTimeTable);
+    sendingUserTimeTable();
+
+}
+
+let basicTimeTableNameCheck = {};
+let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
+// 기본시간표 체크리스트 초기화
+for (let i = 1; i <= 100; i++) {
+  basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
+}
+
+function appendUserTimeTable(newTimeTable) {
+    // 기본시간표 체크 상태 갱신
+    for (let key in userTimeTable[1]) {
+        if (/기본시간표[0-99]/g.test(key)) {
+            basicTimeTableNameCheck[key] = true;
+        }
+    }
+     // 다음 사용 가능한 시간표 번호 찾기
+    while (basicTimeTableNameCheck['기본시간표' + nextTimeTableNumber.toString()]) {
+    nextTimeTableNumber++;
+        }
+    // console.log(nextTimeTableNumber);
+    // console.log(userTimeTable);
+    // 다음 시간표 번호로 시간표 추가
+    let nextTimeTableName = '기본시간표' + nextTimeTableNumber.toString();
+    alert(nextTimeTableName + '이 저장되었습니다.');
+    userTimeTable[1][nextTimeTableName] = newTimeTable;
+    basicTimeTableNameCheck[nextTimeTableName] = true;
+
+    nextTimeTableNumber++; // 다음 시간표 번호 증가
+}
+
+function sendingUserTimeTable() {
+    // console.log(userTimeTable);
+    $.ajax({
+        url: 'sendingUserTimeTable',
+        type: 'POST',
+        data: {
+            'user_time_table': JSON.stringify(userTimeTable),
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        async:false,
+        datatype: 'json',
+        beforeSend: function (request) {
+            $("#mySpinner").show();
+
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+
+        },
+
+    });
 }
