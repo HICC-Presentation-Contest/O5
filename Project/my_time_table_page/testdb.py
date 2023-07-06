@@ -82,7 +82,8 @@ def insert_into_subject(index, grade, department1, department2, completion, fiel
 
 
 # DB에서 검색
-def search_subject(search_word, index, time, grade, credit, completion):  # 검색어, 인덱스(기본키), 학년, 학점, 이수구분을 이용한 검색기능
+  # 검색어, 인덱스(기본키), 학년, 학점, 이수구분, 구분1, 구분2를 이용한 검색기능
+def search_subject(search_word, index, time, grade, credit, completion,univ, department):
     conn = pymysql.connect(host='localhost', user='root',
                            password=db_password, db='test1', charset='utf8')
     curs = conn.cursor()
@@ -98,6 +99,18 @@ def search_subject(search_word, index, time, grade, credit, completion):  # 검�
             first = True
         else:
             sql += " and grade = \"" + grade + "\""
+    if univ != "-1":
+        if not first:
+            sql += " where major = \"" + univ + "\""
+            first = True
+        else:
+            sql += " and major = \"" + univ + "\""
+    if department != "-1":
+        if not first:
+            sql += " where field2 = \"" + department + "\""
+            first = True
+        else:
+            sql += " and field2 = \"" + department + "\""
     if index != -1:
         if not first:
             sql += " where num = " + str(index)
@@ -301,9 +314,12 @@ def insert_data():
 #                            password=db_password, db='test1', charset='utf8')
 # curs = conn.cursor()
 #
-# curs.execute("""select * from group_table;""")
+# curs.execute("""select * from subject;""")
 # rows = curs.fetchall()
 # for i in rows:
 #     print(i)
 # conn.commit()
 # conn.close()
+data = search_subject("-1",-1,"-1","3","-1","-1","사범대학", "수학교육과")
+for i in data:
+    print(i)
