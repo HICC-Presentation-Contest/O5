@@ -126,6 +126,7 @@ def send_sort_value(request):
 
     if request.method == 'POST':
         sort_value_list = json.loads(request.POST['sortValueList'])
+        week_day_list = json.loads(request.POST['weekDayList']) # 공강일 ['월', '화'] 이렇게 들어온다. ,만약 공강일 설정 안되어있으면 빈리스트가 간다.
         result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
 
     print(result_time_table_list)

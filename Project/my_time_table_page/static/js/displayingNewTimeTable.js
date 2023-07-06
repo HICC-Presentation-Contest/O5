@@ -410,13 +410,19 @@ function clickTimeTableListElement(event){
 
 // 체크박스 값 넘기기
 function sendingSortValue(){
-
     // name이 같은 체크박스의 값들을 배열에 담는다.
-    var sendingGroupList = [];
+    let sendingGroupList = [];
+    let weekDayList = [];
     $("input[name='sortValue']:checked").each(function(i) {
         sendingGroupList.push($(this).val());
+        if ($(this).val() == 'emptyDay'){ // 만약 공강일 있으면 공강일 리스트도 보낸다.
+            $("input[name='weekDay']:checked").each(function(i) {
+                weekDayList.push($(this).val());
+                });
+            }
     });
-
+    // console.log(sendingGroupList);
+    // console.log(weekDayList);
     $.ajax({
         url: 'sendSortValue',
         type: 'POST',
@@ -425,6 +431,7 @@ function sendingSortValue(){
         data: {
             'resultTimeTableWithTF' : resultTimeTableWithTF,
             'sortValueList': JSON.stringify(sendingGroupList),
+            'weekDayList' : JSON.stringify(weekDayList),
             'csrfmiddlewaretoken': csrftoken,
         },
         datatype: 'json',
