@@ -59,11 +59,11 @@ def sending_user_time_table(request):
 def loading_user_time_table(request):
     userID = request.POST['userID']
     data_list = testdb.search_group_table(userID)  # db에서 유저 id에 따른 data 추출
-
+    print(data_list)
     userList = []
 
     answer = {
-        'none': data_list
+        'userTimeTable': data_list
     }
 
     return JsonResponse(answer)
