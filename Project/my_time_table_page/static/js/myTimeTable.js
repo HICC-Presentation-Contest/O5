@@ -264,7 +264,6 @@ function remakeTimeTableNameList() {
     appendUserTimeTable(userTimeTable[1]);
     basicUserInformation(userTimeTable[1]);
     givingCrownToTimeTable();
-    console.log(userTimeTable);
 }
 
 
@@ -304,7 +303,7 @@ function givingCrownToTimeTable(){
         document.getElementById('basicTimeTable').remove();
 
     }
-    let name = document.getElementById('selectedTimeTableName').innerHTML;
+    let name = userTimeTable[2];
     let button = document.getElementById(name);
     let buttonName= document.getElementById(name).innerHTML;
 
@@ -454,7 +453,7 @@ function appendClassToNowTimeTable(){
 }
 
 window.onload = function () {
-    loadingUserTimeTable();
+    // loadingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
     givingCrownToTimeTable();
     console.log(userTimeTable);

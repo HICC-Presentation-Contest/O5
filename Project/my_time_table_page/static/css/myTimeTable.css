@@ -185,6 +185,12 @@ a {
 }
 
 
+#timeTableNameList {
+    overflow-y: auto;
+    height: 60%;
+}
+
+
 /*기본 시간표 표시를 위한 버튼*/
 #basicTimeTableButton {
     color: red
