@@ -262,7 +262,9 @@ function deleteClass(event){
 // 새 시간표를 HTML에 추가
 function remakeTimeTableNameList() {
     appendUserTimeTable(userTimeTable[1]);
-  basicUserInformation(userTimeTable[1]);
+    basicUserInformation(userTimeTable[1]);
+    givingCrownToTimeTable();
+    console.log(userTimeTable);
 }
 
 
@@ -280,9 +282,9 @@ function deleteTimeTableList() {
 
 // 시간표 이름 클릭 시 동작
 function timeTableNameClick(event){
-    let myTimeTable = userTimeTable[1][event.innerHTML];
-    $('#myTimeTableName').html(event.innerHTML); // 시간표 이름 변경
-    $('#selectedTimeTableName').html(event.innerHTML);
+    let myTimeTable = userTimeTable[1][event.textContent];
+    $('#myTimeTableName').html(event.textContent); // 시간표 이름 변경
+    $('#selectedTimeTableName').html(event.textContent);
     // console.log(myTimeTable);
     if(myTimeTable != []){
         addClassToTimeTable(myTimeTable);
@@ -310,7 +312,7 @@ function givingCrownToTimeTable(){
         innerList.className = 'fas fa-crown';
         innerList.id = 'basicTimeTable';
         button.appendChild(innerList);
-        innerList.innerHTML = 'g';
+
 }
 
 
@@ -447,7 +449,7 @@ function clickRevise() {
 function appendClassToNowTimeTable(){
     $('#rightBox').css('display', 'none');
     $('#rightBox1').css('display', 'block');
-    $('#leftBox').css('width','50%');
+    $('#leftBox').css('width','65%');
 
 }
 
