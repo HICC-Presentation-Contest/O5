@@ -26,12 +26,12 @@ def logout_view(request):
     return redirect("accounts:login")
 
 def signup_view(request):
-    print('communication: OK')
+    # print('communication: OK')
     if request.method == "POST":
-        username = request.POST['username']
-        print(username)
-        userList = [username, {'기본시간표1' : []}, '기본시간표1'] # 이거 추가하고싶어
-        password = request.POST['password']
+        username = request.POST['id']
+        # print(username)
+        # userList = [username, {'기본시간표1' : []}, '기본시간표1'] # 이거 추가하고싶어
+        password = request.POST['password1']
         email = request.POST['email']
         user = User.objects.create_user(username, email, password)
         user.save()

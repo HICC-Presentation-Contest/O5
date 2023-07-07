@@ -30,7 +30,7 @@ $(function(){
             if(pw1 == pw2){
                 $("#alert-success").show();
                 $("#alert-danger").hide();
-                pwc = true;
+                pwc = true; // 비밀번호같으면 pwc true
             }
             else{
                 $("#alert-success").hide();
@@ -77,7 +77,7 @@ $(function(){
 
 $("#overlay").click(function(){
 	var id = $("#id").val();
-	console.log(url);
+	// console.log(url);
 	$.ajax({
 		type:'post'
 		// ,url:'myTimeTable/idCheck'
@@ -92,64 +92,62 @@ $("#overlay").click(function(){
 
 			}else{
 				alert('사용할 수 있는 아이디 입니다.');
-
 				overChk= true;
 			}
-		}
-		,complete: function (data) {
-			console.log(data)
 		}
 
 	});
 });
 
-		 $("#id").focusout(function(){
-			     if($('#id').val() == ""){
+$("#id").focusout(function(){
+	 if($('#id').val() == ""){
 
-			   		$('#idch').text('*필수 정보입니다.');
-			   	  	$('#idch').css('color', 'red');
-			   		return false;
-					    }else{
-			         idc = true;
-			         $("#idch").hide();
-			         return true;
-			     }
-			 });
-		 $("#email").focusout(function(){
-			   if($('#email').val() == ""){
+		$('#idch').text('*필수 정보입니다.');
+		$('#idch').css('color', 'red');
+		return false;
+			}else{
+		 idc = true;
+		 $("#idch").hide();
+		 return true;
+	 }
+ });
+// $("#email").focusout(function(){
+//    if($('#email').val() == ""){
+//
+// 	   $('#emch').text('*필수 정보입니다.');
+// 	   $('#emch').css('color', 'red');
+// 		$(this).focus();
+// 		return false;
+//    }else{
+// 	   emailc = true;
+// 	   return true;
+//    }
+// });
+var idc = false;
+var pwc = false;
+// var pwc2 = false;
+// var emailc = false;
+function regist(){
+var id = $("#id").val();
+var pw = $("#password1").val();
+var pw2 = $("#password2").val();
+// var email = $("#email").val();
 
-				   $('#emch').text('*필수 정보입니다.');
-				   $('#emch').css('color', 'red');
-					$(this).focus();
-					return false;
-			   }else{
-			       emailc = true;
-			       return true;
-			   }
-			});
-		    var idc = false;
-		    var pwc = false;
-		    var pwc2 = false;
-		    var emailc = false;
-		   function regist(){
-			var id = $("#id").val();
-			var pw = $("#password1").val();
-			var pw2 = $("#password2").val();
-			var email = $("#email").val();
 
 
-
-	  if(idc == false || id === ""){
-	      alert('아이디를 확인 해 주세요')
-	  }else if(overChk == false){
-	      alert('아이디 중복 검사를 해주세요')
-	   }else if(pwc == false|| pw2 === "" || pwc2 == false){
-	      alert('비밀번호를 확인 해 주세요')
-	  }else if(emailc == false || email === ""){
-	  	alert('이메일을 입력해주세요')
-	  }else if(emoverChk == false){
-	  	alert('이메일을 중복 검사를 해주세요')
-	  }else{
-	      $('form').submit();
-	  }
-	} ;
+if(idc == false || id === ""){
+  alert('아이디를 확인 해 주세요')
+}else if(overChk == false){
+  alert('아이디 중복 검사를 해주세요')
+}else if(pwc == false|| pw2 === ""){
+  alert('비밀번호를 확인 해 주세요')
+}
+// else if(emailc == false || email === ""){
+// alert('이메일을 입력해주세요')
+// }else if(emoverChk == false){
+// alert('이메일을 중복 검사를 해주세요')
+// }
+else{
+  $('form').submit();
+}
+} ;
