@@ -580,3 +580,26 @@ function groupCheck() {
 }
 
 
+
+
+// 정렬기능
+function changeFn(event){
+    $('.fieldElement').css('display', 'none');
+    document.getElementById('학년').style.display = 'none';
+    document.getElementById('건축대학_건축학부_학년').style.display = 'none';
+    let field = document.getElementById('field');
+    console.log(event.options[event.selectedIndex].value);
+    document.getElementById(event.options[event.selectedIndex].value).style.display = 'block';
+}
+
+function showGradeList(event){
+    document.getElementById('학년').style.display = 'block';
+}
+
+function showGradeList_architecture(event){
+    document.getElementById('건축대학_건축학부_학년').style.display = 'block';
+}
+
+function sendingFieldValue() {
+
+}
