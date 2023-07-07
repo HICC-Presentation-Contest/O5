@@ -424,7 +424,7 @@ function loadingUserTimeTable(){
             let myData = data.userTimeTable; // 유저 시간표 리스트
             if(myData == "-1"){ // 만약 정보가 없을때
                 userTimeTable = [userID, {
-                    '기본시간표1' : [['대학수학(1) (UNIVERSITY MATHEMATICS(1))', '화4,화5,금3', 999, '김연미', 'R420-1,R419']],
+                    '기본시간표1' : [],
                 },'기본시간표1'];
             }
             else{ // 정보가 있을떄
