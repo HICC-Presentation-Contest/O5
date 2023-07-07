@@ -174,6 +174,7 @@ function addClassToTimeTable(TimeTableClass, listNumber) {
         className = classNameList[0];
 
         lectureRoom = TimeTableClass[i][4];
+        console.log(lectureRoom);
         professorName = TimeTableClass[i][3];
 
         timeList = TimeTableClass[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
@@ -184,7 +185,7 @@ function addClassToTimeTable(TimeTableClass, listNumber) {
             for (let k = 0; k < timeOfDay.length; k++) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
                 let text =
-                    className + '<br>'+ professorName +'<br>' + lectureRoom;
+                    className + '<br>'+ professorName +'<br>' + lectureRoom[j];
                 $(id).html(text);
                 // document.getElementById(id).innerHTML = text;
                 $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기

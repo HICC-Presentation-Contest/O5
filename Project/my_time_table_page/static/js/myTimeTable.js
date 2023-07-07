@@ -193,7 +193,7 @@ function addClassToTimeTable(userTimeTable) {
                 id = "#timeTable_" + day + "_" + timeOfDay.substr(k, 1);
 
                 $(id).html('<button type="button" class="btn-close timeTableDeleteButton" aria-label="Close" onclick="deleteClass(this)"></button>'
-                    + className + '<br>'+ professorName +'<br>' + lectureRoom
+                    + className + '<br>'+ professorName +'<br>' + lectureRoom[j]
                     + '<div class="classIdentityNumber" style="display:none">' + identityNumber + '</div>');
                 $(id).css('background-color', timeTableBackgroundColorList[i]); // 색주기
             }
