@@ -16,4 +16,5 @@ urlpatterns = [
     path('sendGroupList', views.send_group_list, name='send_group_list'),
     path('sendSortValue', views.send_sort_value, name='send_sort_value'),
     path('categorization', views.subject_categorization, name='subject_categorization'),
+    path('sendingFieldValue', views.sending_field_value, name='sending_field_value'),
 ]

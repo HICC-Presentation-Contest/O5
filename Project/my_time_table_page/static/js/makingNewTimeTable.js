@@ -581,25 +581,92 @@ function groupCheck() {
 
 
 
-
+let sendingList = []
 // 정렬기능
 function changeFn(event){
+    // 추가리스트 안보이게
     $('.fieldElement').css('display', 'none');
     document.getElementById('학년').style.display = 'none';
     document.getElementById('건축대학_건축학부_학년').style.display = 'none';
-    let field = document.getElementById('field');
-    console.log(event.options[event.selectedIndex].value);
+    // 원하는 리스트 보이게
     document.getElementById(event.options[event.selectedIndex].value).style.display = 'block';
+    //리스트 초기화
+    sendingList = [];
+    //리스트의 첫번째 요소 넣는다.
+    sendingList.push(event.options[event.selectedIndex].value);
+    console.log(sendingList);
+    //정보보내기
+    sendingFieldValue(sendingList);
 }
-
+// 학년이 존재하는 분야를 선택했을떄
 function showGradeList(event){
+    while (sendingList.length > 1){
+        sendingList.pop();
+    }
+    if (event.options[event.selectedIndex].value != '선택'){
+        sendingList.push(event.options[event.selectedIndex].value);
+    }
     document.getElementById('학년').style.display = 'block';
+    console.log(sendingList);
+    //정보보내기
+    sendingFieldValue(sendingList);
 }
 
+// 학년이 5학년인 전공을 선택 했을떄
 function showGradeList_architecture(event){
+    while (sendingList.length > 1){
+        sendingList.pop();
+    }
+    if (event.options[event.selectedIndex].value != '선택'){
+        sendingList.push(event.options[event.selectedIndex].value);
+    }
     document.getElementById('건축대학_건축학부_학년').style.display = 'block';
+    //정보보내기
+    sendingFieldValue(sendingList);
+}
+// 교양과목선택했을떄
+function clickGEList_architecture(event){
+    while (sendingList.length > 3){
+        sendingList.pop();
+    }
+    if (event.options[event.selectedIndex].value != '선택'){
+        sendingList.push(event.options[event.selectedIndex].value);
+    }
+    console.log(sendingList);
+    //정보보내기
+    sendingFieldValue(sendingList);
+}
+function clickGradeList(event){
+    while(sendingList.length > 3){
+        sendingList.pop();
+    }
+    if (event.options[event.selectedIndex].value != '선택'){
+        sendingList.push(event.options[event.selectedIndex].value);
+    }
+    console.log(sendingList);
+    //정보보내기
+    sendingFieldValue(sendingList);
 }
 
-function sendingFieldValue() {
+function sendingFieldValue(sendingList) {
+    $.ajax({
+        url: 'sendingFieldValue',
+        type: 'POST',
+        data: {
+            'fieldValueList': JSON.stringify(sendingList),
+            'csrfmiddlewaretoken': csrftoken,
+        },
+        async:false,
+        datatype: 'json',
+        beforeSend: function (request) {
+            $("#mySpinner").show();
 
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+            textList = data.result_box_list;
+            displayTextList()
+        },
+
+    });
 }

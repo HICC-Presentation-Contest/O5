@@ -161,3 +161,22 @@ def subject_categorization(request):
         'categorization_subject_list': data
     }
     return JsonResponse(answer)
+
+def sending_field_value(request):
+    field_value_list = [];
+    if request.method == 'POST':
+        field_value_list = json.loads(request.POST['fieldValueList'])
+    print(field_value_list)
+    my_list = ['-1', '-1', '-1'] # 리스트 세팅
+    for i in range(len(field_value_list)):
+        my_list[i] = field_value_list[i]
+
+    select_field1 = my_list[0]
+    select_field2 = my_list[1]
+    grade = my_list[2]
+    data = testdb.search_subject("-1", grade, "-1", "-1", "-1", "-1", select_field1, select_field2)
+
+    answer = {
+        'result_box_list': data
+    }
+    return JsonResponse(answer)
