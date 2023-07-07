@@ -35,9 +35,9 @@
         {% csrf_token %}
         <br>
         아이디를 입력해주세요.
+        <div style="display: flex; gap: 10px;">
         <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required>
-        &nbsp; &nbsp;
-        <input type="button" id="overlay" value="중복 체크"/><br>
+        <input type="button" id="overlay" value="중복 체크"></div><br>
         <p id="idch" class="check"> </p><br/>
         비밀번호를 입력해주세요.
         <input type="password" name="password1" id="password1" class="form-control" placeholder="Password" autofocus required><br>
@@ -49,8 +49,9 @@
         <div class="alert alert-success" id="alert-success" style="">비밀번호가 일치합니다.</div>
         <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
         이메일을 입력해주세요.
+        <div style="display: flex; gap: 10px;">
         <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" autofocus required>
-        <input type="button" id="emoverlay"  value="중복 체크"/><br/>
+        <input type="button" id="emoverlay"  value="중복 체크"></div><br>
         <p id="emch" class="check"> </p><br>
 <!--        </label><input type="submit" value="회원가입 하기">-->
         <button type="button" id="btn-Yes" class="btn btn-lg btn-primary btn-block"  onclick="regist()">회원가입</button>

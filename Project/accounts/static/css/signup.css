@@ -21,7 +21,7 @@
 /*    font-size: 14px;*/
 /*}*/
 .signup-wrapper {
-    width: 400px;
+    width: 600px;
     height: 350px;
     padding: 40px;
     box-sizing: border-box;
@@ -43,7 +43,43 @@
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+#id {
+    width: 80%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+#overlay {
+    width: 20%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
 
+#email {
+    width: 80%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+#emoverlay {
+    width: 20%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
 #login-form > input::placeholder {
     color: #D2D2D2;
 }
