@@ -17,4 +17,5 @@ urlpatterns = [
     path('sendSortValue', views.send_sort_value, name='send_sort_value'),
     path('categorization', views.subject_categorization, name='subject_categorization'),
     path('sendingFieldValue', views.sending_field_value, name='sending_field_value'),
+    path('idCheck', views.id_check, name='id_check'),
 ]

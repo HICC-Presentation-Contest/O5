@@ -40,54 +40,62 @@ $(function(){
         }
     });
 });
-//이메일 중복체크
-var emoverChk = false;
-	$("#emoverlay").click(function(){
-		var email = $("#email").val();
-			$.ajax({
-				type:'post'
-				,url:'emoverlay'
-				,data:{'email' : email }
-				,dataType:'JSON'
-				,success:function(obj){
-					console.log(obj);
-					if(obj.use2 != 1){
-						alert('사용할 수 있는 이메일 입니다.');
-						emoverChk= true;
-					}else{
-						alert('이미 사용중인 이메일 입니다.');
 
-					}
-				}
-				,error:function(e){
-					console.log(e);
-				}
-			});
-		});
-//아이디 중복체크
+
+// //이메일 중복체크 변수
+// var emoverChk = false;
+//아이디 중복체크변수
  var overChk = false;
-		$("#overlay").click(function(){
-			var id = $("#id").val();
-				$.ajax({
-					type:'post'
-					,url:'overlay'
-					,data:{'id' : id }
-					,dataType:'JSON'
-					,success:function(obj){
-						console.log(obj);
-						if(obj.use != 1){
-							alert('사용할 수 있는 아이디 입니다.');
-							overChk= true;
-						}else{
-							alert('이미 사용중인 아이디 입니다.');
 
-						}
-					}
-					,error:function(e){
-						console.log(e);
-					}
-				});
-			});
+
+
+// //이메일 중복체크
+//
+// 	$("#emoverlay").click(function(){
+// 		var email = $("#email").val();
+// 			$.ajax({
+// 				type:'post'
+// 				,url:'emoverlay'
+// 				,data:{'email' : email }
+// 				,dataType:'JSON'
+// 				,success:function(obj){
+// 					console.log(obj);
+// 					if(obj.use2 != 1){
+// 						alert('사용할 수 있는 이메일 입니다.');
+// 						emoverChk= true;
+// 					}else{
+// 						alert('이미 사용중인 이메일 입니다.');
+//
+// 					}
+// 				}
+// 				,error:function(e){
+// 					console.log(e);
+// 				}
+// 			});
+// 		});
+//아이디 중복체크
+
+$("#overlay").click(function(){
+	var id = $("#id").val();
+	$.ajax({
+		type:'post'
+		,url:'myTimeTable/idCheck'
+		,data:{'id' : id }
+		,dataType:'JSON'
+		,success:function(data){
+			if(data.checkValue){
+				alert('사용할 수 있는 아이디 입니다.');
+				overChk= true;
+			}else{
+				alert('이미 사용중인 아이디 입니다.');
+
+			}
+		}
+		,error:function(e){
+			console.log(e);
+		}
+	});
+});
 
 		 $("#id").focusout(function(){
 			     if($('#id').val() == ""){
