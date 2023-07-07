@@ -1,5 +1,5 @@
 /*
-폰트 설정 #css
+í°íŠ¸ ì„¤ì • #css
 */
 @font-face {
     font-family: 'S-CoreDream-3Light';
@@ -30,7 +30,7 @@ a {
 
     height: 90vh;
     margin: 2%;
-    background-color:  #F7DAD9;
+    background-color: rgb(223,213,251, 0.5);
 }
 
 #leftBox {
@@ -84,7 +84,7 @@ a {
 }
 
 
-/*자동완성*/
+/*ìžë™ì™„ì„±*/
 .autocomplete {
     position: relative;
     display: inline-block;
@@ -122,14 +122,14 @@ a {
 }
 
 
-/*오른쪽박스*/
+/*ì˜¤ë¥¸ìª½ë°•ìŠ¤*/
 #textSearchBox > div {
     display: inline-block;
     height: 10%;
 }
 
 .searchButton {
-    background-color: #A1C2F1; /*버튼색*/
+    background-color: #A1C2F1; /*ë²„íŠ¼ìƒ‰*/
     color: white;
 }
 
@@ -139,7 +139,7 @@ a {
     overflow-y: auto;
 }
 
-/*resultBox의 수업 div*/
+/*resultBoxì˜ ìˆ˜ì—… div*/
 /*.result{*/
 /*  border: solid lightgray 1px;*/
 /*    background-color: white;*/
@@ -149,7 +149,7 @@ a {
 /*    background-color: silver;*/
 /*}*/
 
-/*시간표*/
+/*ì‹œê°„í‘œ*/
 #myTimeTable {
     border-collapse: collapse;
     background-color: white;
@@ -157,21 +157,21 @@ a {
     table-layout: fixed;
 }
 
-/*이중선 제거*/
+/*ì´ì¤‘ì„  ì œê±°*/
 
-/*테이블 안에 th td 기본 속성지정*/
+/*í…Œì´ë¸” ì•ˆì— th td ê¸°ë³¸ ì†ì„±ì§€ì •*/
 #myTimeTable > tr > th, td {
     width: 12%;
     height: 60px;
     /*text-align: center;*/
-    border: 2.5px solid  #E0BAC9;
+    border: 1.5px solid  rgb(206,211,242);
     font-size: smaller;
     position: relative;
-    /*이 색은 배경색이 투명해서 brightness가 적용안되기에 넣어줌*/
+    /*ì´ ìƒ‰ì€ ë°°ê²½ìƒ‰ì´ íˆ¬ëª…í•´ì„œ brightnessê°€ ì ìš©ì•ˆë˜ê¸°ì— ë„£ì–´ì¤Œ*/
     background-color: white;
 }
 
-/*왼쪼시간표 th 요소들*/
+/*ì™¼ìª¼ì‹œê°„í‘œ th ìš”ì†Œë“¤*/
 #myTimeTable > th {
     width: 12%;
     height: 60px;
@@ -191,7 +191,7 @@ a {
 }
 
 
-/*기본 시간표 표시를 위한 버튼*/
+/*ê¸°ë³¸ ì‹œê°„í‘œ í‘œì‹œë¥¼ ìœ„í•œ ë²„íŠ¼*/
 #basicTimeTableButton {
     color: red
 }
@@ -205,12 +205,12 @@ a {
 }
 
 #selectedTimeTable > div {
-    margin-bottom: 10px; /* 요소 사이의 간격을 설정 */
+    margin-bottom: 10px; /* ìš”ì†Œ ì‚¬ì´ì˜ ê°„ê²©ì„ ì„¤ì • */
 }
 
 #rightBox1RemoveButton {
     position: absolute;
-    /*right값은 margin+padding의 2%와 자체크기 1.5em 을 합쳤다*/
+    /*rightê°’ì€ margin+paddingì˜ 2%ì™€ ìžì²´í¬ê¸° 1.5em ì„ í•©ì³¤ë‹¤*/
     right: calc(1.5em + 2%);
 
 }
@@ -222,21 +222,21 @@ a {
     /*right: 0.5em;*/
     width: 0.5em;
     height: 0.5em;
-    z-index: 2; /* 음수 값으로 우선순위를 낮출 수 있음 */
+    z-index: 2; /* ìŒìˆ˜ ê°’ìœ¼ë¡œ ìš°ì„ ìˆœìœ„ë¥¼ ë‚®ì¶œ ìˆ˜ ìžˆìŒ */
 }
 
 
 #navbar-example2 {
-    background-color: rgba(255, 222, 242, 0.6);
+/*     background-color: rgba(255, 222, 242, 0.6); */
     height: 73px;
 }
 
 hr{
     margin-top : -15.5px;
-    color: #A1C2F1;
+    color:  #7673D9;
     border :0;
-    border-top : 25px solid;
-    opacity: .25;
+    border-top : 2px solid;
+    opacity: .35;
 }
 
 
