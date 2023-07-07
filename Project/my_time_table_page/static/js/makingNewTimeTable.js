@@ -625,7 +625,7 @@ function showGradeList_architecture(event){
     sendingFieldValue(sendingList);
 }
 // 교양과목선택했을떄
-function clickGEList_architecture(event){
+function clickGEList(event){
     while (sendingList.length > 1){
         sendingList.pop();
     }
@@ -637,7 +637,19 @@ function clickGEList_architecture(event){
     sendingFieldValue(sendingList);
 }
 function clickGradeList(event){
-    while(sendingList.length > 3){
+    while(sendingList.length > 2){
+        sendingList.pop();
+    }
+    if (event.options[event.selectedIndex].value != '선택'){
+        sendingList.push(event.options[event.selectedIndex].value);
+    }
+    console.log(sendingList);
+    //정보보내기
+    sendingFieldValue(sendingList);
+}
+
+function clickList_architecture(event){
+    while(sendingList.length > 2){
         sendingList.pop();
     }
     if (event.options[event.selectedIndex].value != '선택'){
