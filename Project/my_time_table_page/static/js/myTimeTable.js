@@ -462,7 +462,6 @@ function clickRevise() {
             alert('이미 존재하는 이름입니다.');
             return;
         }
-    }
 
     }
 
