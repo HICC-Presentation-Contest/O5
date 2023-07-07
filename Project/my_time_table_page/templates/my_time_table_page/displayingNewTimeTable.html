@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <meta name="viewport"
           content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
@@ -34,189 +34,192 @@
 <!-- 페이지 상단 로고 -->
 {% if user.is_authenticated %}
 
-<nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-    <strong><a class="navbar-brand">시간표 고르기</a></strong>
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout'%}">로그아웃</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="makingNewTimeTable">이전 페이지로 가기</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
-        </li>
-        <li class="nav item">
-            <a class="nav-link" href=""><span id = 'userID'>{{user.username}}</span>님</a>
-        </li>
-    </ul>
-</nav>
+    <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
+        <a class="navbar-brand" style="font-size : 30px; margin-left : 13px; color : rgb(96,119,166, 0.8)">내 시간표 보기</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="makingNewTimeTable">이전 페이지로 가기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
+            </li>
+            <li class="nav item">
+                <a class="nav-link" href=""><span id='userID'>{{ user.username }}</span>님</a>
+            </li>
+        </ul>
+    </nav>
 
-<!-- 칸 나누기-->
-<div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
-     data-bs-root-margin="0px 0px -40%"
-     data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
-
-
-    <!--(1) 왼쪽 상단의 만들어진 시간표 테이블-->
-    <div id="leftBox">
-        <p><strong id="created_Timetable">[생성된 시간표]</strong></p>
-        <br>
-        <table id="myTimeTable">
-
-            <!-- 각 요소의 id 이름형식은 timeTable_요일_교시 ex. timetable_mon_1 -->
-            <tr>
-                <th scope="col" ;></th>
-                <th scope="col" ;>월</th>
-                <th scope="col" ;>화</th>
-                <th scope="col" ;>화</th>
-                <th scope="col" ;>수</td>
-                <th scope="col" ;>목</td>
-                <th scope="col" ;>금</td>
-                <th scope="col" ;>토</td>
-                <th scope="col" ;>일</td>
-            </tr>
-            <!-- 1교시 -->
-            <tr>
-                <td class="myTimeTable_time display-5">9:00 - 10:00</td>
-                <td id="timeTable_mon_1"></td>
-                <td id="timeTable_tue_1"></td>
-                <td id="timeTable_wed_1"></td>
-                <td id="timeTable_thu_1"></td>
-                <td id="timeTable_fri_1"></td>
-                <td id="timeTable_sat_1"></td>
-                <td id="timeTable_sun_1"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">10:00 - 11:00</td>
-                <td id="timeTable_mon_2"></td>
-                <td id="timeTable_tue_2"></td>
-                <td id="timeTable_wed_2"></td>
-                <td id="timeTable_thu_2"></td>
-                <td id="timeTable_fri_2"></td>
-                <td id="timeTable_sat_2"></td>
-                <td id="timeTable_sun_2"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">11:00 - 12:00</td>
-                <td id="timeTable_mon_3"></td>
-                <td id="timeTable_tue_3"></td>
-                <td id="timeTable_wed_3"></td>
-                <td id="timeTable_thu_3"></td>
-                <td id="timeTable_fri_3"></td>
-                <td id="timeTable_sat_3"></td>
-                <td id="timeTable_sun_3"></td>
-            </tr>
-
-            <tr>
-                <td class="myTimeTable_time display-5">12:00 - 13:00</td>
-                <td id="timeTable_mon_4"></td>
-                <td id="timeTable_tue_4"></td>
-                <td id="timeTable_wed_4"></td>
-                <td id="timeTable_thu_4"></td>
-                <td id="timeTable_fri_4"></td>
-                <td id="timeTable_sat_4"></td>
-                <td id="timeTable_sun_4"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">13:00 - 14:00</td>
-                <td id="timeTable_mon_5"></td>
-                <td id="timeTable_tue_5"></td>
-                <td id="timeTable_wed_5"></td>
-                <td id="timeTable_thu_5"></td>
-                <td id="timeTable_fri_5"></td>
-                <td id="timeTable_sat_5"></td>
-                <td id="timeTable_sun_5"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">14:00 - 15:00</td>
-                <td id="timeTable_mon_6"></td>
-                <td id="timeTable_tue_6"></td>
-                <td id="timeTable_wed_6"></td>
-                <td id="timeTable_thu_6"></td>
-                <td id="timeTable_fri_6"></td>
-                <td id="timeTable_sat_6"></td>
-                <td id="timeTable_sun_6"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">15:00 - 16:00</td>
-                <td id="timeTable_mon_7"></td>
-                <td id="timeTable_tue_7"></td>
-                <td id="timeTable_wed_7"></td>
-                <td id="timeTable_thu_7"></td>
-                <td id="timeTable_fri_7"></td>
-                <td id="timeTable_sat_7"></td>
-                <td id="timeTable_sun_7"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">16:00 - 17:00</td>
-                <td id="timeTable_mon_8"></td>
-                <td id="timeTable_tue_8"></td>
-                <td id="timeTable_wed_8"></td>
-                <td id="timeTable_thu_8"></td>
-                <td id="timeTable_fri_8"></td>
-                <td id="timeTable_sat_8"></td>
-                <td id="timeTable_sun_8"></td>
-            </tr>
-            <tr>
-                <td class="myTimeTable_time display-5">17:00 - 18:00</td>
-                <td id="timeTable_mon_9"></td>
-                <td id="timeTable_tue_9"></td>
-                <td id="timeTable_wed_9"></td>
-                <td id="timeTable_thu_9"></td>
-                <td id="timeTable_fri_9"></td>
-                <td id="timeTable_sat_9"></td>
-                <td id="timeTable_sun_9"></td>
-            </tr>
-
-        </table>
-    </div>
+    <!-- 칸 나누기-->
+    <div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
+         data-bs-root-margin="0px 0px -40%"
+         data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 
 
-    <!--세로선을 통해 테이블을 두 영역으로 나누어,
-       (1) 왼쪽에는 만들어진 여러 시간표들 중 하나의 시간표가 띄워지고,
-       (2) 오른쪽 상단에는 그 외의 시간표들이 보여짐,
-       (3) 오른쪽 하단에는 체크박스로 정렬기능들이 보여짐-->
+        <!--(1) 왼쪽 상단의 만들어진 시간표 테이블-->
+        <div id="leftBox">
+            <p><strong id="created_Timetable">[생성된 시간표]</strong></p>
+            <br>
+            <table id="myTimeTable">
+
+                <!-- 각 요소의 id 이름형식은 timeTable_요일_교시 ex. timetable_mon_1 -->
+                <tr>
+                    <th scope="col" ;></th>
+                    <th scope="col" ;>월</th>
+                    <th scope="col" ;>화</th>
+                    <th scope="col" ;>화</th>
+                    <th scope="col" ;>수</td>
+                    <th scope="col" ;>목</td>
+                    <th scope="col" ;>금</td>
+                    <th scope="col" ;>토</td>
+                    <th scope="col" ;>일</td>
+                </tr>
+                <!-- 1교시 -->
+                <tr>
+                    <td class="myTimeTable_time display-5">9:00 - 10:00</td>
+                    <td id="timeTable_mon_1"></td>
+                    <td id="timeTable_tue_1"></td>
+                    <td id="timeTable_wed_1"></td>
+                    <td id="timeTable_thu_1"></td>
+                    <td id="timeTable_fri_1"></td>
+                    <td id="timeTable_sat_1"></td>
+                    <td id="timeTable_sun_1"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">10:00 - 11:00</td>
+                    <td id="timeTable_mon_2"></td>
+                    <td id="timeTable_tue_2"></td>
+                    <td id="timeTable_wed_2"></td>
+                    <td id="timeTable_thu_2"></td>
+                    <td id="timeTable_fri_2"></td>
+                    <td id="timeTable_sat_2"></td>
+                    <td id="timeTable_sun_2"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">11:00 - 12:00</td>
+                    <td id="timeTable_mon_3"></td>
+                    <td id="timeTable_tue_3"></td>
+                    <td id="timeTable_wed_3"></td>
+                    <td id="timeTable_thu_3"></td>
+                    <td id="timeTable_fri_3"></td>
+                    <td id="timeTable_sat_3"></td>
+                    <td id="timeTable_sun_3"></td>
+                </tr>
+
+                <tr>
+                    <td class="myTimeTable_time display-5">12:00 - 13:00</td>
+                    <td id="timeTable_mon_4"></td>
+                    <td id="timeTable_tue_4"></td>
+                    <td id="timeTable_wed_4"></td>
+                    <td id="timeTable_thu_4"></td>
+                    <td id="timeTable_fri_4"></td>
+                    <td id="timeTable_sat_4"></td>
+                    <td id="timeTable_sun_4"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">13:00 - 14:00</td>
+                    <td id="timeTable_mon_5"></td>
+                    <td id="timeTable_tue_5"></td>
+                    <td id="timeTable_wed_5"></td>
+                    <td id="timeTable_thu_5"></td>
+                    <td id="timeTable_fri_5"></td>
+                    <td id="timeTable_sat_5"></td>
+                    <td id="timeTable_sun_5"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">14:00 - 15:00</td>
+                    <td id="timeTable_mon_6"></td>
+                    <td id="timeTable_tue_6"></td>
+                    <td id="timeTable_wed_6"></td>
+                    <td id="timeTable_thu_6"></td>
+                    <td id="timeTable_fri_6"></td>
+                    <td id="timeTable_sat_6"></td>
+                    <td id="timeTable_sun_6"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">15:00 - 16:00</td>
+                    <td id="timeTable_mon_7"></td>
+                    <td id="timeTable_tue_7"></td>
+                    <td id="timeTable_wed_7"></td>
+                    <td id="timeTable_thu_7"></td>
+                    <td id="timeTable_fri_7"></td>
+                    <td id="timeTable_sat_7"></td>
+                    <td id="timeTable_sun_7"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">16:00 - 17:00</td>
+                    <td id="timeTable_mon_8"></td>
+                    <td id="timeTable_tue_8"></td>
+                    <td id="timeTable_wed_8"></td>
+                    <td id="timeTable_thu_8"></td>
+                    <td id="timeTable_fri_8"></td>
+                    <td id="timeTable_sat_8"></td>
+                    <td id="timeTable_sun_8"></td>
+                </tr>
+                <tr>
+                    <td class="myTimeTable_time display-5">17:00 - 18:00</td>
+                    <td id="timeTable_mon_9"></td>
+                    <td id="timeTable_tue_9"></td>
+                    <td id="timeTable_wed_9"></td>
+                    <td id="timeTable_thu_9"></td>
+                    <td id="timeTable_fri_9"></td>
+                    <td id="timeTable_sat_9"></td>
+                    <td id="timeTable_sun_9"></td>
+                </tr>
+
+            </table>
+        </div>
 
 
-    <div id="rightBox">
+        <!--세로선을 통해 테이블을 두 영역으로 나누어,
+           (1) 왼쪽에는 만들어진 여러 시간표들 중 하나의 시간표가 띄워지고,
+           (2) 오른쪽 상단에는 그 외의 시간표들이 보여짐,
+           (3) 오른쪽 하단에는 체크박스로 정렬기능들이 보여짐-->
 
-        <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
-        <p><strong>[가능한 다른 경우의 시간표]</strong></p>
-        <div id="possibleTimeTable">
-            <!-- Swiper -->
-            <div class="swiper-container">
-                <div id = 'resultTimeTableListBox' class="swiper-wrapper">
-{#                    <div class="swiper-slide">Slide 1</div>#}
-{#                    <div class="swiper-slide">Slide 2</div>#}
-{#                    <div class="swiper-slide">Slide 3</div>#}
-{#                    <div class="swiper-slide">Slide 4</div>#}
-{#                    <div class="swiper-slide">Slide 5</div>#}
-{#                    <div class="swiper-slide">Slide 6</div>#}
+
+        <div id="rightBox">
+
+            <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
+            <p><strong>[가능한 다른 경우의 시간표]</strong></p>
+            <div id="possibleTimeTable">
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div id='resultTimeTableListBox' class="swiper-wrapper">
+                        {#                    <div class="swiper-slide">Slide 1</div>#}
+                        {#                    <div class="swiper-slide">Slide 2</div>#}
+                        {#                    <div class="swiper-slide">Slide 3</div>#}
+                        {#                    <div class="swiper-slide">Slide 4</div>#}
+                        {#                    <div class="swiper-slide">Slide 5</div>#}
+                        {#                    <div class="swiper-slide">Slide 6</div>#}
+                    </div>
+                    {#                페이지표시#}
+                    {#                <div class="swiper-pagination"></div>#}
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    {#                스크롤러#}
+                    {#                <div class="swiper-scrollbar"></div>#}
                 </div>
-{#                페이지표시#}
-{#                <div class="swiper-pagination"></div>#}
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-{#                스크롤러#}
-{#                <div class="swiper-scrollbar"></div>#}
+
+                {#            <div id = 'resultTimeTableListBox'> </div>#}
+            </div>
+            <div style="width: 100%" class="d-flex flex-row-reverse">
+                <button type="button" class="btn searchButton text-white" style="background-color:  rgb(48,110,191, 0.7); "
+                        onclick="saveTimeTable()">시간표 저장
+                </button>
             </div>
 
-{#            <div id = 'resultTimeTableListBox'> </div>#}
-        </div>
-        <div style="width: 100%" class="d-flex flex-row-reverse">
-            <button type="button" class="btn searchButton text-white" style="background-color: #0A6EBD; " onclick="saveTimeTable()">시간표 저장</button>
-        </div>
-
-        <!--(3) 오른쪽 하단의 정렬기능-->
-        <div style="text-align:left;height:80%">
-            <p><strong>[시간표 정렬기능]</strong></p>
+            <!--(3) 오른쪽 하단의 정렬기능-->
+            <div style="text-align:left;height:80%">
+                <p><strong>[시간표 정렬기능]</strong></p>
 
 
                 <label><input type="checkbox" name="sortValue" value="lunchTime" checked>점심시간 확보(11~14시)</label>
                 <br>
-{#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
-                <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay" onchange="toggleWeekdays()">공강일 포함 </label>
+                {#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
+                <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay"
+                              onchange="toggleWeekdays()">공강일 포함 </label>
                 <br>
                 <div id="weekdays" style="display: none;">
                     <label><input type="checkbox" name="weekDay" value="월">월</label>
@@ -229,33 +232,33 @@
                 <label><input type="checkbox" name="sortValue" value="morningLectureMain">오전 강의 위주로</label>
                 <br>
                 <label><input type="checkbox" name="sortValue" value="afternoonLectureMain">오후 강의 위주로 </label>
-                <button type="submit" class="btn searchButton text-white" style="background-color: #0A6EBD;" onclick="sendingSortValue()">정렬</button>
+                <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1;"
+                        onclick="sendingSortValue()">정렬
+                </button>
 
 
-
-
+            </div>
+            {#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
 
         </div>
-{#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
-
     </div>
-</div>
-</form>
+    </form>
 {% else %}
     <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-        <strong><a class="navbar-brand" >시간표 고르기</a></strong>
+        <a class="navbar-brand" style="font-size : 30px; margin-left : 13px; color : rgb(96,119,166, 0.8)">내 시간표 보기</a>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:login'%}">로그인</a>
+                <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{  user.username}}님</a>
+                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님</a>
             </li>
         </ul>
     </nav>
+    <hr>
 {% endif %}
 <script src="../../static/js/displayingNewTimeTable.js"></script>
 </body>
