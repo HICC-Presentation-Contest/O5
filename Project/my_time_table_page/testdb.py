@@ -209,9 +209,9 @@ def create_group_table():
     curs.execute("use test1;")
     curs.execute("drop table if exists group_table")
     curs.execute("""create table group_table(
-                    group_index int,
-                    user_id varchar(30),
-                    group_name varchar(50),
+                    group_index varchar(60),
+                    user_id varchar(20),
+                    group_name varchar(30),
                     subject_index int,
                     default_table varchar(10),
                     primary key(group_index),
@@ -230,7 +230,7 @@ def insert_into_group_table(user_id, table_name, subject_index, default_table):
     global group_index
     curs.execute("use test1;")
     curs.execute("""insert into group_table values("{0}","{1}","{2}","{3}","{4}");""".format \
-                     (group_index, user_id, table_name, subject_index,
+                     (user_id+table_name+str(subject_index), user_id, table_name, subject_index,
                       default_table))
     conn.commit()
     conn.close()
@@ -313,10 +313,16 @@ def insert_data():
 # conn = pymysql.connect(host='localhost', user='root',
 #                            password=db_password, db='test1', charset='utf8')
 # curs = conn.cursor()
+# # curs.execute("""drop table if exists group_table;""")
+# create_group_table()
+# insert_into_group_table("abc", "aaaa", 123, "aaaa")
+# curs.execute("""select * from group_table;""")
 #
-# curs.execute("""select * from subject;""")
 # rows = curs.fetchall()
+# print(rows)
 # for i in rows:
 #     print(i)
 # conn.commit()
 # conn.close()
+
+
