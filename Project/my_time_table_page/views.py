@@ -148,3 +148,16 @@ def send_sort_value(request):
         'resultTimeTableList': result_time_table_list,
     }
     return JsonResponse(answer)
+
+def subject_categorization(request):
+    # 학부, 전공, 학년으로 분류 ex) 공통교양, 역사와 미술, 3학년
+    if request.method == 'POST':
+        select_field1 = json.loads(request.POST['field1'])
+        select_field2 = json.loads(request.POST['field2'])
+        grade = json.loads(request.POST['grade'])
+    data = testdb.search_subject("-1", grade, "-1", "-1", "-1", "-1", select_field1, select_field2)
+
+    answer = {
+        'categorization_subject_list': data
+    }
+    return JsonResponse(answer)

@@ -15,4 +15,5 @@ urlpatterns = [
     path('accounts/', include("accounts.urls")),
     path('sendGroupList', views.send_group_list, name='send_group_list'),
     path('sendSortValue', views.send_sort_value, name='send_sort_value'),
+    path('categorization', views.subject_categorization, name='subject_categorization'),
 ]
