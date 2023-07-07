@@ -111,28 +111,34 @@ $("#id").focusout(function(){
 		 return true;
 	 }
  });
-// $("#email").focusout(function(){
-//    if($('#email').val() == ""){
-//
-// 	   $('#emch').text('*필수 정보입니다.');
-// 	   $('#emch').css('color', 'red');
-// 		$(this).focus();
-// 		return false;
-//    }else{
-// 	   emailc = true;
-// 	   return true;
-//    }
-// });
+$("#email").focusout(function(){
+   if($('#email').val() == ""){
+
+	   $('#emch').text('*필수 정보입니다.');
+	   $('#emch').css('color', 'red');
+		$(this).focus();
+		return false;
+   }else{
+	   emailc = true;
+	   return true;
+   }
+});
 var idc = false;
 var pwc = false;
 // var pwc2 = false;
-// var emailc = false;
+var emailc = false;
 function regist(){
 var id = $("#id").val();
 var pw = $("#password1").val();
 var pw2 = $("#password2").val();
-// var email = $("#email").val();
-
+var email = $("#email").val();
+var  regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+if(!regExp.test(email)){
+    alert('이메일 형식이 아닙니다');
+    doc.getElementById('email').value='';
+    doc.getElementById('email').focus();
+    return ;
+}
 
 
 if(idc == false || id === ""){
@@ -142,8 +148,8 @@ if(idc == false || id === ""){
 }else if(pwc == false|| pw2 === ""){
   alert('비밀번호를 확인 해 주세요')
 }
-// else if(emailc == false || email === ""){
-// alert('이메일을 입력해주세요')
+else if(emailc == false || email === ""){
+alert('이메일을 입력해주세요')}
 // }else if(emoverChk == false){
 // alert('이메일을 중복 검사를 해주세요')
 // }

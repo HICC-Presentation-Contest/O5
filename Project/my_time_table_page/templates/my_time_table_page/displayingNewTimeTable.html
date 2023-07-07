@@ -221,6 +221,7 @@
                 {#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
                 <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay"
                               onchange="toggleWeekdays()" style="vertical-align : -8px;"> 공강일 포함 </label>
+                <br>
                 <div id="weekdays" style="display: none;">
                     <label><input type="checkbox" name="weekDay" value="월" style="vertical-align : -8px;  margin-top: 10px;">월</label>
                     <label><input type="checkbox" name="weekDay" value="화" style="vertical-align : -8px;">화</label>
@@ -238,7 +239,7 @@
 
             </div>
             {#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
-            <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1; margin-right:100px; "
+            <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1; margin-left:330px; "
                         onclick="sendingSortValue()">정렬
             </button>
         </div>
