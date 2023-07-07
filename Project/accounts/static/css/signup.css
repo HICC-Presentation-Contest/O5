@@ -112,5 +112,12 @@ a {
     font-size: 15px;
     text-align: center;
 }
+ #btn-Yes {
+        background-color: rgb(250, 164, 3);
+        border: none;
+        width: 25rem;
+        margin: auto;
+
+    }
 
 
