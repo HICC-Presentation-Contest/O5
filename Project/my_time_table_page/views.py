@@ -184,10 +184,4 @@ def sending_field_value(request):
     return JsonResponse(answer)
 
 
-def id_check(request) :
-    check_id = request.POST['id']
-    check_value = testdb.
-    answer = {
-        'checkValue' : check_value
-    }
-    return JsonResponse(answer)
+

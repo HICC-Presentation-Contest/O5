@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from django.http import JsonResponse
 from .models import User
-
+from . import testdb
+from django.views.decorators.csrf import csrf_exempt  # ajax POST 응답하기 위해 필요한 보안 토큰
 # Create your views here.
 def login_view(request):
     if request.method == "POST":
@@ -35,3 +37,14 @@ def signup_view(request):
         user.save()
         return redirect("accounts:login")
     return render(request, "accounts/signup.html")
+
+
+@csrf_exempt
+def id_check(request):
+    check_id = request.POST['id']
+    print(check_id)
+    check_value = testdb.certify_id(check_id)
+    answer = {
+        'checkValue': check_value
+    }
+    return JsonResponse(answer)

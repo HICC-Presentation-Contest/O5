@@ -77,23 +77,29 @@ $(function(){
 
 $("#overlay").click(function(){
 	var id = $("#id").val();
+	console.log(url);
 	$.ajax({
 		type:'post'
-		,url:'myTimeTable/idCheck'
+		// ,url:'myTimeTable/idCheck'
+		,url: url
 		,data:{'id' : id }
 		,dataType:'JSON'
 		,success:function(data){
 			if(data.checkValue){
-				alert('사용할 수 있는 아이디 입니다.');
-				overChk= true;
-			}else{
+
 				alert('이미 사용중인 아이디 입니다.');
 
+
+			}else{
+				alert('사용할 수 있는 아이디 입니다.');
+
+				overChk= true;
 			}
 		}
-		,error:function(e){
-			console.log(e);
+		,complete: function (data) {
+			console.log(data)
 		}
+
 	});
 });
 
