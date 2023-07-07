@@ -180,7 +180,8 @@ function addClassToTimeTable(userTimeTable) {
         let classNameList = className.split(' ');
         className = classNameList[0];
 
-        lectureRoom = userTimeTable[i][4]; //강의실
+        lectureRoom = userTimeTable[i][4]; //강의실l
+        lectureRoom = lectureRoom.split(',');
         professorName = userTimeTable[i][3]; //교수님 성함
 
         timeList = userTimeTable[i][1].split(","); // 월2 화2 수2 이렇게 쪼개진다.
@@ -449,10 +450,14 @@ function clickRevise() {
     console.log(textPrompt);
     if (textPrompt == /\s+/g || textPrompt == '' ){
         alert('문자를 입력해주세요');
-        return
+        return;
     }
     if (textPrompt == null){
         return;
+    }
+    if (textPrompt != userTimeTable[1]){
+         alert('이미 존재하는 시간표 입니다');
+         return;
     }
 
     let name = document.getElementById('selectedTimeTableName').innerHTML;
