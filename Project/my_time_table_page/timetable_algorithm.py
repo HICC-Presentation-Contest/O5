@@ -1,7 +1,9 @@
 import itertools
 
+
 def day_to_index(day):
     return {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4, '토': 5, '일': 6}[day]
+
 
 def sort_groups(all_groups):
     if not all_groups:
@@ -9,7 +11,7 @@ def sort_groups(all_groups):
 
     sort_all_groups = []
     for i in all_groups:
-        tmp_group=[]
+        tmp_group = []
         for j in i:
             tmp = []
             tmp.append(j[0][0][7])  # 대학수학(1)의 위치
@@ -17,10 +19,25 @@ def sort_groups(all_groups):
             tmp.append(j[0][0][0])  # 1001의 위치
             tmp.append(j[0][0][14])  # 전체의 위치
             tmp.append(j[0][0][8])  # 자연계열의 위치
+
+            class_list = []
+            class_index = 0
+            day = ' '
+
+            for k in tmp[1].split(','):
+                myclass = tmp[4].split(',')
+                if day == ' ':
+                    day = k[0]
+
+                if k[0] != day:
+                    class_index += 1
+                    day = k[0]
+                class_list.append(myclass[class_index])
+
+            tmp[4] = class_list
             tmp_group.append(tmp)
         sort_all_groups.append(tmp_group)
     return sort_all_groups
-
 
 
 def generate_possible_combinations(sort_all_groups):
@@ -76,4 +93,3 @@ def generate_possible_combinations(sort_all_groups):
         possible_combinations_result_list.append(combination)
 
     return possible_combinations_result_list, possible_combinations
-
