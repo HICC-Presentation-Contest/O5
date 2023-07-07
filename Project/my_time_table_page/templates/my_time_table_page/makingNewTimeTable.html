@@ -19,7 +19,7 @@
 <body>
 <!--{% if user.is_authenticated %}-->
     <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-        <strong><a class="navbar-brand" >시간표 만들기</a></strong>
+        <a class="navbar-brand" style="font-size : 30px; margin-left : 13px; color : rgb(96,119,166, 0.8)">내 시간표 보기</a>
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
@@ -32,6 +32,7 @@
             </li>
         </ul>
     </nav>
+    <hr>
     <div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
          data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
          class="scrollspy-example bg-light p-3 rounded-2"

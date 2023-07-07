@@ -29,7 +29,7 @@
 
   height: 90vh;
   margin: 2%;
-  background-color: #E7CEA6;
+  background-color: rgb(223,213,251, 0.5)
 }
 #leftBox{
 
@@ -51,7 +51,7 @@
 }
 
 .searchButton {
-  background-color: #0A6EBD; /*버튼색*/
+  background-color: rgb(48,110,191, 0.7); /*버튼색*/
   color: white;
 }
 
@@ -88,7 +88,7 @@ padding: 10px;
 text-align: inline-block;
 }
 #btn{
-    background-color: #0A6EBD;
+    background-color: #A1C2F1;
     border: none;
     border-radius: 4px;
 }
@@ -196,4 +196,12 @@ nav ul .Dropdown{
 nav ul .Dropdown:hover ul{
     display: initial;
 
+}
+
+hr{
+    margin-top : -15.5px;
+    color:  #7673D9;
+    border :0;
+    border-top : 2px solid;
+    opacity: .35;
 }
