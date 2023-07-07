@@ -9,10 +9,8 @@
 }
 
 
-a {
-    color: rgb(243, 233, 170);
-    /*rgb(241, 219, 132);*/
-    text-decoration: none;
+* {
+   font-family: 'S-CoreDream-3Light';
 }
 
 
