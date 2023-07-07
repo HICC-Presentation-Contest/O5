@@ -626,7 +626,7 @@ function showGradeList_architecture(event){
 }
 // 교양과목선택했을떄
 function clickGEList_architecture(event){
-    while (sendingList.length > 3){
+    while (sendingList.length > 1){
         sendingList.pop();
     }
     if (event.options[event.selectedIndex].value != '선택'){
