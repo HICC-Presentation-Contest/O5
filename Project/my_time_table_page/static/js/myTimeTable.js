@@ -450,14 +450,20 @@ function clickRevise() {
     console.log(textPrompt);
     if (textPrompt == /\s+/g || textPrompt == '' ){
         alert('문자를 입력해주세요');
-        return;
+        return
     }
     if (textPrompt == null){
         return;
     }
-    if (textPrompt != userTimeTable[1]){
-         alert('이미 존재하는 시간표 입니다');
-         return;
+   let nameList = Object.keys(userTimeTable[1]);
+    console.log(nameList);
+    for (let i = 0; i < nameList.length; i++){
+        if(nameList[i] == textPrompt){
+            alert('이미 존재하는 이름입니다.');
+            return;
+        }
+    }
+
     }
 
     let name = document.getElementById('selectedTimeTableName').innerHTML;
