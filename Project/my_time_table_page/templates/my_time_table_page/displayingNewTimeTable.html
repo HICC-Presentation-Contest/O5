@@ -212,16 +212,15 @@
             </div>
 
             <!--(3) 오른쪽 하단의 정렬기능-->
-            <div style="text-align:left;height:46.5%">
+            <div style="text-align:left;height:40%">
                 <p style="font-size: 18px; margin-top : 8px;">[시간표 정렬기능]</p>
 
 
-                <label><input type="checkbox" name="sortValue" value="lunchTime" checked style="vertical-align : -8px; margin-bottom: 10px;"> 점심시간 확보(11~14시)</label>
+                <label><input type="checkbox" name="sortValue" value="lunchTime" checked style="vertical-align : -8px; "> 점심시간 확보(11~14시)</label>
                 <br>
                 {#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
                 <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay"
                               onchange="toggleWeekdays()" style="vertical-align : -8px;"> 공강일 포함 </label>
-                <br>
                 <div id="weekdays" style="display: none;">
                     <label><input type="checkbox" name="weekDay" value="월" style="vertical-align : -8px;  margin-top: 10px;">월</label>
                     <label><input type="checkbox" name="weekDay" value="화" style="vertical-align : -8px;">화</label>
@@ -230,17 +229,17 @@
                     <label><input type="checkbox" name="weekDay" value="금" style="vertical-align : -8px;">금</label>
                 </div>
                 <br>
-                <label><input type="checkbox" name="sortValue" value="morningLectureMain" style="vertical-align : -8px; margin-bottom: 10px;"> 오전 강의 위주로</label>
+                <label><input type="checkbox" name="sortValue" value="morningLectureMain" style="vertical-align : -8px;"> 오전 강의 위주로</label>
                 <br>
                 <label><input type="checkbox" name="sortValue" value="afternoonLectureMain" style="vertical-align : -8px;"> 오후 강의 위주로 </label>
-                <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1;"
-                        onclick="sendingSortValue()">정렬
-                </button>
+
 
 
             </div>
             {#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
-
+            <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1;"
+                        onclick="sendingSortValue()">정렬
+            </button>
         </div>
     </div>
     </form>
