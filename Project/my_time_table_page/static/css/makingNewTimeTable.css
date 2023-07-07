@@ -205,3 +205,7 @@ hr{
     border-top : 2px solid;
     opacity: .35;
 }
+
+#navbar-example2{
+    height: 73px;
+}

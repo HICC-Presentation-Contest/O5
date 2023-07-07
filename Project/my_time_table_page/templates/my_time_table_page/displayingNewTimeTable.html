@@ -47,10 +47,11 @@
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href=""><span id='userID'>{{ user.username }}</span>님</a>
+                <a class="nav-link" href=""><span id='userID'>{{ user.username }}</span>님 환영합니다.</a>
             </li>
         </ul>
     </nav>
+    <hr>
 
     <!-- 칸 나누기-->
     <div id="basicBox" class="d-flex flex-row " data-bs-spy="scroll" data-bs-target="#navbar-example2"
@@ -60,7 +61,7 @@
 
         <!--(1) 왼쪽 상단의 만들어진 시간표 테이블-->
         <div id="leftBox">
-            <p><strong id="created_Timetable">[생성된 시간표]</strong></p>
+            <p id="created_Timetable" style="margin-bottom: 3px;">[생성된 시간표]</p>
             <br>
             <table id="myTimeTable">
 
@@ -182,8 +183,8 @@
         <div id="rightBox">
 
             <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
-            <p><strong>[가능한 다른 경우의 시간표]</strong></p>
-            <div id="possibleTimeTable">
+            <p style="font-size: 18px; margin-top: -9px;">[가능한 다른 경우의 시간표]</p>
+            <div id="possibleTimeTable" style="margin-top : -15px;">
                 <!-- Swiper -->
                 <div class="swiper-container">
                     <div id='resultTimeTableListBox' class="swiper-wrapper">
@@ -205,33 +206,33 @@
                 {#            <div id = 'resultTimeTableListBox'> </div>#}
             </div>
             <div style="width: 100%" class="d-flex flex-row-reverse">
-                <button type="button" class="btn searchButton text-white" style="background-color:  rgb(48,110,191, 0.7); "
+                <button type="button" class="btn searchButton text-white" style="background-color:  rgb(48,110,191, 0.7); margin-top: 5px; "
                         onclick="saveTimeTable()">시간표 저장
                 </button>
             </div>
 
             <!--(3) 오른쪽 하단의 정렬기능-->
-            <div style="text-align:left;height:80%">
-                <p><strong>[시간표 정렬기능]</strong></p>
+            <div style="text-align:left;height:46.5%">
+                <p style="font-size: 18px; margin-top : 8px;">[시간표 정렬기능]</p>
 
 
-                <label><input type="checkbox" name="sortValue" value="lunchTime" checked>점심시간 확보(11~14시)</label>
+                <label><input type="checkbox" name="sortValue" value="lunchTime" checked style="vertical-align : -8px; margin-bottom: 10px;"> 점심시간 확보(11~14시)</label>
                 <br>
                 {#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
                 <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay"
-                              onchange="toggleWeekdays()">공강일 포함 </label>
+                              onchange="toggleWeekdays()" style="vertical-align : -8px;"> 공강일 포함 </label>
                 <br>
                 <div id="weekdays" style="display: none;">
-                    <label><input type="checkbox" name="weekDay" value="월">월</label>
-                    <label><input type="checkbox" name="weekDay" value="화">화</label>
-                    <label><input type="checkbox" name="weekDay" value="수">수</label>
-                    <label><input type="checkbox" name="weekDay" value="목">목</label>
-                    <label><input type="checkbox" name="weekDay" value="금">금</label>
+                    <label><input type="checkbox" name="weekDay" value="월" style="vertical-align : -8px;  margin-top: 10px;">월</label>
+                    <label><input type="checkbox" name="weekDay" value="화" style="vertical-align : -8px;">화</label>
+                    <label><input type="checkbox" name="weekDay" value="수" style="vertical-align : -8px;">수</label>
+                    <label><input type="checkbox" name="weekDay" value="목" style="vertical-align : -8px;">목</label>
+                    <label><input type="checkbox" name="weekDay" value="금" style="vertical-align : -8px;">금</label>
                 </div>
                 <br>
-                <label><input type="checkbox" name="sortValue" value="morningLectureMain">오전 강의 위주로</label>
+                <label><input type="checkbox" name="sortValue" value="morningLectureMain" style="vertical-align : -8px; margin-bottom: 10px;"> 오전 강의 위주로</label>
                 <br>
-                <label><input type="checkbox" name="sortValue" value="afternoonLectureMain">오후 강의 위주로 </label>
+                <label><input type="checkbox" name="sortValue" value="afternoonLectureMain" style="vertical-align : -8px;"> 오후 강의 위주로 </label>
                 <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1;"
                         onclick="sendingSortValue()">정렬
                 </button>
@@ -254,7 +255,7 @@
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님</a>
+                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님 환영합니다.</a>
             </li>
         </ul>
     </nav>
