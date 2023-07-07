@@ -84,23 +84,8 @@
     color: #D2D2D2;
 }
 
-#login-form > input[type="submit"] {
-    color: #fff;
-    position: left;
-    font-size: 16px;
-    background-color: rgb(119, 67, 219);
-    /*margin-top: 20px;*/
-    margin-left: 90px;
-    width: 130px;
-    height: 45px;
-    border: none;
-    text-align: center;
-}
 
-#login-form > input[type="submit"]:hover {
-    background-color: #FFE9B1;
-    color: #3B3486;
-}
+
 
 #login-form > input[type="checkbox"] {
     display: none;
@@ -149,11 +134,15 @@ a {
     text-align: center;
 }
  #btn-Yes {
-        background-color: rgb(250, 164, 3);
-        border: none;
-        width: 25rem;
-        margin: auto;
-
+     color: #fff;
+    font-size: 16px;
+    background-color: rgb(119, 67, 219);
+    /*margin-top: 20px;*/
+    width: 200px;
+    height: 45px;
+    border: none;
+    text-align: center;
+    margin-left: 170px;
     }
 
 
