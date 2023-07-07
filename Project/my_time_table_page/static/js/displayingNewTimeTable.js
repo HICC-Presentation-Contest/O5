@@ -20,7 +20,7 @@ var csrftoken = getCookie('csrftoken');
 
 //시간표 색
 // let timeTableBackgroundColorList = ['#e66767','#fed330','#26de81','#4b7bec','#ffda79','#f5cd79','#63cdda','#546de5','#6ab04c','#45aaf2']
-let timeTableBackgroundColorList = ['rgb(136, 80, 191, 0.5)','#9973BF','#8BA651','#BCD97E','#C6B8D9','#83A66A','#D8B8D9','#9EB4DC','#9896D9','#7997F2', '#5068F2'];
+let timeTableBackgroundColorList = ['#F5A7A7','#DDF3F5','#ABC2E8','#FFE3E1','#FFD4B2','#AAC4FF','#E5E0FF','#DDFFBB','#FDF7C3','#D1EAA3'];
 
 // 요일 한국어에서 영어로 변환
 function KorToEngOfDay(day) {

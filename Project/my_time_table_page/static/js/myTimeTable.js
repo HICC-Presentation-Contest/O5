@@ -17,7 +17,7 @@ function getCookie(name) {
 
 var csrftoken = getCookie('csrftoken');
 
-    let timeTableBackgroundColorList = ['rgb(136, 80, 191, 0.5)','#9973BF','#8BA651','#BCD97E','#C6B8D9','#83A66A','#D8B8D9','#9EB4DC','#9896D9','#7997F2', '#5068F2'];
+    let timeTableBackgroundColorList = ['#F5A7A7','#DDF3F5','#ABC2E8','#FFE3E1','#FFD4B2','#AAC4FF','#E5E0FF','#DDFFBB','#FDF7C3','#D1EAA3'];
     // let timeTableBackgroundColorList = ['#E3F4F4','#DBDFEA','#DBDFEA','#FFE3E1','#FFD4B2','#AAC4FF','#E5E0FF','#DDFFBB','#','#E3F4F4'];
 
 
