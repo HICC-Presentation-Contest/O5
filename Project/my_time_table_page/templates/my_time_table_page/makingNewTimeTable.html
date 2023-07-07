@@ -19,7 +19,7 @@
 <body>
 <!--{% if user.is_authenticated %}-->
     <nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
-        <strong><a class="navbar-brand" href="myTimeTable.demo">시간표 만들기</a></strong>
+        <strong><a class="navbar-brand" >시간표 만들기</a></strong>
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
@@ -28,7 +28,7 @@
                 <a class="nav-link" href="scrollspyHeading2">내 시간표 페이지로 가기</a>
             </li>
             <li class="nav item">
-                <a class="nav-link" href="#scrollspyHeading3">{{ user.username }}님</a>
+                <a class="nav-link" ><span id = 'userID'>{{user.username}}</span>님</a>
             </li>
         </ul>
     </nav>
