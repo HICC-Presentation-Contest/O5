@@ -87,6 +87,29 @@ def suggested_search_word(request):
 def search_word_submit(request):
     search_word = request.POST['search_word']
     result_box_list = list(testdb.search_subject(search_word, -1, "-1", "-1", "-1", "-1", "-1", "-1"))
+    print(result_box_list)
+    tmp = []
+    for i in result_box_list:
+        tmp_inner_list = list(i)
+        # i = (1281, '3', '컴퓨터공학전공', '컴퓨터공학전공', '전선', 'None_field', '101413-2', 'HCI윈도우즈프로그래밍 (HCI WINDOWS PROGRAMMING)', 'T0605,T0602', '3', '10/50/50/50/50', '39', '10', '전체', '이혜영1', '수7,금5,금6', ' ', '공과대학', '컴퓨터·데이터공학부')
+        class_list = []
+        class_index = 0
+        day = ' '
+        if i[15] == '':
+            tmp.append(tmp_inner_list)
+            continue
+        for k in i[15].split(','):
+
+            myclass = i[8].split(',')
+            if day == ' ':
+                day = k[0]
+            if k[0] != day:
+                class_index += 1
+                day = k[0]
+            class_list.append(myclass[class_index])
+        tmp_inner_list[8] = class_list
+        tmp.append(tmp_inner_list)
+    result_box_list = tmp
 
     answer = {
         'result_box_list': result_box_list
@@ -177,7 +200,29 @@ def sending_field_value(request):
     print(select_field1)
     print(select_field2)
     print(grade)
-    data = testdb.search_subject("-1", -1, "-1", grade, "-1", "-1", select_field1, select_field2)
+    data = list(testdb.search_subject("-1", -1, "-1", grade, "-1", "-1", select_field1, select_field2))
+    tmp = []
+    for i in data:
+        tmp_inner_list=list(i)
+        # i = (1281, '3', '컴퓨터공학전공', '컴퓨터공학전공', '전선', 'None_field', '101413-2', 'HCI윈도우즈프로그래밍 (HCI WINDOWS PROGRAMMING)', 'T0605,T0602', '3', '10/50/50/50/50', '39', '10', '전체', '이혜영1', '수7,금5,금6', ' ', '공과대학', '컴퓨터·데이터공학부')
+        class_list = []
+        class_index = 0
+        day = ' '
+        if i[15] == '':
+            tmp.append(tmp_inner_list)
+            continue
+        for k in i[15].split(','):
+
+            myclass = i[8].split(',')
+            if day == ' ':
+                day = k[0]
+            if k[0] != day:
+                class_index += 1
+                day = k[0]
+            class_list.append(myclass[class_index])
+        tmp_inner_list[8] = class_list
+        tmp.append(tmp_inner_list)
+    data = tmp
     answer = {
         'result_box_list': data
     }
