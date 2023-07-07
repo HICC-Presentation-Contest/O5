@@ -9,7 +9,6 @@ from . import fillter_timetable
 import json
 
 
-
 # return render(request, '이동할_html_화면.html, 추가적으로_보내줄_정보가_있다면_여기에_딕트_추가) 이게 기본형식, 세번째인자는 딕셔너리로 전달
 # jsonresponse는 ajax에 대한 응답
 def my_time_table_page(request):
@@ -87,7 +86,7 @@ def suggested_search_word(request):
 @csrf_exempt
 def search_word_submit(request):
     search_word = request.POST['search_word']
-    result_box_list = list(testdb.search_subject(search_word, -1,"-1", "-1", "-1", "-1"))
+    result_box_list = list(testdb.search_subject(search_word, -1, "-1", "-1", "-1", "-1", "-1", "-1"))
 
     answer = {
         'result_box_list': result_box_list
@@ -102,14 +101,14 @@ def send_group_list(request):
         data = json.loads(request.POST['group_list'])
         print(data)
     all_groups = []
-    sort_all_groups=[]
+    sort_all_groups = []
     for i in range(len(data)):
-        tmp_list=[]
+        tmp_list = []
         for j in range(len(data[i])):
-            tmp =[(testdb.search_subject("-1", data[i][j], "-1", "-1", "-1", "-1"))]
+            tmp = [(testdb.search_subject("-1", data[i][j], "-1", "-1", "-1", "-1", "-1", "-1"))]
             tmp_list.append(tmp)
         all_groups.append(tmp_list)
-    sort_all_groups+=(timetable_algorithm.sort_groups(all_groups))
+    sort_all_groups += (timetable_algorithm.sort_groups(all_groups))
     result_time_table, result_time_table_list = timetable_algorithm.generate_possible_combinations(sort_all_groups)
     answer = {
         'resultTimeTable': result_time_table,
@@ -127,13 +126,13 @@ def send_sort_value(request):
 
     if request.method == 'POST':
         sort_value_list = json.loads(request.POST['sortValueList'])
-        week_day_list = json.loads(request.POST['weekDayList']) # 공강일 ['월', '화'] 이렇게 들어온다. ,만약 공강일 설정 안되어있으면 빈리스트가 간다.
+        week_day_list = json.loads(request.POST['weekDayList'])  # 공강일 ['월', '화'] 이렇게 들어온다. ,만약 공강일 설정 안되어있으면 빈리스트가 간다.
         result_time_table_list = json.loads(request.POST['resultTimeTableWithTF'])
     for i in sort_value_list:
         if i == 'lunchTime':
             tmp = sort_lunch_time.sort_free_list(result_time_table_list)
         if i == 'emptyDay':
-            tmp = sort_empty_day.empty_Day(result_time_table_list,week_day_list)
+            tmp = sort_empty_day.empty_Day(result_time_table_list, week_day_list)
         if i == 'morningLectureMain':
             tmp, _ = fillter_timetable.filter_time_table(result_time_table_list)
         if i == 'afternoonLectureMain':

@@ -139,7 +139,7 @@ def search_subject(search_word, index, time, grade, credit, completion,univ, dep
 
 # 자동완성 검색, 과목 이름은 index 7 search 함수로 해당 과목 검색 후 중복 제거
 def search_subject_predictive(search_word):
-    search_list = list(search_subject(search_word, -1, "-1", "-1", "-1", "-1"))
+    search_list = list(search_subject(search_word, -1, "-1", "-1", "-1", "-1", "-1", "-1"))
     result_list = []
     if not search_list:
         return
@@ -320,6 +320,3 @@ def insert_data():
 #     print(i)
 # conn.commit()
 # conn.close()
-data = search_subject("-1",-1,"-1","3","-1","-1","사범대학", "수학교육과")
-for i in data:
-    print(i)
