@@ -173,9 +173,11 @@ def sending_field_value(request):
 
     select_field1 = my_list[0]
     select_field2 = my_list[1]
-    grade = my_list[2]
+    grade = int(my_list[2])
+    print(select_field1)
+    print(select_field2)
+    print(grade)
     data = testdb.search_subject("-1", grade, "-1", "-1", "-1", "-1", select_field1, select_field2)
-
     answer = {
         'result_box_list': data
     }
