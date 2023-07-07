@@ -310,6 +310,23 @@ def insert_data():
         index += 1
 
 
+def certify_id(id):
+    exist_id = False
+    conn = pymysql.connect(host='localhost', user='root',
+                           password=db_password, db='test1', charset='utf8')
+    curs = conn.cursor()
+    curs.execute("use test1;")
+    curs.execute("""select username from accounts_user;""")
+    rows = curs.fetchall()
+    for i in rows:
+        if i[0] == id:
+            exist_id = True
+    conn.commit()
+    conn.close()
+    return exist_id
+
+
+
 # conn = pymysql.connect(host='localhost', user='root',
 #                            password=db_password, db='test1', charset='utf8')
 # curs = conn.cursor()
@@ -324,5 +341,3 @@ def insert_data():
 #     print(i)
 # conn.commit()
 # conn.close()
-
-
