@@ -521,14 +521,15 @@ function saveTimeTable(){
 
 }
 
-let basicTimeTableNameCheck = {};
-let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
-// 기본시간표 체크리스트 초기화
-for (let i = 1; i <= 100; i++) {
-  basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
-}
+
 
 function appendUserTimeTable(newTimeTable) {
+    let basicTimeTableNameCheck = {};
+    let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
+    // 기본시간표 체크리스트 초기화
+    for (let i = 1; i <= 100; i++) {
+      basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
+    }
     // 기본시간표 체크 상태 갱신
     for (let key in userTimeTable[1]) {
         if (/기본시간표[0-99]/g.test(key)) {

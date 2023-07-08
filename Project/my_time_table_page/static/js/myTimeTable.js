@@ -344,18 +344,21 @@ function givingCrownToTimeTable(){
 
 
 // 시간표 이름 체크리스트
-let basicTimeTableNameCheck = {};
-let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
 
 
-// 기본시간표 체크리스트 초기화
-for (let i = 1; i <= 100; i++) {
-  basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
-}
+
+
 
 // 시간표이름 리스트에 새 항목 추가
 function appendUserTimeTable(userTimeTable) {
     // 기본시간표 체크 상태 갱신
+    let basicTimeTableNameCheck = {};
+    let nextTimeTableNumber = 1; // 다음 시간표 번호를 추적하기 위한 변수
+    // 기본시간표 체크리스트 초기화
+    for (let i = 1; i <= 100; i++) {
+      basicTimeTableNameCheck['기본시간표' + i.toString()] = false;
+    }
+
     for (let key in userTimeTable) {
         if (/기본시간표[0-99]/g.test(key)) {
             basicTimeTableNameCheck[key] = true;
