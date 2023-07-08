@@ -425,8 +425,9 @@ function sendingSortValue(){
                 });
             }
     });
-    // console.log(sendingGroupList);
-    // console.log(weekDayList);
+    if ($("input[name='sortValueRadio']").is(':checked')){
+        weekDayList.push($("input[name='sortValue']:checked").val());
+    }
     $.ajax({
         url: 'sendSortValue',
         type: 'POST',
