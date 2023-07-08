@@ -415,6 +415,10 @@ var textList = [['0', '교양과(서울)', '예술학과', '교선', '예술과�
     ['0', '교양과(서울)', '예술학과', '교선', '예술과디자인', '002056-2', '미술의이해\n(COMPREHENSION OF ART)', 'C807', '3', '10/20/30/40/50', '47', '20', '공학', '손수연', '화789', '미술대 수강불가 ', '공통교양\n(서울)', '예술과디자인']]
 
 function pushClassData(textData) {
+    console.log(textData[15]);
+    if (textData[15] == 'None'){
+        return
+    }
     var a = document.createElement("div");
     a.innerHTML = '<div class="result" onclick="passOverData(this)">' +
         '<div class="subject"><strong>' + textData[7] + '</strong></div>' +
