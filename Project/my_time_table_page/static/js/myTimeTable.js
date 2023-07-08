@@ -284,6 +284,7 @@ function deleteTimeTableList() {
   delete (userTimeTable[1])[name];
   sendingUserTimeTable();
   basicUserInformation(userTimeTable[1]);
+  givingCrownToTimeTable();
 }
 
 // 시간표 이름 클릭 시 동작
@@ -307,14 +308,26 @@ function changeBasicTimeTable(){
 
 
 function givingCrownToTimeTable(){
+    let keyList = [];
     if(document.getElementById('basicTimeTable')){
         document.getElementById('basicTimeTable').remove();
 
     }
     let name = userTimeTable[2];
-    let button = document.getElementById(name);
+    let button= ''
+    if (document.getElementById(name)){ //name에 해당하는 시간표이름이 있을경우
+        button = document.getElementById(name);
+    }
+    else{ //만약 name에 해당하하는
+        keyList = Object.keys(userTimeTable[1]);
+        if(keyList.length != 0){
+            button = document.getElementById(keyList[0]);
+            userTimeTable[2] = keyList[0];
+            name = userTimeTable[2];
+        }
+    }
     let buttonName= document.getElementById(name).innerHTML;
-
+    console.log(buttonName);
         let innerList = document.createElement('i');
         innerList.className = 'fas fa-crown';
         innerList.id = 'basicTimeTable';
@@ -443,6 +456,7 @@ function clickReviseButton() {
     // console.log(userTimeTable[1]);
     sendingUserTimeTable();
     basicUserInformation(userTimeTable[1]); // 리스트 칸, 정보칸, 왼쪽 시간표칸 기본 세팅
+    givingCrownToTimeTable();
 }
 
 function clickRevise() {
