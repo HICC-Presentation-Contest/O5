@@ -262,6 +262,7 @@ function deleteClass(event){
     // 생성한 리스트를 넣어준다.
     userTimeTable[1][timeTableName] = temporaryList;
     addClassToTimeTable(userTimeTable[1][timeTableName]);
+    sendingUserTimeTable();
 }
 
 // 새 시간표를 HTML에 추가
