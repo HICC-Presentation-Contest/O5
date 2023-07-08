@@ -90,7 +90,7 @@ table {
      height: 11%;
      /*text-align: center;*/
      border: 1.5px solid  rgb(206,211,242);
-    font-size: smaller;
+    font-size: 12px;
     position: relative;
 }
 .timeTableListElement{
@@ -271,4 +271,8 @@ hr{
 #weekdays{
     vertical-align : -8px;
     margin-bottom: 10px;
+}
+
+.myTimeTableDay{
+    font-size: medium;
 }

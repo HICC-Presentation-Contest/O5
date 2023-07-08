@@ -67,15 +67,15 @@
 
                 <!-- 각 요소의 id 이름형식은 timeTable_요일_교시 ex. timetable_mon_1 -->
                 <tr>
-                    <th scope="col" ;></th>
-                    <th scope="col" ;>월</th>
-                    <th scope="col" ;>화</th>
-                    <th scope="col" ;>화</th>
-                    <th scope="col" ;>수</td>
-                    <th scope="col" ;>목</td>
-                    <th scope="col" ;>금</td>
-                    <th scope="col" ;>토</td>
-                    <th scope="col" ;>일</td>
+                    <td class="myTimeTableDay" scope="col" ;></td>
+                    <td class="myTimeTableDay" scope="col" ;>월</td>
+                    <td class="myTimeTableDay" scope="col" ;>화</td>
+                    <td class="myTimeTableDay" scope="col" ;>화</td>
+                    <td class="myTimeTableDay" scope="col" ;>수</td>
+                    <td class="myTimeTableDay" scope="col" ;>목</td>
+                    <td class="myTimeTableDay" scope="col" ;>금</td>
+                    <td class="myTimeTableDay" scope="col" ;>토</td>
+                    <td class="myTimeTableDay" scope="col" ;>일</td>
                 </tr>
                 <!-- 1교시 -->
                 <tr>
@@ -183,8 +183,8 @@
         <div id="rightBox">
 
             <!--(2) 오른쪽 상단의 가능한 다른 경우의 시간표-->
-            <p style="font-size: 18px; margin-top: -9px;">[가능한 다른 경우의 시간표]</p>
-            <div id="possibleTimeTable" style="margin-top : -15px;">
+            <p style="font-size: 18px;">[가능한 다른 경우의 시간표]</p>
+            <div id="possibleTimeTable">
                 <!-- Swiper -->
                 <div class="swiper-container">
                     <div id='resultTimeTableListBox' class="swiper-wrapper">
@@ -206,24 +206,28 @@
                 {#            <div id = 'resultTimeTableListBox'> </div>#}
             </div>
             <div style="width: 100%" class="d-flex flex-row-reverse">
-                <button type="button" class="btn searchButton text-white" style="background-color:  rgb(48,110,191, 0.7); margin-top: 5px; "
+                <button type="button" class="btn searchButton text-white"
+                        style="background-color:  rgb(48,110,191, 0.7); margin-top: 10px; "
                         onclick="saveTimeTable()">시간표 저장
                 </button>
             </div>
+            <br>
 
             <!--(3) 오른쪽 하단의 정렬기능-->
             <div style="text-align:left;height:40%">
                 <p style="font-size: 18px; margin-top : 8px;">[시간표 정렬기능]</p>
 
 
-                <label><input type="checkbox" name="sortValue" value="lunchTime" checked style="vertical-align : -8px; "> 점심시간 확보(11~14시)</label>
+                <label><input type="checkbox" name="sortValue" value="lunchTime" checked
+                              style="vertical-align : -8px; "> 점심시간 확보(11~14시)</label>
                 <br>
                 {#                <label><input type="checkbox" name="sortValue" value="emptyDay">공강일 있는 거만 보기</label>#}
                 <label><input type="checkbox" name="sortValue" id="savingFreeDay" value="emptyDay"
                               onchange="toggleWeekdays()" style="vertical-align : -8px;"> 공강일 포함 </label>
                 <br>
                 <div id="weekdays" style="display: none;">
-                    <label><input type="checkbox" name="weekDay" value="월" style="vertical-align : -8px;  margin-top: 10px;">월</label>
+                    <label><input type="checkbox" name="weekDay" value="월"
+                                  style="vertical-align : -8px;  margin-top: 10px;">월</label>
                     <label><input type="checkbox" name="weekDay" value="화" style="vertical-align : -8px;">화</label>
                     <label><input type="checkbox" name="weekDay" value="수" style="vertical-align : -8px;">수</label>
                     <label><input type="checkbox" name="weekDay" value="목" style="vertical-align : -8px;">목</label>
@@ -231,17 +235,22 @@
                     <label><input type="checkbox" name="weekDay" value="금" style="vertical-align : -8px;">토</label>
                     <label><input type="checkbox" name="weekDay" value="금" style="vertical-align : -8px;">일</label>
                 </div>
-                <label><input type="checkbox" name="sortValue" value="morningLectureMain" style="vertical-align : -8px;"> 오전 강의 위주로</label>
+                <label><input type="checkbox" name="sortValue" value="morningLectureMain"
+                              style="vertical-align : -8px;"> 오전 강의 위주로</label>
                 <br>
-                <label><input type="checkbox" name="sortValue" value="afternoonLectureMain" style="vertical-align : -8px;"> 오후 강의 위주로 </label>
+                <label><input type="checkbox" name="sortValue" value="afternoonLectureMain"
+                              style="vertical-align : -8px;"> 오후 강의 위주로 </label>
 
 
 
+                <div style="width: 100%" class="d-flex flex-row-reverse" style="margin-top : 15px;">
+                    <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1; "
+                            onclick="sendingSortValue()">정렬
+                    </button>
+                </div>
             </div>
             {#        <button onclick="makingTableList(ResultTimeTableList)">버튼</button>#}
-            <button type="submit" class="btn searchButton text-white" style="background-color: #A1C2F1; margin-left:330px; "
-                        onclick="sendingSortValue()">정렬
-            </button>
+
         </div>
     </div>
     </form>

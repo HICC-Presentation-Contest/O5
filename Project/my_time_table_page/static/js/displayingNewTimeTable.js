@@ -47,14 +47,14 @@ function KorToEngOfDay(day) {
 function timeTableRemover() {
     document.getElementById('myTimeTable').innerHTML =
         "<tr>\n" +
-        "                <td scope=\"col\" ;></td>\n" +
-        "                <td scope=\"col\" ;>월</td>\n" +
-        "                <td scope=\"col\" ;>화</td>\n" +
-        "                <td scope=\"col\" ;>수</td>\n" +
-        "                <td scope=\"col\" ;>목</td>\n" +
-        "                <td scope=\"col\" ;>금</td>\n" +
-        "                <td scope=\"col\" ;>토</td>\n" +
-        "                <td scope=\"col\" ;>일</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;></td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>월</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>화</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>수</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>목</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>금</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>토</td>\n" +
+        "                <td class='myTimeTableDay' scope=\"col\" ;>일</td>\n" +
         "            </tr>\n" +
         "            <!-- 1교시 -->\n" +
         "            <tr>\n" +
